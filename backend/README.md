@@ -1,3 +1,3 @@
 
-# MERN Stack AI Chatbot
+# MERN Stack Summarify
 
