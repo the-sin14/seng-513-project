@@ -3,7 +3,7 @@ import { Box, Avatar, Typography, Button, IconButton } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
 import ChatItem from "../components/chat/ChatItem";
 import { IoMdSend } from "react-icons/io";
-import { sendCharRequest } from "../helpers/api-communicators";
+import { sendChatRequest } from "../helpers/api-communicators";
 
 
 type Message = {
@@ -22,7 +22,7 @@ const Chat = () => {
       }
       const newMessage: Message = {role: "user", content};
       setchatMessages((prev) => [...prev, newMessage]);
-      const chatData = await sendCharRequest(content);
+      const chatData = await sendChatRequest(content);
       setchatMessages([...chatData.chats])
   }
   return (

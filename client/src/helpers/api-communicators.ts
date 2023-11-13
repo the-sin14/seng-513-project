@@ -21,13 +21,22 @@ export const checkAuthStatus = async () => {
 };
 
 
-export const sendCharRequest = async (message:string) => {
+export const sendChatRequest = async (message:string) => {
     const res = await axios.post("/chat/new", {message});
 
     if (res.status !== 200) {
-      throw new Error("Unable to send the message!");
+      throw new Error("Unable to send");
     }
 
     const data = await res.data;
     return data;
 };
+
+export const logoutUser = async () => {
+    const res = await axios.get("/user/logout");
+    if (res.status !== 200) {
+      throw new Error("Unable to delete chats");
+    }
+    const data = await res.data;
+    return data;
+  };
