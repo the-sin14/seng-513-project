@@ -1,0 +1,20 @@
+html,body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #3D4A52;
+  color: rgb(249, 249, 249);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav-link{
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 10px;
+  margin: 20px;
+  text-decoration: solid;
+  background-color: rgb(42, 55, 55);
+  border-radius: 15px;
+  letter-spacing: 1px;
+}
+
