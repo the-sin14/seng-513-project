@@ -40,3 +40,13 @@ export const logoutUser = async () => {
     const data = await res.data;
     return data;
   };
+
+  export const signUpUser = async (name: string, email: string, password: string) => {
+    const res = await axios.post("/user/signup", {name, email, password});
+    if (res.status !== 201) {
+        throw new Error("Unable to Sign up to the page");
+        
+    }
+    const data = await res.data;
+    return data;
+}
