@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import ChatItem from "../components/chat/ChatItem";
 import { IoMdSend } from "react-icons/io";
 import { sendChatRequest } from "../helpers/api-communicators";
-
+import {useNavigate} from 'react-router-dom'
 
 type Message = {
   role: "user" | "assistant";
@@ -12,6 +12,7 @@ type Message = {
 }
 
 const Chat = () => {
+  const navigate =  useNavigate()
   const inputRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
   const [chatMessages, setchatMessages] = useState<Message[]>([]);
@@ -25,7 +26,13 @@ const Chat = () => {
       const chatData = await sendChatRequest(content);
       setchatMessages([...chatData.chats])
   }
+  useEffect(() => {
+    if (!auth?.user) {
+      return navigate("/login");
+    }
+  })
   return (
+    
     <Box
       sx={{
         display: "flex",
