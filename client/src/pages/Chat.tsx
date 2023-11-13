@@ -1,15 +1,9 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Box, Avatar, Typography, Button, IconButton } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
 import ChatItem from "../components/chat/ChatItem";
 import { IoMdSend } from "react-icons/io";
 import { sendCharRequest } from "../helpers/api-communicators";
-
-// import {
-//   deleteUserChats,
-//   getUserChats,
-//   sendChatRequest,
-// } from "../helpers/api-communicator";
 
 
 type Message = {
@@ -42,81 +36,12 @@ const Chat = () => {
         gap: 3,
       }}
     >
-      <Box
-        sx={{
-          display: { md: "flex", xs: "none" },
-          flex: 0.2,
-          flexDirection: "column",
-        }}
-      >
-        {/* THe side bar chat style */}
-        <Box
-          sx={{
-            display: "flex",
-            width: "100%",
-            height: "75vh",
-            bgcolor: "rgb(25,35, 50)",
-            borderRadius: 3,
-            flexDirection: "column",
-            mx: 2,
-          }}
-        >
-          {/* The "I" thing */}
-          <Avatar
-            sx={{
-              mx: "auto",
-              my: 3,
-              bgcolor: "white",
-              color: "black",
-              fontWeight: 700,
-            }}
-          >
-            {/* Will show the letter I */}
-            {auth?.user?.name[0]}
-          </Avatar>
-
-          {/* Description of the Chat Bot */}
-          <Typography
-            sx={{ mx: "auto", fontFamily: "work sans", width: "200px" }}
-          >
-            You are talking to a Chat Bot
-          </Typography>
-          <Typography
-            sx={{
-              mx: "auto",
-              fontFamily: "work sans",
-              my: 0.5,
-              width: "200px",
-              p: 1,
-            }}
-          >
-            You can ask me questions about your lecture slides and I will you
-            summarize them for you.
-          </Typography>
-          
-          {/* The clear conversation button */}
-          <Button
-            sx={{
-              width: "200px",
-              height: "30px",
-              my: "auto",
-              color: "white",
-              fontWeight: "600",
-              borderRadius: 2,
-              bgcolor: "red",
-              m: "auto",
-            }}
-          >
-            Clear Conversation
-          </Button>
-        </Box>
-      </Box>
-      
+   
       {/* The Chat box */}
       <Box
         sx={{
           display: "flex",
-          flex: { md: 0.8, xs: 1, sm: 1 },
+          flex: { md: 1, xs: 1, sm: 1 },
           flexDirection: "column",
           gap: 5,
           
