@@ -3,11 +3,7 @@ import { Box, Avatar, Typography, Button, IconButton } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
 import ChatItem from "../components/chat/ChatItem";
 import { IoMdSend } from "react-icons/io";
-<<<<<<< HEAD
 import { sendChatRequest } from "../helpers/api-communicators";
-=======
-import { sendCharRequest } from "../helpers/api-communicators";
->>>>>>> 96ea0677cd7d5c9e997530e869e9cf9eb7fe5665
 
 
 type Message = {
