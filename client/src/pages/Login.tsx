@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "@fontsource/poppins"
 
 const Login = () => {
   const auth = useAuth();
@@ -64,8 +65,9 @@ const Login = () => {
             textAlign="center"
             padding={5}
             fontWeight={700}
+            sx={{color: "#000", fontFamily: "Poppins", fontSize: "35px"}}
           >
-          Login
+          Sign In
           </Typography>
 
           {/* Email and Password label */}
@@ -90,7 +92,7 @@ const Login = () => {
             }}
             endIcon={<IoIosLogIn />}
           >
-            Login
+            Sign In
           </Button>
         </Box>
       </form>

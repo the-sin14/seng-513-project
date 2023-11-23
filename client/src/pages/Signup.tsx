@@ -64,8 +64,9 @@ const Signup = () => {
               textAlign="center"
               padding={5}
               fontWeight={700}
+              sx={{color: "#000", fontFamily: "Poppins", fontSize: "35px"}}
             >
-              Signup
+              Sign Up
             </Typography>
 
             {/* Email and Password label */}

@@ -1,20 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 html,body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   background-color: #F2F1EE;
   color: rgb(249, 249, 249);
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family:'Poppins', sans-serif;
 }
 
 .nav-link{
-  font-weight: 700;
-  text-transform: uppercase;
+  text-transform: capitalize;
   padding: 10px;
   margin: 20px;
-  text-decoration: solid;
-  background-color: rgb(42, 55, 55);
-  border-radius: 15px;
-  letter-spacing: 1px;
+  text-decoration: none;
 }
-
