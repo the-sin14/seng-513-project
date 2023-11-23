@@ -1,5 +1,13 @@
 import TextField from "@mui/material/TextField";
 import { CiMail, CiLock, CiUser } from "react-icons/ci";
+import {
+  createStyles,
+  fade,
+  Theme,
+  withStyles,
+  makeStyles,
+  createMuiTheme,
+} from '@material-ui/core/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 
 type Props = {
@@ -51,8 +59,30 @@ const CustomizedInput = (props: Props) => {
     }
   }
 
+  const CssTextField = withStyles({
+    root: {
+      '& label.Mui-focused': {
+        color: '#344055',
+      },
+      '& .MuiInput-underline:after': {
+        borderBottomColor: '#344055',
+      },
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: '#464343',
+        },
+        '&:hover fieldset': {
+          borderColor: '#344055',
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: '#344055',
+        },
+      },
+    },
+  })(TextField);
+
   return (
-    <TextField
+    <CssTextField
       margin="normal"
       InputLabelProps={{ style: { color: "black" } }}
       name={props.name}
@@ -63,7 +93,7 @@ const CustomizedInput = (props: Props) => {
           width: "400px",
           borderRadius: 10,
           fontSize: 20,
-          color: "black"
+          color: "black",
         },
         startAdornment: (
           <InputAdornment position="start">
