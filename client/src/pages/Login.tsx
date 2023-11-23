@@ -64,7 +64,7 @@ const Login = () => {
             variant="h4"
             textAlign="center"
             padding={5}
-            fontWeight={700}
+            fontWeight={600}
             sx={{color: "#000", fontFamily: "Poppins", fontSize: "35px"}}
           >
           Sign In
@@ -81,18 +81,19 @@ const Login = () => {
               px: 2,
               py: 2,
               mt: 2,
-              fontSize: "18px",
+              fontSize: "20px",
               width: "400px",
-              borderRadius: 2,
-              bgcolor: "white",
+              borderRadius: 3,
+              bgcolor: "#344055",
+              color: "#F2F1EE",
               ":hover": {
-                bgcolor: "gold",
-                color: "white",
+                bgcolor: "#485875"
               },
+              textTransform: "capitalize",
+              fontWeight: "600"
             }}
-            endIcon={<IoIosLogIn />}
           >
-            Sign In
+            Login
           </Button>
         </Box>
       </form>
