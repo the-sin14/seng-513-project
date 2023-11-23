@@ -7,6 +7,7 @@ import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "@fontsource/poppins"
+import Footer from "../components/Footer";
 
 const Login = () => {
   const auth = useAuth();
@@ -34,6 +35,7 @@ const Login = () => {
     }
   }, [auth])
   return (
+    <>
     <Box width={"100%"} height={"100%"} display="flex" flex={1}>
   
     <Box
@@ -47,10 +49,9 @@ const Login = () => {
         onSubmit={handleSumbit}
         style={{
           margin: "auto",
-          padding: "25px",
-          boxShadow: "10px 10px 20px #000",
-          borderRadius: "15px",
-          border: "none",
+          padding: "40px",
+          boxShadow: "0px 6px 12px 0px rgba(0, 0, 0, 0.50)",
+          borderRadius: "10px",
         }}
       >
         <Box
@@ -101,6 +102,8 @@ const Login = () => {
       </form>
     </Box>
   </Box>
+  <Footer/>
+  </>
   )
 }
 

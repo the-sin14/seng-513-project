@@ -9,7 +9,8 @@ import Box from '@mui/material/Box';
 
 function Home() {
   return (
-    <h1></h1>
+    <>
+    </>
   );
 }
 
