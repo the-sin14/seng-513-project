@@ -11,7 +11,7 @@ const Header = () => {
   return (
     // This is the header color.
     <AppBar 
-    sx={{bgcolor: "#221C15"}}
+    sx={{bgcolor: "#344055"}}
     >
       <Toolbar sx={{ display: "flex" }}>
         <Logo />
