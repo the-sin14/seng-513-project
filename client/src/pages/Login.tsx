@@ -90,7 +90,8 @@ const Login = () => {
                 bgcolor: "#485875"
               },
               textTransform: "capitalize",
-              fontWeight: "600"
+              fontWeight: "600",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)"
             }}
           >
             Login

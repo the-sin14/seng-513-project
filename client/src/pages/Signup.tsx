@@ -90,7 +90,8 @@ const Signup = () => {
                   bgcolor: "#485875"
                 },
                 textTransform: "capitalize",
-                fontWeight: "600"
+                fontWeight: "600",
+                boxShadow: "0px 8px 12px 0px rgba(0, 0, 0, 0.30)"
               }}
             >
               Sign Up
