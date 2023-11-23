@@ -12,11 +12,11 @@ type Message = {
 }
 
 const Chat = () => {
-  const navigate =  useNavigate()
+  const navigate =  useNavigate();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
   const [chatMessages, setchatMessages] = useState<Message[]>([]);
-  const handleSubmit = async () =>{
+  const handleSubmit = async () => {
       const content = inputRef.current?.value as string;
       if (inputRef && inputRef.current) {
         inputRef.current.value = "";
