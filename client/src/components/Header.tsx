@@ -11,7 +11,7 @@ const Header = () => {
   return (
     // This is the header color.
     <AppBar 
-    sx={{bgcolor: "#344055"}}
+    sx={{bgcolor: "#344055", height: "68px"}}
     >
       <Toolbar sx={{ display: "flex" }}>
         <Logo />
@@ -39,16 +39,16 @@ const Header = () => {
             <>
               {/* This will work when you are logged out */}
               <NavigationLink
-                bg = ""
+                bg = "#F2F1EE"
                 to="/login"
                 text="Login"
-                textColor="#FFFFFF"
+                textColor="#344055"
               />
               <NavigationLink
-                bg = ""
+                bg = "#F2F1EE"
                 to="/signup"
                 text="Signup"
-                textColor="#FFFFFF"
+                textColor="#344055"
               />
             </>
           )}
