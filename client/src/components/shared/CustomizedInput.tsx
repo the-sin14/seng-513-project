@@ -1,13 +1,6 @@
 import TextField from "@mui/material/TextField";
 import { CiMail, CiLock, CiUser } from "react-icons/ci";
-import {
-  createStyles,
-  fade,
-  Theme,
-  withStyles,
-  makeStyles,
-  createMuiTheme,
-} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 
 type Props = {
