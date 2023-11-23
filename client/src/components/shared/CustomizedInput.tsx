@@ -27,7 +27,8 @@ const CustomizedInput = (props: Props) => {
     return (
       <div style={{ 
         backgroundColor, 
-        borderRadius: '8px',
+        borderTopLeftRadius: '8px',
+        borderBottomLeftRadius: '8px',
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
