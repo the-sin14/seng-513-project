@@ -41,7 +41,7 @@ cd client
 ```
 3. Install the necessary dependencies:
 ```
-nom install
+npm install
 ```
 
 ## Setting up the Backend
@@ -54,7 +54,7 @@ cd backend
 ```
 3. Install the necessary dependencies:
 ```
-nom install
+npm install
 ```
 
 
