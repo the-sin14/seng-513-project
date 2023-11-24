@@ -43,7 +43,10 @@ cd client
 ```
 npm install
 ```
-
+There is a chance this doesn't work out, if that is the case, use:
+```
+npm install --force
+```
 ## Setting up the Backend
 
 1. Open another new terminal for setting up the backend.
