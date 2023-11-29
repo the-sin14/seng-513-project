@@ -101,7 +101,6 @@ const Login = () => {
       </form>
     </Box>
   </Box>
-  <Footer/>
   </>
   )
 }

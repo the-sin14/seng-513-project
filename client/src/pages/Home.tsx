@@ -2,6 +2,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import PricingCard from '../components/landing-page/PricingCard';
 import { Grid } from '@mui/material';
+import Footer from '../components/Footer';
 
 function Home() {
   const primaryColor = "#344055";
