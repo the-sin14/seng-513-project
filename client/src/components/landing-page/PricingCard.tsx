@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Typography } from "@mui/material"
+import { Box, Card, CardContent, Typography, Button } from "@mui/material"
 import "./PricingCard.css"
 
 type Props = {
@@ -21,7 +21,17 @@ export const PricingCard = (props: Props) => {
         if (props.tier === "free" || props.tier === "basic") {
             return "FREE"
         } else if (props.tier === "premium") {
-            return "$5/month"
+            return "$5/MONTH"
+        }
+    }
+
+    const getButtonText = () => {
+        if (props.tier === "free") {
+            return "Try it out"
+        } else if (props.tier === "basic") {
+            return "Sign Up"
+        } else if (props.tier === "premium") {
+            return "Purchase"
         }
     }
 
@@ -36,8 +46,12 @@ export const PricingCard = (props: Props) => {
                     </Box>
                     
                     <Typography variant="body2" className="card-body">
-                        Want to test out Summarify? Upload your lecture slides and dive into a world of endless possibilities! When you create an account, you’ll get even more benefits and experience new heights of productivity! 
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta, velit. Minus sunt ut esse voluptatem explicabo dolorem, eaque maxime? Laudantium voluptate reiciendis velit, nisi unde nostrum at et! Veniam, nulla dolorum fuga at sapiente iusto rerum corrupti velit, repudiandae temporibus distinctio architecto doloribus praesentium ipsa illo perferendis. Vitae, accusamus laboriosam!
                     </Typography>
+
+                    <Box className="button-box">
+                        <Button className="card-button">{getButtonText()}</Button>
+                    </Box>
                 </CardContent>
             </Card>
         </Box>
