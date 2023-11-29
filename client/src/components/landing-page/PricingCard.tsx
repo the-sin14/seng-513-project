@@ -48,7 +48,12 @@ export const PricingCard = (props: Props) => {
                 </Button>
             )
         } else if (props.tier === "premium") {
-            return <Button className="card-button">{getButtonText()}</Button>
+            return (
+                // When users click on the "Purchase" button, it will prompt users to login
+                <Button className="card-button">
+                    <Link to="/login" className="link">{getButtonText()}</Link>
+                </Button>
+            )
         }
     }
 
