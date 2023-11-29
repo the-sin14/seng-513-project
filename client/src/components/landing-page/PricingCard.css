@@ -1,0 +1,44 @@
+:root {
+    --primary: #344055;
+    --off-white: #F2F1EE;
+}
+
+
+/* Card dimensions */
+.card {
+    width: 500px;
+    margin: 0px 20px;
+    border-radius: 8px;
+}
+
+/* Card header */
+.card-header {
+    background-color: var(--primary);
+    height: 20px;
+    margin: -16px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.tier-kind {
+    text-align: left;
+    padding-left: 16px;
+    font-weight: 400;
+    color: var(--off-white);
+}
+
+.tier-price {
+    position: relative;
+    right: 0px;
+}
+
+/* Card body */
+.card-body {
+    color: black;
+    text-align: center;
+    margin-top: 40px;
+}
+
+
+/* Card Actions */
