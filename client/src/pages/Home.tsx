@@ -2,10 +2,14 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import PricingCard from '../components/landing-page/PricingCard';
 import { Grid } from '@mui/material';
-import Footer from '../components/Footer';
+import { FaCirclePlus } from "react-icons/fa6";
+import { IoArrowRedoSharp } from "react-icons/io5";
+import "./Home.css"
 
 function Home() {
   const primaryColor = "#344055";
+  const darkGray = "#515458";
+  const lightGray = "#888484"
 
   return (
     <>
@@ -17,13 +21,24 @@ function Home() {
         </Box>
 
         {/* Test Summarify Section */}
-        <Box>
+        <Box className="test-summarify-div">
+          <Typography variant='h1' className='upload-slides-title'>
+              UPLOAD YOUR LECTURE SLIDES
+          </Typography>
+          <Typography variant='h5' className='upload-slides-subtitle'>Supported files types: PDF</Typography>
 
+          <div className='input-field'>
+            <FaCirclePlus className="upload-file-icon"/>
+            <input type="text" placeholder='Type in notes...' className='text-field'/>
+            <IoArrowRedoSharp className="enter-notes-icon"/>
+          </div>
+          
         </Box>
 
         {/* Account Tiers Section */}
-        <Box display={"flex"} justifyContent={'center'} alignItems={'center'} marginTop={"100px"} flexDirection={"column"}>
+        <Box display={"flex"} justifyContent={'center'} alignItems={'center'} marginTop={"50px"} flexDirection={"column"}>
 
+          {/* Subtitle */}
           <Typography variant='h1' sx={{color: primaryColor, fontSize: "28px", fontWeight: "700"}}>
               ACCOUNT TIERS
           </Typography>
