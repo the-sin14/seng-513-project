@@ -17,13 +17,21 @@ export const PricingCard = (props: Props) => {
         }
     }
 
+    const getAccountPricing = () => {
+        if (props.tier === "free" || props.tier === "basic") {
+            return "FREE"
+        } else if (props.tier === "premium") {
+            return "$5/month"
+        }
+    }
+
     return (
         <Box className="card">
             <Card>
                 <CardContent>
                     <Box className="card-header">
                         <Typography variant="h6" className="tier-kind">{getAccountTier()}</Typography>
-                        <Typography variant="h6" className="tier-price">FREE</Typography>
+                        <Typography variant="h6" className="tier-price">{getAccountPricing()}</Typography>
                         
                     </Box>
                     

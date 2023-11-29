@@ -3,12 +3,12 @@
     --off-white: #F2F1EE;
 }
 
-
 /* Card dimensions */
 .card {
     width: 500px;
     margin: 0px 20px;
-    border-radius: 8px;
+    border-radius: 6px;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);;
 }
 
 /* Card header */
@@ -19,6 +19,7 @@
     height: 50px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .tier-kind {
@@ -29,8 +30,10 @@
 }
 
 .tier-price {
-    position: relative;
-    right: 0px;
+    padding-right: 16px;
+    font-weight: 600;
+    color: var(--off-white);
+    
 }
 
 /* Card body */
