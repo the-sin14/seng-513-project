@@ -51,19 +51,19 @@ export const PricingCard = (props: Props) => {
                 <div className="card-body">
                     <div className="card-feature">
                         <FaCheck className="check-icon"/>
-                        <Typography variant="body1" className="card-feature-text">Upload files up to 5,000 characters </Typography>
+                        <Typography variant="body1" className="card-feature-text">Upload files up to <span className="bold">5,000</span> characters </Typography>
                     </div>
                     <div className="card-feature">
                         <FaCheck className="check-icon"/>
-                        <Typography variant="body1" className="card-feature-text">Let AI generate simple, paragraph-form summaries</Typography>
+                        <Typography variant="body1" className="card-feature-text">Let AI generate <span className="underline">simple, paragraph-form</span> summaries</Typography>
                     </div>
                     <div className="card-feature">
                         <FaCheck className="check-icon"/>
-                        <Typography variant="body1" className="card-feature-text">Let AI generate simple, point-form summaries</Typography>
+                        <Typography variant="body1" className="card-feature-text">Let AI generate <span className="underline">simple, point-form</span> summaries</Typography>
                     </div>
                     <div className="card-feature">
                         <FaCheck className="check-icon"/>
-                        <Typography variant="body1" className="card-feature-text">Let AI generate flashcards for self-learning</Typography>
+                        <Typography variant="body1" className="card-feature-text">Let AI generate <span className="underline">flashcards</span> for self-learning</Typography>
                     </div>
                 </div>
             );
@@ -72,19 +72,19 @@ export const PricingCard = (props: Props) => {
                 <div className="card-body">
                     <div className="card-feature">
                         <FaCheck className="check-icon"/>
-                        <Typography variant="body1" className="card-feature-text">Upload files up to 10,000 characters </Typography>
+                        <Typography variant="body1" className="card-feature-text">Upload files up to <span className="bold">10,000</span> characters </Typography>
                     </div>
                     <div className="card-feature">
                         <FaCheck className="check-icon"/>
-                        <Typography variant="body1" className="card-feature-text">Let AI generate simple, paragraph-form summaries</Typography>
+                        <Typography variant="body1" className="card-feature-text">Let AI generate <span className="underline">simple, paragraph-form</span> summaries</Typography>
                     </div>
                     <div className="card-feature">
                         <FaCheck className="check-icon"/>
-                        <Typography variant="body1" className="card-feature-text">Let AI generate simple, point-form summaries</Typography>
+                        <Typography variant="body1" className="card-feature-text">Let AI generate <span className="underline">simple, point-form</span> summaries</Typography>
                     </div>
                     <div className="card-feature">
                         <FaCheck className="check-icon"/>
-                        <Typography variant="body1" className="card-feature-text">Let AI generate flashcards for self-learning</Typography>
+                        <Typography variant="body1" className="card-feature-text">Let AI generate <span className="underline">flashcards</span> for self-learning</Typography>
                     </div>
                 </div>
             );

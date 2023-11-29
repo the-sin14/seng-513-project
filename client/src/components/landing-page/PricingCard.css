@@ -67,7 +67,7 @@
     color: black;
     margin-left: 20px;
     margin-top: 40px;
-    inline-size: 500px;
+    inline-size: 420px;
     overflow-wrap: break-word;
     text-align: center;
 }
@@ -76,6 +76,15 @@
     color: black;
     margin-left: 20px; /* space from icon*/
 }
+
+.underline {
+    text-decoration: underline;
+}
+
+.bold {
+    font-weight: bold;
+}
+
 
 /* Card Actions */
 .button-box {
