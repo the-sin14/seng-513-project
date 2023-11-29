@@ -22,13 +22,13 @@ function Home() {
         </Box>
 
         {/* Account Tiers Section */}
-        <Box display={"flex"} flex={{xs: .3, md: 1}} justifyContent={'center'} alignItems={'center'} marginTop={"100px"} flexDirection={"column"}>
+        <Box display={"flex"} justifyContent={'center'} alignItems={'center'} marginTop={"100px"} flexDirection={"column"}>
 
           <Typography variant='h1' sx={{color: primaryColor, fontSize: "28px", fontWeight: "700"}}>
               ACCOUNT TIERS
           </Typography>
 
-          <Box display={"flex"} justifyContent={"center"} alignItems={"center"} flexDirection={"row"} marginTop={"30px"}>
+          <Box display={"flex"} justifyContent={"center"} alignItems={"center"} flexDirection={"row"} marginTop={"30px"} marginBottom={"70px"}>
             
             {/* Tier Cards */}
             <Grid container display={"flex"} justifyContent="center" alignItems={"stretch"}>
