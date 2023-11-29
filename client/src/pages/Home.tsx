@@ -8,8 +8,6 @@ import "./Home.css"
 
 function Home() {
   const primaryColor = "#344055";
-  const darkGray = "#515458";
-  const lightGray = "#888484"
 
   return (
     <>
