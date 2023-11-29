@@ -102,7 +102,6 @@ export const PricingCard = (props: Props) => {
 
                     {getCardBody()}
 
-                    
                     <Box className="button-box">
                         <Button className="card-button">{getButtonText()}</Button>
                     </Box>
