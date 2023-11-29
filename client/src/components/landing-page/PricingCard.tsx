@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Box, Card, CardContent, Typography, Button } from "@mui/material"
 import { FaCheck } from "react-icons/fa6";
 import "./PricingCard.css"
@@ -8,8 +9,6 @@ type Props = {
 }
 
 export const PricingCard = (props: Props) => {
-    const iconSize = 20;
-    const checkColor = '#344055';
 
     const getAccountTier = () => {
         if (props.tier === "free") {
@@ -36,6 +35,20 @@ export const PricingCard = (props: Props) => {
             return "Sign Up"
         } else if (props.tier === "premium") {
             return "Purchase"
+        }
+    }
+
+    const getNavLink = () => {
+        if (props.tier === "free") {
+            return <Button className="card-button">{getButtonText()}</Button>
+        } else if (props.tier === "basic") {
+            return (
+                <Button className="card-button">
+                    <Link to="/signup" className="link">{getButtonText()}</Link>
+                </Button>
+            )
+        } else if (props.tier === "premium") {
+            return <Button className="card-button">{getButtonText()}</Button>
         }
     }
 
@@ -103,7 +116,8 @@ export const PricingCard = (props: Props) => {
                     {getCardBody()}
 
                     <Box className="button-box">
-                        <Button className="card-button">{getButtonText()}</Button>
+                        {/* <Button className="card-button">{getButtonText()}</Button> */}
+                        {getNavLink()}
                     </Box>
                 </CardContent>
             </Card>
