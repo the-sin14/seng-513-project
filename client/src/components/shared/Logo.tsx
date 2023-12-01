@@ -20,7 +20,6 @@ const Logo = () => {
           src="/summarify_logo.svg"
           alt="Logo"
           className="logo"
-{/*           style={{ width: "47px", height: "47px", marginLeft: "10px" }} */}
         />
       </Link>
       <Typography
@@ -32,7 +31,6 @@ const Logo = () => {
         }}
       >
         <span className="text"
-{/*           style={{ fontSize: "22px", marginLeft: "7px" }} */}
           >Summarify</span>
       </Typography>
     </div>
