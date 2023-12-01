@@ -31,7 +31,7 @@ const Header = () => {
                 bg = "#F2F1EE"
                 to="/"
                 text="Logout"
-                textColor="#FFFFFF"
+                textColor="#344055"
                 onClick={auth.logout}
               />
             </>
