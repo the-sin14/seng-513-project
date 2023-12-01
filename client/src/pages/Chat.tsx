@@ -58,7 +58,7 @@ const Chat = () => {
           sx={{
             textAlign: "center",
             fontSize: "35px",
-            color: "white",
+            color: "black",
             mx: "auto",
             
           }}
@@ -102,7 +102,7 @@ const Chat = () => {
             border: "none",
             outline:"none",
             color: "white",
-            fontSize: "25px",
+            fontSize: "20px",
           }}
         />
      

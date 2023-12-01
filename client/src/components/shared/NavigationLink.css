@@ -5,3 +5,9 @@
 .nav-link:hover {
     background-color: red;
 }
+
+@media screen and (max-width: 460px) {
+    .nav-link {
+      padding: 8px 15px !important; 
+    }
+}
