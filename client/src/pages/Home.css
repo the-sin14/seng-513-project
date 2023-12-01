@@ -110,8 +110,8 @@
     border: 1px solid var(--primary);
     background-color: var(--off-white);
     height: 40px;
-    position: absolute;                  /* added */
-    bottom: 60px;                           /* added */
+    position: absolute;
+    bottom: 60px;  
 }
 
 .upload-file-icon {
@@ -136,4 +136,13 @@
     color: black;
     font-size: 18px;
     font-family: "Poppins", sans-serif;
+}
+
+.word-counter {
+    color: rgba(70, 67, 67, 0.80);
+    text-align: right;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }

@@ -9,8 +9,8 @@ import "./Home.css"
 
 function Home() {
   const primaryColor = "#344055";
-  const characterCount = 1000;
-
+  const maxCharacterCount = 1000;
+  const [count, setCount] = React.useState(0);
 
   return (
     <>
@@ -37,15 +37,16 @@ function Home() {
             <Typography variant='h5' className='upload-slides-subtitle'>Supported files types: PDF</Typography>
           </div>
 
+          {/* Text field */}
           <div className='input-field'>
             <FaCirclePlus className="upload-file-icon"/>
-            <input type="text" placeholder='Type in notes...' className='text-field'/>
+            <input type="text" placeholder='Type in notes...' className='text-field' onChange={e => setCount(e.target.value.length)}/>
             <IoArrowRedoSharp className="enter-notes-icon"/>
-            <div className="word-counter">
-
-            </div>
           </div>
-          
+
+          <div className="word-counter">
+              <p>{ count }/{ maxCharacterCount }</p>
+          </div>
         </Box>
 
         {/* Account Tiers Section */}
