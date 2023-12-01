@@ -103,7 +103,6 @@
 .input-field {
     display: flex;
     align-items: center;
-    justify-self: flex-end;
     justify-content: center;
     flex-direction: row;
     border-radius: 15px;
@@ -134,7 +133,7 @@
     border: none;
     outline: none;
     color: black;
-    font-size: 18px;
+    font-size: 16px;
     font-family: "Poppins", sans-serif;
 }
 
