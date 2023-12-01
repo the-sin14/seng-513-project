@@ -9,6 +9,7 @@ import "./Home.css"
 
 function Home() {
   const primaryColor = "#344055";
+  const characterCount = 1000;
 
 
   return (
@@ -29,15 +30,20 @@ function Home() {
 
         {/* Test Summarify Section */}
         <Box className="test-summarify-div">
-          <Typography variant='h1' className='upload-slides-title'>
-              UPLOAD YOUR LECTURE SLIDES
-          </Typography>
-          <Typography variant='h5' className='upload-slides-subtitle'>Supported files types: PDF</Typography>
+          <div className="explain-text">
+            <Typography variant='h1' className='upload-slides-title'>
+                UPLOAD YOUR LECTURE SLIDES
+            </Typography>
+            <Typography variant='h5' className='upload-slides-subtitle'>Supported files types: PDF</Typography>
+          </div>
 
           <div className='input-field'>
             <FaCirclePlus className="upload-file-icon"/>
             <input type="text" placeholder='Type in notes...' className='text-field'/>
             <IoArrowRedoSharp className="enter-notes-icon"/>
+            <div className="word-counter">
+
+            </div>
           </div>
           
         </Box>

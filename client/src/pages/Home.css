@@ -78,13 +78,14 @@
 
 .test-summarify-div {
     width: 100%;
-    height: 60vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin-top: 100px;
     background-color: var(--tertiary);
+    position: relative;
 }
 
 .upload-slides-title {
@@ -96,19 +97,21 @@
 .upload-slides-subtitle {
     color: var(--light-gray);
     font-size: 18px;
+    text-align: center;
 }
-
-/* input field */
 
 .input-field {
     display: flex;
     align-items: center;
+    justify-self: flex-end;
     justify-content: center;
     flex-direction: row;
     border-radius: 15px;
     border: 1px solid var(--primary);
     background-color: var(--off-white);
     height: 40px;
+    position: absolute;                  /* added */
+    bottom: 60px;                           /* added */
 }
 
 .upload-file-icon {
