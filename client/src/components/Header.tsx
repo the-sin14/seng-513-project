@@ -30,8 +30,13 @@ const Header = () => {
               <NavigationLink
                 bg = "#F2F1EE"
                 to="/"
+<<<<<<< HEAD
                 text="Log Out"
                 textColor="#344055"
+=======
+                text="Logout"
+                textColor="#FFFFFF"
+>>>>>>> 554a8a8dedd6b290998d694746251f08727a9963
                 onClick={auth.logout}
               />
             </>

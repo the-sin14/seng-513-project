@@ -2,6 +2,7 @@ import Typography from "@mui/material/Typography";
 import "@fontsource/poppins"
 import React from "react";
 import { Link } from "react-router-dom";
+import './Logo.css'; 
 
 const Logo = () => {
   return (
@@ -18,7 +19,8 @@ const Logo = () => {
         <img
           src="/summarify_logo.svg"
           alt="Logo"
-          style={{ width: "47px", height: "47px", marginLeft: "10px" }}
+          className="logo"
+{/*           style={{ width: "47px", height: "47px", marginLeft: "10px" }} */}
         />
       </Link>
       <Typography
@@ -29,7 +31,9 @@ const Logo = () => {
       
         }}
       >
-        <span style={{ fontSize: "22px", marginLeft: "7px" }}>Summarify</span>
+        <span className="text"
+{/*           style={{ fontSize: "22px", marginLeft: "7px" }} */}
+          >Summarify</span>
       </Typography>
     </div>
   );
