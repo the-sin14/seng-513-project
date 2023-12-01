@@ -1,0 +1,27 @@
+.logo {
+  width: 47px;
+  height: 47px;
+  margin-left: 10px;
+}
+
+/* Styles when the viewport is less than 460px */
+@media screen and (max-width: 460px) {
+    .logo {
+      width: 25px;
+      height: 30px;
+      margin-left: 2px;
+    }
+}
+
+.text {
+    font-size: 22px;
+    margin-left: 7px;
+}
+
+/* Styles when the viewport is less than 460px */
+@media screen and (max-width: 460px){
+    .text {
+        font-size: 15px;
+        margin-left: 3px;
+    }
+}
