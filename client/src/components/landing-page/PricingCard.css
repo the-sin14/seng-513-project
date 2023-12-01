@@ -1,0 +1,113 @@
+:root {
+    --primary: #344055;
+    --secondary: #485875;
+    --off-white: #F2F1EE;
+}
+
+/* Card dimensions */
+.card {
+    min-width: 420px;
+    margin: 20px 20px;
+    border-radius: 6px;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card header */
+.card-header {
+    background-color: var(--primary);
+    height: 20px;
+    margin: -16px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tier-kind {
+    color: var(--off-white);
+    padding-left: 16px;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.tier-price {
+    padding-right: 16px;
+    font-weight: 600;
+    color: var(--off-white);
+    font-size: 18px;
+}
+
+/* Card body */
+.card-body {
+    color: black;
+    text-align: center;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.check-icon {
+    color: var(--primary);
+    font-size: 25px;
+}
+
+.card-feature {
+    color: black;
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+}
+
+.card-feature-free {
+    color: black;
+    margin-top: 80px;
+    margin-bottom: 44px;
+    inline-size: 448px;
+    overflow-wrap: break-word;
+    text-align: center;
+}
+
+.card-feature-text {
+    color: black;
+    margin-left: 20px; /* space from icon*/
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+
+/* Card Actions */
+.button-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-button {
+    margin-top: 20px;
+    font-size: 16px;
+    width: 175px;
+    background-color: var(--primary);
+    color: var(--off-white);
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.card-button:hover {
+    background-color: var(--secondary);
+}
+
+.link {
+    color: var(--off-white);
+}
