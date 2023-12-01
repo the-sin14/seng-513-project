@@ -4,19 +4,28 @@ import PricingCard from '../components/landing-page/PricingCard';
 import { Grid } from '@mui/material';
 import { FaCirclePlus } from "react-icons/fa6";
 import { IoArrowRedoSharp } from "react-icons/io5";
+import React, { useState } from 'react';
 import "./Home.css"
 
 function Home() {
   const primaryColor = "#344055";
+
 
   return (
     <>
       <Box width={"100%"} height={"100%"} display="flex" justifyContent={"center"} alignItems={"center"} flexDirection={'column'}>
 
         {/* Summarify Explanation Section */}
-        <Box>
-
-        </Box>
+        <div className='hero-section'>
+          <div className='hero-image'>
+            <img src='../girl_book.svg' width={"650px"} className='summarify-image'></img>
+          </div>
+          <div className='explain-section'>
+            <Typography variant='h1' className='title'>Summarify</Typography>
+            <Typography variant='h2' className='subtitle'>A Better Way To <span className='learn'>Learn</span></Typography>
+            <Typography variant='body1' className='what-is-summarify'>Simply upload or drag in your lecture notes, sit back, and let our powerful AI work its magic. In seconds, Summarify will transform your lengthy notes into concise summaries, making study sessions a breeze. But that's not all! Our AI doesn't stop there – it also crafts customized practice questions to reinforce your understanding. Elevate your learning experience with Summarify – <span className='motto'>because your success deserves the best!</span></Typography>
+          </div>
+        </div>
 
         {/* Test Summarify Section */}
         <Box className="test-summarify-div">
