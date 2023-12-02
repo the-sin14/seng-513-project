@@ -24,7 +24,11 @@ const Chat = () => {
       const newMessage: Message = {role: "user", content};
       setchatMessages((prev) => [...prev, newMessage]);
       const chatData = await sendChatRequest(content);
+      chatData.role = "assistant";
+      console.log("chatData:", chatData); // Log the chatData object
       setchatMessages([...chatData.chats])
+      console.log("chatData.chats:", chatData.chats); // Log the chatData.chats object
+
   }
   useEffect(() => {
     if (!auth?.user) {
