@@ -29,8 +29,6 @@
 //         return res.status(500).json({ chats: "Something went wrong!" });
 //     }
 // };
-
-
 import User from "../models/User.js";
 import { configureOpenAI } from "../config/openai-config.js";
 export const generateChatCompletion = async (req, res, next) => {
@@ -80,4 +78,5 @@ export const generateChatCompletion = async (req, res, next) => {
         return res.status(500).json({ message: "Something went wrong!", error: error.message });
     }
 };
+// //# sourceMappingURL=chat-controller.js.map
 //# sourceMappingURL=chat-controller.js.map
