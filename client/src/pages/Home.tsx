@@ -13,6 +13,7 @@ function Home() {
   const maxCharacterCount = 1000;
   const [count, setCount] = React.useState(0);
   const [image, setImage] = React.useState("");
+  const [showCounter, setShowCounter] = React.useState(true);
   const inputFile = React.useRef(null);
   const [uploadSlidesContent, setUploadSlidesContent] = React.useState(
     <div className="upload-slides-text">
@@ -26,6 +27,7 @@ function Home() {
   );
 
   function submitInput() {
+    setShowCounter(false);
     setUploadSlidesContent(
       <div className="lorem-ipsum">
         <p>The following is a concise summary derived from the comprehensive notes you provided:</p>
@@ -214,11 +216,13 @@ const wordCounterStyles: React.CSSProperties =  {
               <IoArrowRedoSharp className="enter-notes-icon" />
             </button>
           </div>
-          <div style={wordCounterStyles} className="counter">
-            <p>
-              {count}/{maxCharacterCount}
-            </p>
-          </div>
+          {showCounter && (
+            <div style={wordCounterStyles} className="counter">
+              <p>
+                {count}/{maxCharacterCount}
+              </p>
+            </div>
+          )}
         </Box>
 
         {/* Account Tiers Section */}

@@ -68,10 +68,10 @@
 }
 
 .create-acc-suggestion {
-    margin-top: -50px;
+    margin-top: 30px;
     border-radius: 10px;
     background: var(--primary);
-    height: 28vh;
+    height: 23vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -87,4 +87,10 @@
     text-align: center;
     color: var(--off-white);
     font-weight: 300;
+}
+
+@media screen and (max-width: 640px) {    
+    .create-acc-suggestion {
+        height: 30vh;
+    }
 }
