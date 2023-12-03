@@ -22,14 +22,14 @@
 }
 
 .upload-file-icon {
-    font-size: 30px;
+    font-size: 25px;
     color: var(--primary);
     margin-right: 10px;
     margin-left: 10px;
 }
 
 .enter-notes-icon {
-    font-size: 30px;
+    font-size: 25px;
     color: var(--primary);
     margin-left: 10px;
     margin-right: 10px;
@@ -43,4 +43,13 @@
     color: black;
     font-size: 16px;
     font-family: "Poppins", sans-serif;
+}
+
+.upload-button, 
+.enter-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
 }

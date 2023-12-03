@@ -7,6 +7,14 @@ import { FaCirclePlus } from "react-icons/fa6";
 import { IoArrowRedoSharp } from "react-icons/io5";
 import React from "react";
 
+function uploadFile() {
+  console.log("upload file function");
+}
+
+function submitInput() {
+  console.log("submit input function");
+}
+
 function Home() {
   const primaryColor = "#344055";
   const maxCharacterCount = 1000;
@@ -97,6 +105,7 @@ const wordCounterStyles: React.CSSProperties =  {
   "fontWeight": "400",
   "lineHeight": "normal"
 }
+
   return (
     <>
       <Box
@@ -135,7 +144,7 @@ const wordCounterStyles: React.CSSProperties =  {
 
         {/* Test Summarify Section */}
         <Box style={testSummarifyStyles}>
-          <div>
+          <div className="upload-slides-text">
             <Typography variant="h1" style={{color: "#515458", fontSize: "35px", fontWeight:"bolder"}}>
               UPLOAD YOUR LECTURE SLIDES
             </Typography>
@@ -145,18 +154,26 @@ const wordCounterStyles: React.CSSProperties =  {
           </div>
 
           {/* Text field */}
+          {count >= maxCharacterCount && (
+            <div style={{ color: 'red', fontSize: "12px"}}>
+              Text is too long! Create an account to increase character count.
+            </div>
+          )}
           <div style={inputFieldStyles}>
-            <FaCirclePlus className="upload-file-icon" />
+            <button className="upload-button" onClick={uploadFile}>
+              <FaCirclePlus className="upload-file-icon"/>
+            </button>
             <input
               type="text"
               placeholder="Type in notes..."
               className="text-field"
               onChange={(e) => setCount(e.target.value.length)}
             />
-            <IoArrowRedoSharp className="enter-notes-icon" />
+            <button className="enter-button" onClick={submitInput} disabled={count >= maxCharacterCount}>
+              <IoArrowRedoSharp className="enter-notes-icon" />
+            </button>
           </div>
-
-          <div style={wordCounterStyles}>
+          <div style={wordCounterStyles} className="counter">
             <p>
               {count}/{maxCharacterCount}
             </p>
@@ -195,13 +212,13 @@ const wordCounterStyles: React.CSSProperties =  {
               alignItems={"stretch"}
             >
               <Grid item style={{ display: "flex" }}>
-                <PricingCard tier="free" price="free" />
+                <PricingCard tier="free" />
               </Grid>
               <Grid item style={{ display: "flex" }}>
-                <PricingCard tier="basic" price="free" />
+                <PricingCard tier="basic" />
               </Grid>
               <Grid item style={{ display: "flex" }}>
-                <PricingCard tier="premium" price="5.99 per month" />
+                <PricingCard tier="premium" />
               </Grid>
             </Grid>
           </Box>
