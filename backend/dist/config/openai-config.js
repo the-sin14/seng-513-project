@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { OpenAI } from 'openai';
+=======
+import { Configuration } from "openai";
+>>>>>>> main
 export const configureOpenAI = () => {
     const openai = new OpenAI({
         apiKey: process.env.OPEN_AI_SECRET,
