@@ -1,42 +1,65 @@
-import { NextFunction, Request, Response } from "express";
 import User from "../models/User.js";
 import { configureOpenAI } from "../config/openai-config.js";
-import { OpenAIApi, ChatCompletionRequestMessage } from "openai"
+import { Request, Response, NextFunction } from 'express';
 
-export const generateChatCompletion = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-    // getting the message
-    const {message} = req.body;
+export const generateChatCompletion = async (req: Request, res: Response, next: NextFunction): Promise<Response<any, Record<string, any>> | undefined> => {
+    const { message } = req.body;
     try {
         const user = await User.findById(res.locals.jwtData.id);
         if (!user) {
-            return res.status(401).json({message: "user not registered"})
+            return res.status(401).json({ message: "user not registered" });
         }
-    
-        // grab chats of the users
-        const chats = user.chats.map(({role, content}) => ({role, content})) as ChatCompletionRequestMessage[];
-        chats.push({content: message, role: "user"});
-        user.chats.push({content: message, role: user});
-    
-        // send all chats with new one to API
-        const config = configureOpenAI();
-        const openai = new OpenAIApi(config);
-        const chatResponse = await openai.createChatCompletion({
+
+        const chats = user.chats.map(({ role, content }) => {
+            const adjustedRole = role === 'ai' ? 'assistant' : role;
+        
+            // Include an optional 'name' property, modify as needed
+            let name: string | undefined;
+            if (role === 'user') {
+                name = 'UserName'; // Replace with actual user name if available
+            }
+        
+            return {
+                role: adjustedRole as 'system' | 'user' | 'assistant' | 'function', 
+                content,
+                name, // Include the name property
+            };
+        });
+
+        // Add the new user message
+        // When adding a new user message
+        chats.push({ 
+            role: 'user', 
+            content: message,
+            name: 'UserName' // Replace 'UserName' with actual user name or a suitable default
+        });
+        user.chats.push({ 
+            role: 'user', 
+            content: message,
+            // No need to add 'name' here as this is for your internal database, not for the OpenAI API
+        });
+
+        const openai = configureOpenAI();
+        const chatResponse = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: chats,
         });
-        user.chats.push(chatResponse.data.choices[0].message);
-        await user.save();
-        return res.status(200).json({chats: user.chats});
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({chats: "Something went wrong!"});
+
+        console.log('Chat Detailed Message:', chatResponse.choices[0].message);
+        if (chatResponse && chatResponse.choices && chatResponse.choices.length > 0) {
+            const responseMessage = chatResponse.choices[0].message.content;
+            user.chats.push({ content: responseMessage, role: 'assistant' });
+            await user.save();
+            return res.status(200).json({ response: chatResponse, chats: user.chats });
+        } else {
+            throw new Error('Invalid response structure from OpenAI');
+        }
+    } catch (error: any) {
+        console.error('Error:', error);
+        return res.status(500).json({ message: "Something went wrong!", error: error.message });
     }
-   
 };
+
 
 
 // import User from "../models/User.js";

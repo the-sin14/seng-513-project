@@ -16,11 +16,11 @@ const ChatItem = ({
   role,
 }: {
   content: string;
-  role: "user" | "ai";
+  role: "user" | "assistant";
 }) => {
   const messageBlocks = extractCodeFromString(content);
   const auth = useAuth();
-  return role == "ai" ? (
+  return role == "assistant" ? (
     // <Box
     //   sx={{
     //     display: "flex",
