@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { PDFDownloadLink, Document, Page, Text } from '@react-pdf/renderer';
 import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
+import { Font, StyleSheet } from '@react-pdf/renderer';
 
 
 
@@ -17,16 +18,6 @@ type Message = {
   role: "user" | "assistant";
   content: string
 }
-
-// const MyDocument = () => (
-//   <Document>
-//     <Page>
-//       {chatMessages.map((message, index) => (
-//         <Text key={index}>{message.content}</Text>
-//       ))}
-//     </Page>
-//   </Document>
-// );
 
 const ChatDocument = ({ chats }) => (
   <Document>
@@ -40,24 +31,6 @@ const ChatDocument = ({ chats }) => (
 
 // export default ChatDocument;
 
-// // In your component render
-// <PDFDownloadLink document={<MyDocument />} fileName="chatMessages.pdf">
-//   {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
-// </PDFDownloadLink>
-
-// const ChatComponent = () => {
-//   // Assume chatMessages is your array of messages
-//   return (
-//     <div>
-//       {/* Other components */}
-//       <PDFDownloadLink document={<MyDocument data={chatMessages} />} fileName="chatMessages.pdf">
-//         {({ blob, url, loading, error }) =>
-//           loading ? 'Loading document...' : 'Download PDF'
-//         }
-//       </PDFDownloadLink>
-//     </div>
-//   );
-// };
 
 const Chat = () => {
   const navigate = useNavigate();
@@ -172,7 +145,7 @@ const Chat = () => {
 
   const handleExport = async () => {
     // Generate the PDF and trigger download
-    const pdfBlob = await pdf(<ChatDocument chats={contents} />).toBlob();
+    const pdfBlob = await pdf(<ChatDocument chats={chatMessages} />).toBlob();
     saveAs(pdfBlob, 'chatData.pdf');
   };
 
