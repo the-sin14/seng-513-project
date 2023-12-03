@@ -212,7 +212,13 @@ const Chat = () => {
 
           {/* This is where the upload button goes need to add the functionalities*/}
           {/* So need to change the onclick handlesubmit thing */}
-          <button onClick={() => handleExport(contents)}>Export to PDF</button>
+          <button
+            onClick={handleExport}
+            disabled={chatMessages.length === 0}
+          >
+            Export to PDF
+          </button>
+
 
           {/* <IconButton onClick={handleExport} sx={{ color: "white", fontSize: "25px" }}>
             Export |
