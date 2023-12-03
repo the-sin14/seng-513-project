@@ -4,27 +4,79 @@ import { useAuth } from "../context/AuthContext";
 import ChatItem from "../components/chat/ChatItem";
 import { IoMdSend } from "react-icons/io";
 import { sendChatRequest } from "../helpers/api-communicators";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { PDFDownloadLink, Document, Page, Text } from '@react-pdf/renderer';
+import { pdf } from '@react-pdf/renderer';
+import { saveAs } from 'file-saver';
+
+
+
+let contents = "";
 
 type Message = {
   role: "user" | "assistant";
   content: string
 }
 
+// const MyDocument = () => (
+//   <Document>
+//     <Page>
+//       {chatMessages.map((message, index) => (
+//         <Text key={index}>{message.content}</Text>
+//       ))}
+//     </Page>
+//   </Document>
+// );
+
+const ChatDocument = ({ chats }) => (
+  <Document>
+    <Page>
+      {chats.map((chat, index) => (
+        <Text key={index}>{chat.content}</Text>
+      ))}
+    </Page>
+  </Document>
+);
+
+// export default ChatDocument;
+
+// // In your component render
+// <PDFDownloadLink document={<MyDocument />} fileName="chatMessages.pdf">
+//   {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+// </PDFDownloadLink>
+
+// const ChatComponent = () => {
+//   // Assume chatMessages is your array of messages
+//   return (
+//     <div>
+//       {/* Other components */}
+//       <PDFDownloadLink document={<MyDocument data={chatMessages} />} fileName="chatMessages.pdf">
+//         {({ blob, url, loading, error }) =>
+//           loading ? 'Loading document...' : 'Download PDF'
+//         }
+//       </PDFDownloadLink>
+//     </div>
+//   );
+// };
+
 const Chat = () => {
-  const navigate =  useNavigate();
+  const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
   const [chatMessages, setchatMessages] = useState<Message[]>([]);
   const handleSubmit = async () => {
-      const content = inputRef.current?.value as string;
-      if (inputRef && inputRef.current) {
-        inputRef.current.value = "";
-      }
-      const newMessage: Message = {role: "user", content};
-      setchatMessages((prev) => [...prev, newMessage]);
-      const chatData = await sendChatRequest(content);
-      setchatMessages([...chatData.chats])
+    const content = inputRef.current?.value as string;
+    if (inputRef && inputRef.current) {
+      inputRef.current.value = "";
+    }
+    const newMessage: Message = { role: "user", content };
+    setchatMessages((prev) => [...prev, newMessage]);
+    const chatData = await sendChatRequest(content);
+    chatData.role = "assistant";
+    console.log("chatData:", chatData); // Log the chatData object
+    setchatMessages([...chatData.chats])
+    console.log("chatData.chats:", chatData.chats); // Log the chatData.chats object
+
   }
 
   // Handles File Uploads
@@ -55,13 +107,112 @@ const Chat = () => {
   };
   // Handles File Uploads
 
+  const handleSummarize = async () => {
+    let content = inputRef.current?.value as string;
+    if (inputRef && inputRef.current) {
+      inputRef.current.value = "";
+    }
+
+    const newMessage: Message = { role: "user", content };
+    setchatMessages((prev) => [...prev, newMessage]);
+
+    content = "Please summarize the following: " + content;
+
+    const chatData = await sendChatRequest(content);
+    chatData.role = "assistant";
+
+    console.log("chatData:", chatData);
+    setchatMessages([...chatData.chats]);
+    console.log("chatData.chats:", chatData.chats);
+  };
+
+  const handleBullets = async () => {
+    let content = inputRef.current?.value as string;
+    if (inputRef && inputRef.current) {
+      inputRef.current.value = "";
+    }
+
+    const newMessage: Message = { role: "user", content };
+    setchatMessages((prev) => [...prev, newMessage]);
+
+    content = "Please put the following in a bullet form summary, but numerically: " + content;
+
+    const chatData = await sendChatRequest(content);
+    const modifiedChats = [...chatData.chats];
+
+    const lastIndex = modifiedChats.length - 1;
+    const lastItem = modifiedChats[lastIndex];
+
+    // Split the content into bullet points using regex
+    // This regex captures the bullet numbers as well
+    const bullets = lastItem.content.split(/\n(?=\d+\. )|\n(?=- )/).filter(line => line.trim() !== '');
+
+    // Create a new message for each bullet point
+    const bulletMessages = bullets.map(bullet => ({ role: 'assistant', content: bullet }));
+
+    // Add new bullet messages to the chat
+    setchatMessages(prevMessages => [...prevMessages, ...bulletMessages]);
+
+    console.log("Bullet messages:", bulletMessages);
+
+    // Set processed chats for PDF export
+    // setProcessedChats(modifiedChats.concat(bulletMessages));
+    contents = lastItem.content;
+
+  };
+
+  // const handleBullets = async () => {
+  //   let content = inputRef.current?.value as string;
+  //   if (inputRef && inputRef.current) {
+  //     inputRef.current.value = "";
+  //   }
+
+  //   const newMessage: Message = { role: "user", content };
+  //   setchatMessages((prev) => [...prev, newMessage]);
+
+  //   content = "Please put the following in a bullet form summary: " + content;
+
+  //   const chatData = await sendChatRequest(content);
+  //   chatData.role = "assistant";
+
+  //   console.log("chatData:", chatData);
+  //   setchatMessages([...chatData.chats]);
+  //   console.log("chatData.chats:", chatData.chats);
+  // };
+
+  const handleQuizMe = async () => {
+    let content = inputRef.current?.value as string;
+    if (inputRef && inputRef.current) {
+      inputRef.current.value = "";
+    }
+
+    const newMessage: Message = { role: "user", content };
+    setchatMessages((prev) => [...prev, newMessage]);
+
+    content = "Based on the following, ask me some questions about the information. Provide the answers to the questions under the questions. Please answer with the format 'question: ' and the followed by 'answer: ': " + content;
+
+    const chatData = await sendChatRequest(content);
+    chatData.role = "assistant";
+
+    console.log("chatData:", chatData);
+    setchatMessages([...chatData.chats]);
+    console.log("chatData.chats:", chatData.chats);
+  };
+
+  const handleExport = async () => {
+    // Generate the PDF and trigger download
+    const pdfBlob = await pdf(<ChatDocument chats={contents} />).toBlob();
+    saveAs(pdfBlob, 'chatData.pdf');
+  };
+
+
   useEffect(() => {
     if (!auth?.user) {
       return navigate("/login");
     }
   })
   return (
-    
+
     <Box
       sx={{
         display: "flex",
@@ -72,7 +223,7 @@ const Chat = () => {
         gap: 3,
       }}
     >
-   
+
       {/* The Chat box */}
       <Box
         sx={{
@@ -80,7 +231,7 @@ const Chat = () => {
           flex: { md: 1, xs: 1, sm: 1 },
           flexDirection: "column",
           gap: 5,
-          
+
         }}
       >
         <Typography
@@ -89,7 +240,7 @@ const Chat = () => {
             fontSize: "35px",
             color: "black",
             mx: "auto",
-            
+
           }}
         >
           Welcome To Summarify
@@ -108,12 +259,12 @@ const Chat = () => {
             scrollBehavior: "smooth",
           }}
         >
-          
+
           {chatMessages.map((chat, index) => (
             <ChatItem content={chat.content} role={chat.role} key={index} />
           ))}
         </Box>
-        <div style={{width: "85%", padding:"15px", borderRadius:8, backgroundColor: "#39354A", display:"flex", margin:"auto", height: 50}}>
+        <div style={{ width: "85%", padding: "15px", borderRadius: 8, backgroundColor: "#39354A", display: "flex", margin: "auto", height: 50 }}>
 
         {/* This is where the upload button goes need to add the functionalities*/}
         {/* So need to change the onclick handlesubmit thing */}
@@ -132,31 +283,53 @@ const Chat = () => {
           </IconButton>
         </label>
 
-
-        <input
-          ref={inputRef}
-          type="text"
-          placeholder="Message Summarify"
-          style={{
-            width: "100%",
-            backgroundColor: "transparent",
-            padding: "5px",
-            border: "none",
-            outline:"none",
-            color: "white",
-            fontSize: "20px",
-          }}
-        />
      
         <IconButton onClick={handleSubmit} sx={{mr:"15px", color:"white"}}>
           <IoMdSend/>
         </IconButton>
+          {/* This is where the upload button goes need to add the functionalities*/}
+          {/* So need to change the onclick handlesubmit thing */}
+          <button onClick={() => handleExport(contents)}>Export to PDF</button>
+
+          {/* <IconButton onClick={handleExport} sx={{ color: "white", fontSize: "25px" }}>
+            Export |
+          </IconButton> */}
+
+          <IconButton onClick={handleSummarize} sx={{ color: "white", fontSize: "25px" }}>
+            Summerize |
+          </IconButton>
+
+          <IconButton onClick={handleBullets} sx={{ color: "white", fontSize: "25px" }}>
+            Bullets |
+          </IconButton>
+
+          <IconButton onClick={handleQuizMe} sx={{ color: "white", fontSize: "25px" }}>
+            Quiz Me |
+          </IconButton>
+
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="Message Summarify"
+            style={{
+              width: "100%",
+              backgroundColor: "transparent",
+              padding: "5px",
+              border: "none",
+              outline: "none",
+              color: "white",
+              fontSize: "20px",
+            }}
+          />
+
+          <IconButton onClick={handleSubmit} sx={{ mr: "15px", color: "white" }}>
+            <IoMdSend />
+          </IconButton>
         </div>
-        
+
       </Box>
     </Box>
   );
 };
 
 export default Chat;
-
