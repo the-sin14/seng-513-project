@@ -64,4 +64,27 @@
   background-size: cover;
   background-attachment: fixed;
   filter: blur(7px);
+  user-select: none;
+}
+
+.create-acc-suggestion {
+    margin-top: -50px;
+    border-radius: 10px;
+    background: var(--primary);
+    height: 28vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.want-to-read-more {
+    color: var(--off-white);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.want-to-read-more-p {
+    color: var(--off-white);
+    font-weight: 300;
 }

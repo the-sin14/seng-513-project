@@ -1,11 +1,12 @@
 import "./Home.css";
 import PricingCard from "../components/landing-page/PricingCard";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import { Box, Button } from "@mui/material";
 import { Grid } from "@mui/material";
 import { FaCirclePlus } from "react-icons/fa6";
 import { IoArrowRedoSharp } from "react-icons/io5";
 import React from "react";
+import NavigationLink from "../components/shared/NavigationLink";
 
 function uploadFile() {
   console.log("upload file function");
@@ -29,11 +30,15 @@ function Home() {
   function submitInput() {
     setUploadSlidesContent(
       <div className="lorem-ipsum">
-        <p>This is the summarified version of your notes:</p>
-        <div id="box1" className="box blurred-bg tinted">
+        <p>The following is a concise summary derived from the comprehensive notes you provided:</p>
+        <div className="blurred-bg">
           <p>Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Sed adipiscing diam donec adipiscing tristique. Eu volutpat odio facilisis mauris sit amet massa. Nec feugiat in fermentum posuere. Vitae suscipit tellus mauris a diam maecenas sed enim ut. Vulputate eu scelerisque felis imperdiet. Mattis molestie a iaculis at erat. Proin fermentum leo vel orci porta non pulvinar neque. Lacus laoreet non curabitur gravida arcu ac.</p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos aperiam quia, ipsum beatae velit provident sed explicabo. Recusandae maiores modi voluptates facere cum, odit molestias? Iste molestias excepturi necessitatibus corporis nesciunt expedita minus iusto, quia iure in obcaecati nulla, velit voluptatum laborum aut quidem aperiam eaque nostrum? Quod quaerat modi aperiam sit amet! Repudiandae mollitia vel illo dolores voluptatem, quaerat officia ab asperiores magnam eligendi, totam et necessitatibus praesentium modi reiciendis eum harum quas repellendus aliquam. Unde pariatur fugit eveniet tempore repellendus aperiam non omnis eius esse quasi officia aliquam culpa, enim odit sapiente iste alias, soluta, praesentium numquam corrupti?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi ipsam modi velit optio autem! Doloribus perferendis esse placeat blanditiis consequatur, tenetur in odit odio voluptate reiciendis iste? Laborum porro non consequuntur minus. Adipisci assumenda minima eos deleniti sint vitae fugiat sit possimus inventore, quas, earum porro dolor! Nisi, mollitia pariatur?</p>
+        </div>
+        <div className="create-acc-suggestion">
+            <h5 className="want-to-read-more">Want to read the entire summary?</h5>
+            <p className="want-to-read-more-p">Create an account to read the entire summary and generate flashcards to help aid your study session!</p>
+            <NavigationLink bg="#F2F1EE" to="/signup" text="Sign Up" textColor="#344055"></NavigationLink>
         </div>
       </div>
     )
@@ -94,7 +99,7 @@ const summarifyDescriptionStyles: React.CSSProperties = {
 
 const testSummarifyStyles: React.CSSProperties = {
   "width": "100%",
-  "height": "80vh",
+  "minHeight": "80vh",
   "display": "flex",
   "justifyContent": "center",
   "alignItems": "center",
@@ -164,7 +169,7 @@ const wordCounterStyles: React.CSSProperties =  {
 
         {/* Test Summarify Section */}
         <Box style={testSummarifyStyles}>
-          
+
           {uploadSlidesContent}
 
           {/* Text field */}
