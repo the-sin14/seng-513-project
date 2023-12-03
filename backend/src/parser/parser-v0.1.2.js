@@ -4,7 +4,7 @@ const fs = require('fs');
 const PDFParser = require('pdf-parse');
 
 const app = express();
-const port = 3000;
+const port = 5173;
 
 app.use(bodyParser.text());
 
