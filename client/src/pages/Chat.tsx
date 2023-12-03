@@ -40,7 +40,7 @@ const Chat = () => {
   
     reader.onload = async (e) => {
       const content = e.target?.result as string;
-      const truncatedContent = content.slice(0, 100);
+      const truncatedContent = content.slice(0, 1000);
   
       const newMessage: Message = { role: "user", content: truncatedContent };
       setchatMessages((prev) => [...prev, newMessage]);
