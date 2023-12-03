@@ -24,8 +24,69 @@ const Chat = () => {
       const newMessage: Message = {role: "user", content};
       setchatMessages((prev) => [...prev, newMessage]);
       const chatData = await sendChatRequest(content);
+      chatData.role = "assistant";
+      console.log("chatData:", chatData); // Log the chatData object
       setchatMessages([...chatData.chats])
+      console.log("chatData.chats:", chatData.chats); // Log the chatData.chats object
+
   }
+  const handleSummarize = async () => {
+    let content = inputRef.current?.value as string;
+    if (inputRef && inputRef.current) {
+      inputRef.current.value = "";
+    }
+ 
+    const newMessage: Message = { role: "user", content };
+    setchatMessages((prev) => [...prev, newMessage]);
+  
+    content = "Please summarize the following: " + content;
+
+    const chatData = await sendChatRequest(content);
+    chatData.role = "assistant";
+  
+    console.log("chatData:", chatData);
+    setchatMessages([...chatData.chats]);
+    console.log("chatData.chats:", chatData.chats);
+  };
+
+  const handleBullets = async () => {
+    let content = inputRef.current?.value as string;
+    if (inputRef && inputRef.current) {
+      inputRef.current.value = "";
+    }
+ 
+    const newMessage: Message = { role: "user", content };
+    setchatMessages((prev) => [...prev, newMessage]);
+  
+    content = "Please put the following in a bullet form summary: " + content;
+
+    const chatData = await sendChatRequest(content);
+    chatData.role = "assistant";
+  
+    console.log("chatData:", chatData);
+    setchatMessages([...chatData.chats]);
+    console.log("chatData.chats:", chatData.chats);
+  };
+
+  const handleQuizMe = async () => {
+    let content = inputRef.current?.value as string;
+    if (inputRef && inputRef.current) {
+      inputRef.current.value = "";
+    }
+ 
+    const newMessage: Message = { role: "user", content };
+    setchatMessages((prev) => [...prev, newMessage]);
+  
+    content = "Based on the following, ask me some questions about the information. Provide the answers to the questions under the questions. Please answer with the format 'question: ' and the followed by 'answer: ': " + content;
+
+    const chatData = await sendChatRequest(content);
+    chatData.role = "assistant";
+  
+    console.log("chatData:", chatData);
+    setchatMessages([...chatData.chats]);
+    console.log("chatData.chats:", chatData.chats);
+  };
+  
   useEffect(() => {
     if (!auth?.user) {
       return navigate("/login");
@@ -88,6 +149,18 @@ const Chat = () => {
 
         {/* This is where the upload button goes need to add the functionalities*/}
         {/* So need to change the onclick handlesubmit thing */}
+        <IconButton onClick={handleSummarize} sx={{color:"white", fontSize: "25px"}}>
+          Summerize |
+        </IconButton>
+
+        <IconButton onClick={handleBullets} sx={{color:"white", fontSize: "25px"}}>
+          Bullets |
+        </IconButton>
+
+        <IconButton onClick={handleQuizMe} sx={{color:"white", fontSize: "25px"}}>
+          Quiz Me |
+        </IconButton>
+
         <IconButton onClick={handleSubmit} sx={{color:"white", fontSize: "25px"}}>
           +
         </IconButton>
