@@ -53,3 +53,15 @@
     margin: 0;
     padding: 0;
 }
+
+.lorem-ipsum {
+    margin: 20px 100px;
+    font-weight: 400;
+}
+
+.blurred-bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  filter: blur(7px);
+}

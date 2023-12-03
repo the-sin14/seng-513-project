@@ -11,14 +11,34 @@ function uploadFile() {
   console.log("upload file function");
 }
 
-function submitInput() {
-  console.log("submit input function");
-}
-
 function Home() {
   const primaryColor = "#344055";
   const maxCharacterCount = 1000;
   const [count, setCount] = React.useState(0);
+  const [uploadSlidesContent, setUploadSlidesContent] = React.useState(
+    <div className="upload-slides-text">
+      <Typography variant="h1" style={{color: "#515458", fontSize: "35px", fontWeight:"bolder"}}>
+        UPLOAD YOUR LECTURE SLIDES
+      </Typography>
+      <Typography variant="h5" style={{color: "#888484", fontSize: "20px", textAlign:"center"}}>
+        Supported files types: PDF
+      </Typography>
+    </div>
+  );
+
+  function submitInput() {
+    setUploadSlidesContent(
+      <div className="lorem-ipsum">
+        <p>This is the summarified version of your notes:</p>
+        <div id="box1" className="box blurred-bg tinted">
+          <p>Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Sed adipiscing diam donec adipiscing tristique. Eu volutpat odio facilisis mauris sit amet massa. Nec feugiat in fermentum posuere. Vitae suscipit tellus mauris a diam maecenas sed enim ut. Vulputate eu scelerisque felis imperdiet. Mattis molestie a iaculis at erat. Proin fermentum leo vel orci porta non pulvinar neque. Lacus laoreet non curabitur gravida arcu ac.</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos aperiam quia, ipsum beatae velit provident sed explicabo. Recusandae maiores modi voluptates facere cum, odit molestias? Iste molestias excepturi necessitatibus corporis nesciunt expedita minus iusto, quia iure in obcaecati nulla, velit voluptatum laborum aut quidem aperiam eaque nostrum? Quod quaerat modi aperiam sit amet! Repudiandae mollitia vel illo dolores voluptatem, quaerat officia ab asperiores magnam eligendi, totam et necessitatibus praesentium modi reiciendis eum harum quas repellendus aliquam. Unde pariatur fugit eveniet tempore repellendus aperiam non omnis eius esse quasi officia aliquam culpa, enim odit sapiente iste alias, soluta, praesentium numquam corrupti?</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi ipsam modi velit optio autem! Doloribus perferendis esse placeat blanditiis consequatur, tenetur in odit odio voluptate reiciendis iste? Laborum porro non consequuntur minus. Adipisci assumenda minima eos deleniti sint vitae fugiat sit possimus inventore, quas, earum porro dolor! Nisi, mollitia pariatur?</p>
+        </div>
+      </div>
+    )
+  }
+  
   const heroSectionStyles: React.CSSProperties = {
     display: "flex",
     flexDirection: "row",
@@ -144,18 +164,12 @@ const wordCounterStyles: React.CSSProperties =  {
 
         {/* Test Summarify Section */}
         <Box style={testSummarifyStyles}>
-          <div className="upload-slides-text">
-            <Typography variant="h1" style={{color: "#515458", fontSize: "35px", fontWeight:"bolder"}}>
-              UPLOAD YOUR LECTURE SLIDES
-            </Typography>
-            <Typography variant="h5" style={{color: "#888484", fontSize: "20px", textAlign:"center"}}>
-              Supported files types: PDF
-            </Typography>
-          </div>
+          
+          {uploadSlidesContent}
 
           {/* Text field */}
           {count >= maxCharacterCount && (
-            <div style={{ color: 'red', fontSize: "12px"}}>
+            <div style={{ color: 'red', marginTop: "15px"}}>
               Text is too long! Create an account to increase character count.
             </div>
           )}
@@ -169,7 +183,7 @@ const wordCounterStyles: React.CSSProperties =  {
               className="text-field"
               onChange={(e) => setCount(e.target.value.length)}
             />
-            <button className="enter-button" onClick={submitInput} disabled={count >= maxCharacterCount}>
+            <button className="enter-button" onClick={submitInput} disabled={count >= maxCharacterCount || count === 0}>
               <IoArrowRedoSharp className="enter-notes-icon" />
             </button>
           </div>
