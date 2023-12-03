@@ -9,24 +9,10 @@ import { PDFDownloadLink, Document, Page, Text } from '@react-pdf/renderer';
 import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 
-
-
-let contents = "";
-
 type Message = {
   role: "user" | "assistant";
   content: string
 }
-
-// const MyDocument = () => (
-//   <Document>
-//     <Page>
-//       {chatMessages.map((message, index) => (
-//         <Text key={index}>{message.content}</Text>
-//       ))}
-//     </Page>
-//   </Document>
-// );
 
 const ChatDocument = ({ chats }) => (
   <Document>
@@ -38,141 +24,122 @@ const ChatDocument = ({ chats }) => (
   </Document>
 );
 
-// export default ChatDocument;
-
-// // In your component render
-// <PDFDownloadLink document={<MyDocument />} fileName="chatMessages.pdf">
-//   {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
-// </PDFDownloadLink>
-
-// const ChatComponent = () => {
-//   // Assume chatMessages is your array of messages
-//   return (
-//     <div>
-//       {/* Other components */}
-//       <PDFDownloadLink document={<MyDocument data={chatMessages} />} fileName="chatMessages.pdf">
-//         {({ blob, url, loading, error }) =>
-//           loading ? 'Loading document...' : 'Download PDF'
-//         }
-//       </PDFDownloadLink>
-//     </div>
-//   );
-// };
-
 const Chat = () => {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
   const [chatMessages, setchatMessages] = useState<Message[]>([]);
+  
   const handleSubmit = async () => {
-    const content = inputRef.current?.value as string;
+    const content = inputRef.current?.value.trim(); // Trim to remove any leading/trailing whitespaces
+  
+    // Clear the input field
     if (inputRef && inputRef.current) {
       inputRef.current.value = "";
     }
-    const newMessage: Message = { role: "user", content };
-    setchatMessages((prev) => [...prev, newMessage]);
-    const chatData = await sendChatRequest(content);
-    chatData.role = "assistant";
-    console.log("chatData:", chatData); // Log the chatData object
-    setchatMessages([...chatData.chats])
-    console.log("chatData.chats:", chatData.chats); // Log the chatData.chats object
-
-  }
-  const handleSummarize = async () => {
-    let content = inputRef.current?.value as string;
-    if (inputRef && inputRef.current) {
-      inputRef.current.value = "";
+  
+    // Check if the content is empty
+    if (!content) {
+      // Add a message from the assistant in case of empty input
+      const emptyInputMessage = {
+        role: "assistant",
+        content: "Please enter something into the chat box",
+      };
+      setchatMessages(prevMessages => [...prevMessages, emptyInputMessage]);
+    } else {
+      // Add the user's message
+      const newMessage: Message = { role: "user", content };
+      setchatMessages(prevMessages => [...prevMessages, newMessage]);
+  
+      // Make the API call and process the response
+      const chatData = await sendChatRequest(content);
+      chatData.role = "assistant";
+      console.log("chatData:", chatData); // Log the chatData object
+      setchatMessages([...chatData.chats]);
+      console.log("chatData.chats:", chatData.chats); // Log the chatData.chats object
     }
-
-    const newMessage: Message = { role: "user", content };
-    setchatMessages((prev) => [...prev, newMessage]);
-
-    content = "Please summarize the following: " + content;
-
-    const chatData = await sendChatRequest(content);
-    chatData.role = "assistant";
-
-    console.log("chatData:", chatData);
-    setchatMessages([...chatData.chats]);
-    console.log("chatData.chats:", chatData.chats);
   };
+  
+  const handleSummarize = async () => {
+    let content = inputRef.current?.value.trim();
+  
+    if (!content) {
+      const emptyInputMessage = { role: "assistant", content: "Please enter something into the chat box to summarize" };
+      setchatMessages(prev => [...prev, emptyInputMessage]);
+    } else {
+      const newMessage: Message = { role: "user", content };
+      setchatMessages(prev => [...prev, newMessage]);
+    
+      content = "Please summarize the following: " + content;
+      inputRef.current.value = "";  // Clear the input field
+  
+      const chatData = await sendChatRequest(content);
+      chatData.role = "assistant";
+    
+      console.log("chatData:", chatData);
+      setchatMessages([...chatData.chats]);
+      console.log("chatData.chats:", chatData.chats);
+    }
+  };
+  
 
   const handleBullets = async () => {
-    let content = inputRef.current?.value as string;
-    if (inputRef && inputRef.current) {
-      inputRef.current.value = "";
+    let content = inputRef.current?.value.trim();
+  
+    if (!content) {
+      const emptyInputMessage = { role: "assistant", content: "Please enter something into the chat box for bullet points" };
+      setchatMessages(prev => [...prev, emptyInputMessage]);
+    } else {
+      const newMessage: Message = { role: "user", content };
+      setchatMessages(prev => [...prev, newMessage]);
+  
+      content = "Please put the following in a bullet form summary, but numerically: " + content;
+      inputRef.current.value = "";  // Clear the input field
+  
+      const chatData = await sendChatRequest(content);
+      const modifiedChats = [...chatData.chats];
+  
+      const lastIndex = modifiedChats.length - 1;
+      const lastItem = modifiedChats[lastIndex];
+      const bullets = lastItem.content.split(/\n(?=\d+\. )|\n(?=- )/).filter(line => line.trim() !== '');
+      const bulletMessages = bullets.map(bullet => ({ role: 'assistant', content: bullet }));
+  
+      setchatMessages(prevMessages => [...prevMessages, ...bulletMessages]);
+  
+      console.log("Bullet messages:", bulletMessages);
+      contents = lastItem.content;
     }
-
-    const newMessage: Message = { role: "user", content };
-    setchatMessages((prev) => [...prev, newMessage]);
-
-    content = "Please put the following in a bullet form summary, but numerically: " + content;
-
-    const chatData = await sendChatRequest(content);
-    const modifiedChats = [...chatData.chats];
-
-    const lastIndex = modifiedChats.length - 1;
-    const lastItem = modifiedChats[lastIndex];
-
-    // Split the content into bullet points using regex
-    // This regex captures the bullet numbers as well
-    const bullets = lastItem.content.split(/\n(?=\d+\. )|\n(?=- )/).filter(line => line.trim() !== '');
-
-    // Create a new message for each bullet point
-    const bulletMessages = bullets.map(bullet => ({ role: 'assistant', content: bullet }));
-
-    // Add new bullet messages to the chat
-    setchatMessages(prevMessages => [...prevMessages, ...bulletMessages]);
-
-    console.log("Bullet messages:", bulletMessages);
-
-    // Set processed chats for PDF export
-    // setProcessedChats(modifiedChats.concat(bulletMessages));
-    contents = lastItem.content;
-
   };
-
-  // const handleBullets = async () => {
-  //   let content = inputRef.current?.value as string;
-  //   if (inputRef && inputRef.current) {
-  //     inputRef.current.value = "";
-  //   }
-
-  //   const newMessage: Message = { role: "user", content };
-  //   setchatMessages((prev) => [...prev, newMessage]);
-
-  //   content = "Please put the following in a bullet form summary: " + content;
-
-  //   const chatData = await sendChatRequest(content);
-  //   chatData.role = "assistant";
-
-  //   console.log("chatData:", chatData);
-  //   setchatMessages([...chatData.chats]);
-  //   console.log("chatData.chats:", chatData.chats);
-  // };
-
+  
   const handleQuizMe = async () => {
-    let content = inputRef.current?.value as string;
-    if (inputRef && inputRef.current) {
-      inputRef.current.value = "";
+    let content = inputRef.current?.value.trim();
+  
+    if (!content) {
+      const emptyInputMessage = {
+        role: "assistant",
+        content: "Please enter some information for me to generate questions."
+      };
+      setchatMessages(prevMessages => [...prevMessages, emptyInputMessage]);
+    } else {
+      const newMessage: Message = { role: "user", content };
+      setchatMessages(prevMessages => [...prevMessages, newMessage]);
+  
+      content = "Based on the following, ask me some questions about the information. Provide the answers to the questions under the questions. Please answer with the format 'question: ' and the followed by 'answer: ': " + content;
+      inputRef.current.value = "";  // Clear the input field
+  
+      const chatData = await sendChatRequest(content);
+      chatData.role = "assistant";
+  
+      console.log("chatData:", chatData);
+      setchatMessages([...chatData.chats]);
+      console.log("chatData.chats:", chatData.chats);
     }
-
-    const newMessage: Message = { role: "user", content };
-    setchatMessages((prev) => [...prev, newMessage]);
-
-    content = "Based on the following, ask me some questions about the information. Provide the answers to the questions under the questions. Please answer with the format 'question: ' and the followed by 'answer: ': " + content;
-
-    const chatData = await sendChatRequest(content);
-    chatData.role = "assistant";
-
-    console.log("chatData:", chatData);
-    setchatMessages([...chatData.chats]);
-    console.log("chatData.chats:", chatData.chats);
   };
+  
 
   const handleExport = async () => {
     // Generate the PDF and trigger download
-    const pdfBlob = await pdf(<ChatDocument chats={contents} />).toBlob();
+    const pdfBlob = await pdf(<ChatDocument chats={chatMessages} />).toBlob();
     saveAs(pdfBlob, 'chatData.pdf');
   };
 
@@ -239,11 +206,12 @@ const Chat = () => {
 
           {/* This is where the upload button goes need to add the functionalities*/}
           {/* So need to change the onclick handlesubmit thing */}
-          <button onClick={() => handleExport(contents)}>Export to PDF</button>
-
-          {/* <IconButton onClick={handleExport} sx={{ color: "white", fontSize: "25px" }}>
-            Export |
-          </IconButton> */}
+          <button
+            onClick={handleExport}
+            disabled={chatMessages.length === 0}
+          >
+            Export to PDF
+          </button>
 
           <IconButton onClick={handleSummarize} sx={{ color: "white", fontSize: "25px" }}>
             Summerize |
@@ -260,6 +228,8 @@ const Chat = () => {
           <IconButton onClick={handleSubmit} sx={{ color: "white", fontSize: "25px" }}>
             +
           </IconButton>
+
+
           <input
             ref={inputRef}
             type="text"
