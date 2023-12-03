@@ -283,10 +283,6 @@ const Chat = () => {
           </IconButton>
         </label>
 
-     
-        <IconButton onClick={handleSubmit} sx={{mr:"15px", color:"white"}}>
-          <IoMdSend/>
-        </IconButton>
           {/* This is where the upload button goes need to add the functionalities*/}
           {/* So need to change the onclick handlesubmit thing */}
           <button onClick={() => handleExport(contents)}>Export to PDF</button>
