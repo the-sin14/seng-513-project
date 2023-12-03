@@ -26,6 +26,35 @@ const Chat = () => {
       const chatData = await sendChatRequest(content);
       setchatMessages([...chatData.chats])
   }
+
+  // Handles File Uploads
+  const [fileInputKey, setFileInputKey] = useState(0);
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+  
+    if (!file) {
+      return;
+    }
+  
+    const reader = new FileReader();
+  
+    reader.onload = async (e) => {
+      const content = e.target?.result as string;
+      const truncatedContent = content.slice(0, 100);
+  
+      const newMessage: Message = { role: "user", content: truncatedContent };
+      setchatMessages((prev) => [...prev, newMessage]);
+  
+      const chatData = await sendChatRequest(truncatedContent);
+      setchatMessages([...chatData.chats]);
+
+      setFileInputKey((prevKey) => prevKey + 1);
+    };
+  
+    reader.readAsText(file);
+  };
+  // Handles File Uploads
+
   useEffect(() => {
     if (!auth?.user) {
       return navigate("/login");
@@ -88,9 +117,22 @@ const Chat = () => {
 
         {/* This is where the upload button goes need to add the functionalities*/}
         {/* So need to change the onclick handlesubmit thing */}
-        <IconButton onClick={handleSubmit} sx={{color:"white", fontSize: "25px"}}>
-          +
-        </IconButton>
+
+        <input
+          key={fileInputKey}
+          type="file"
+          onChange={handleFileUpload}
+          accept=".txt"
+          style={{ display: "none" }}
+          id="fileInput"
+        />
+        <label htmlFor="fileInput">
+          <IconButton component="span" sx={{ color: "white", fontSize: "25px" }}>
+            +
+          </IconButton>
+        </label>
+
+
         <input
           ref={inputRef}
           type="text"
