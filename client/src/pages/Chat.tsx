@@ -8,11 +8,6 @@ import { useNavigate } from 'react-router-dom'
 import { PDFDownloadLink, Document, Page, Text } from '@react-pdf/renderer';
 import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
-import { Font, StyleSheet } from '@react-pdf/renderer';
-
-
-
-let contents = "";
 
 type Message = {
   role: "user" | "assistant";
@@ -29,14 +24,12 @@ const ChatDocument = ({ chats }) => (
   </Document>
 );
 
-// export default ChatDocument;
-
-
 const Chat = () => {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
   const [chatMessages, setchatMessages] = useState<Message[]>([]);
+  
   const handleSubmit = async () => {
     const content = inputRef.current?.value.trim(); // Trim to remove any leading/trailing whitespaces
   
