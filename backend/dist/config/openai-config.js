@@ -1,10 +1,18 @@
-import { Configuration } from "openai";
-// import { Configuration } from "openai";
+import { OpenAI } from 'openai';
+
 export const configureOpenAI = () => {
-    const config = new Configuration({
+    const openai = new OpenAI({
         apiKey: process.env.OPEN_AI_SECRET,
-        organization: process.env.OPENAI_ORGANIZATION_ID,
     });
-    return config;
+    return openai;
 };
+// import OpenAI from 'openai';
+// export const configureOpenAI = () => {
+//     const openai = new OpenAI({
+//         apiKey: process.env.OPEN_AI_SECRET,
+//         // The 'organization' field is not needed in the new SDK version
+//     });
+//     return openai;
+// };
+// //# sourceMappingURL=openai-config.js.map
 //# sourceMappingURL=openai-config.js.map

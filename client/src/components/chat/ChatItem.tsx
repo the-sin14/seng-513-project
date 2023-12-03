@@ -21,21 +21,51 @@ const ChatItem = ({
   const messageBlocks = extractCodeFromString(content);
   const auth = useAuth();
   return role == "assistant" ? (
+    // <Box
+    //   sx={{
+    //     display: "flex",
+    //     p: 2,
+    //     bgcolor: "#004d5612",
+    //     gap: 2,
+    //     borderRadius: 2,
+    //     my: 1,
+    //   }}
+    // >
+    //   <Avatar sx={{ ml: "0" }}>
+    //     <img src="openai.png" alt="openai" width={"30px"} />
+    //   </Avatar>
+
+    // </Box>
     <Box
       sx={{
         display: "flex",
         p: 2,
-        bgcolor: "#004d5612",
+        bgcolor: "#008080",
         gap: 2,
         borderRadius: 2,
-        my: 1,
+        flexDirection: "row-reverse", // Reverse the order of elements
+        alignItems: "center", // Vertically align the content and Avatar
       }}
     >
-      <Avatar sx={{ ml: "0" }}>
-        <img src="openai.png" alt="openai" width={"30px"} />
+      <Avatar sx={{ ml: "0", bgcolor: "white", color: "black" }}>
+        {/* Avatar content */}
       </Avatar>
-     
+      <Box>
+        {!messageBlocks && (
+          <Typography sx={{ fontSize: "20px" }}>{content}</Typography>
+        )}
+        {messageBlocks &&
+          messageBlocks.length &&
+          messageBlocks.map((block) =>
+            isCodeBlock(block) ? (
+              { block }
+            ) : (
+              <Typography sx={{ fontSize: "20px" }}>{block}</Typography>
+            )
+          )}
+      </Box>
     </Box>
+
   ) : (
     <Box
       sx={{
@@ -47,7 +77,7 @@ const ChatItem = ({
       }}
     >
       <Avatar sx={{ ml: "0", bgcolor: "black", color: "white" }}>
-     
+
       </Avatar>
       <Box>
         {!messageBlocks && (
@@ -57,9 +87,9 @@ const ChatItem = ({
           messageBlocks.length &&
           messageBlocks.map((block) =>
             isCodeBlock(block) ? (
-              
-                {block}
-              
+
+              { block }
+
             ) : (
               <Typography sx={{ fontSize: "20px" }}>{block}</Typography>
             )
