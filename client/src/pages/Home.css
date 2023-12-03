@@ -80,11 +80,11 @@
 
 .want-to-read-more {
     color: var(--off-white);
-    font-size: 20px;
     font-weight: 500;
 }
 
 .want-to-read-more-p {
+    text-align: center;
     color: var(--off-white);
     font-weight: 300;
 }

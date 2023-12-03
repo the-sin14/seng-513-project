@@ -8,14 +8,12 @@ import { IoArrowRedoSharp } from "react-icons/io5";
 import React from "react";
 import NavigationLink from "../components/shared/NavigationLink";
 
-function uploadFile() {
-  console.log("upload file function");
-}
-
 function Home() {
   const primaryColor = "#344055";
   const maxCharacterCount = 1000;
   const [count, setCount] = React.useState(0);
+  const [image, setImage] = React.useState("");
+  const inputFile = React.useRef(null);
   const [uploadSlidesContent, setUploadSlidesContent] = React.useState(
     <div className="upload-slides-text">
       <Typography variant="h1" style={{color: "#515458", fontSize: "35px", fontWeight:"bolder"}}>
@@ -36,13 +34,31 @@ function Home() {
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos aperiam quia, ipsum beatae velit provident sed explicabo. Recusandae maiores modi voluptates facere cum, odit molestias? Iste molestias excepturi necessitatibus corporis nesciunt expedita minus iusto, quia iure in obcaecati nulla, velit voluptatum laborum aut quidem aperiam eaque nostrum? Quod quaerat modi aperiam sit amet! Repudiandae mollitia vel illo dolores voluptatem, quaerat officia ab asperiores magnam eligendi, totam et necessitatibus praesentium modi reiciendis eum harum quas repellendus aliquam. Unde pariatur fugit eveniet tempore repellendus aperiam non omnis eius esse quasi officia aliquam culpa, enim odit sapiente iste alias, soluta, praesentium numquam corrupti?</p>
         </div>
         <div className="create-acc-suggestion">
-            <h5 className="want-to-read-more">Want to read the entire summary?</h5>
+            <h2 className="want-to-read-more">Want to read the entire summary?</h2>
             <p className="want-to-read-more-p">Create an account to read the entire summary and generate flashcards to help aid your study session!</p>
             <NavigationLink bg="#F2F1EE" to="/signup" text="Sign Up" textColor="#344055"></NavigationLink>
         </div>
       </div>
     )
   }
+
+  const uploadFile = (e) => {
+    const { files } = e.target;
+    if (files && files.length) {
+      const filename = files[0].name;
+
+      var parts = filename.split(".");
+      const fileType = parts[parts.length - 1];
+      console.log("fileType", fileType); //ex: zip, rar, jpg, svg etc.
+
+      setImage(files[0]);
+      submitInput();
+    }
+  }
+
+  const onButtonClick = () => {
+    inputFile.current.click();
+  };
   
   const heroSectionStyles: React.CSSProperties = {
     display: "flex",
@@ -179,7 +195,13 @@ const wordCounterStyles: React.CSSProperties =  {
             </div>
           )}
           <div style={inputFieldStyles}>
-            <button className="upload-button" onClick={uploadFile}>
+            <input 
+              type="file"
+              style={{ display: "none" }} 
+              ref = { inputFile }
+              onChange={ uploadFile }
+            />
+            <button className="upload-button" onClick={onButtonClick}>
               <FaCirclePlus className="upload-file-icon"/>
             </button>
             <input
