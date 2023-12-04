@@ -36,7 +36,7 @@ const Payment: React.FC = () => {
           alignItems: 'center',
         }}
       >
-        <Typography component="h1" variant="h5" sx={{ mt: 6, color: '#000' }}>
+        <Typography component="h1" variant="h5" sx={{ mt: 6, color: '#344055' }}>
           Payment
         </Typography>
         <p>You are about to purchase a premium subscription for $5 a month.</p>
@@ -44,7 +44,7 @@ const Payment: React.FC = () => {
           <Grid container spacing={3}>
             {/* Left Column - Payment Information */}
             <Grid item xs={12} md={6}>
-              <Typography component="h2" variant="h6" sx={{ mt: 3, color: '#000' }}>
+              <Typography component="h2" variant="h6" sx={{ mt: 3, color: '#344055' }}>
                 Payment Information
               </Typography>
               <p>Enter your payment information to purchase the subscription.</p>
@@ -57,7 +57,7 @@ const Payment: React.FC = () => {
                 id="cardholderName"
                 label="Cardholder Name"
                 placeholder="Cardholder Name"
-                InputLabelProps={{ sx: { color: '#000' } }}
+                InputLabelProps={{ sx: { color: '#344055' } }}
                 value={cardholderName}
                 onChange={(e) => setCardholderName(e.target.value)}
               />
@@ -70,7 +70,7 @@ const Payment: React.FC = () => {
                 id="cardNumber"
                 label="Card Number"
                 placeholder="Card Number"
-                InputLabelProps={{ sx: { color: '#000' } }}
+                InputLabelProps={{ sx: { color: '#344055' } }}
                 value={cardNumber}
                 onChange={(e) => setCardNumber(e.target.value)}
               />
@@ -83,7 +83,7 @@ const Payment: React.FC = () => {
                 id="expirationDate"
                 label="Expiration Date"
                 placeholder="MM/YYYY"
-                InputLabelProps={{ sx: { color: '#000' } }}
+                InputLabelProps={{ sx: { color: '#344055' } }}
                 value={expirationDate}
                 onChange={(e) => setExpirationDate(e.target.value)}
               />
@@ -96,7 +96,7 @@ const Payment: React.FC = () => {
                 id="cvc"
                 label="CVC"
                 placeholder="CVC"
-                InputLabelProps={{ sx: { color: '#000' } }}
+                InputLabelProps={{ sx: { color: '#344055' } }}
                 value={cvc}
                 onChange={(e) => setCvc(e.target.value)}
               />
@@ -104,7 +104,7 @@ const Payment: React.FC = () => {
 
             {/* Right Column - Billing Address */}
             <Grid item xs={12} md={6}>
-              <Typography component="h2" variant="h6" sx={{ mt: 3, color: '#000' }}>
+              <Typography component="h2" variant="h6" sx={{ mt: 3, color: '#344055' }}>
                 Billing Address
               </Typography>
               <p>Enter your billing address to purchase the subscription.</p>
@@ -117,7 +117,7 @@ const Payment: React.FC = () => {
                 id="streetAddress"
                 label="Street Address"
                 placeholder="Street Address"
-                InputLabelProps={{ sx: { color: '#000' } }}
+                InputLabelProps={{ sx: { color: '#344055' } }}
                 value={streetAddress}
                 onChange={(e) => setStreetAddress(e.target.value)}
               />
@@ -130,7 +130,7 @@ const Payment: React.FC = () => {
                 id="city"
                 label="City"
                 placeholder="City"
-                InputLabelProps={{ sx: { color: '#000' } }}
+                InputLabelProps={{ sx: { color: '#344055' } }}
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
               />
@@ -143,7 +143,7 @@ const Payment: React.FC = () => {
                 id="stateProvince"
                 label="State/Province"
                 placeholder="State/Province"
-                InputLabelProps={{ sx: { color: '#000' } }}
+                InputLabelProps={{ sx: { color: '#344055' } }}
                 value={stateProvince}
                 onChange={(e) => setStateProvince(e.target.value)}
               />
@@ -156,7 +156,7 @@ const Payment: React.FC = () => {
                 id="country"
                 label="Country"
                 placeholder="Country"
-                InputLabelProps={{ sx: { color: '#000' } }}
+                InputLabelProps={{ sx: { color: '#344055' } }}
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
               />
@@ -169,7 +169,7 @@ const Payment: React.FC = () => {
                 id="postalCode"
                 label="Postal Code"
                 placeholder="Postal Code"
-                InputLabelProps={{ sx: { color: '#000' } }}
+                InputLabelProps={{ sx: { color: '#344055' } }}
                 value={postalCode}
                 onChange={(e) => setPostalCode(e.target.value)}
               />
