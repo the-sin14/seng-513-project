@@ -30,3 +30,42 @@
 .section-break {
     background: rgba(70, 67, 67, 0.80);
 }
+
+.chat-input-field {
+    border: 1px solid #344055;
+    background-color: #F2F1EE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    padding: 15px;
+    border-radius: 15px;
+    margin: auto;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+.upload-file-button,
+.enter-notes-button {
+    font-size: 30px;
+    color: #344055;
+}
+
+.upload-file-button:hover,
+.enter-notes-button:hover {
+    color: #61728F;
+}
+
+.text-field {
+    font-size: 16px;
+    flex: 1; /* This will make the text field grow to fill the space */
+    padding: 10px; 
+    width: 100%; 
+    background-color: #f2f1ee;
+    border: none;
+    outline: none;
+    color: black;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    padding: 0 10px; 
+}

@@ -1,5 +1,7 @@
 import "./Chat.css"
 import React, { useEffect, useRef, useState } from "react";
+import { FaCirclePlus } from "react-icons/fa6";
+import { IoArrowRedoSharp } from "react-icons/io5";
 import { Box, Avatar, Typography, Button, IconButton, FormControl, Select, MenuItem, Divider } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
 import ChatItem from "../components/chat/ChatItem";
@@ -307,7 +309,7 @@ const Chat = () => {
             <IoMdSend />
           </IconButton> */}
 
-          <div style={{ width: "85%", padding: "15px", borderRadius: 8, backgroundColor: "#39354A", display: "flex", margin: "auto", height: 50 }}>
+          <div className="chat-input-field">
 
             {/* This is where the upload button goes need to add the functionalities*/}
             {/* So need to change the onclick handlesubmit thing */}
@@ -318,15 +320,15 @@ const Chat = () => {
               Export to PDF
             </button>
 
-            <IconButton onClick={handleSummarize} sx={{ color: "white", fontSize: "25px" }}>
+            <IconButton onClick={handleSummarize} sx={{ color: "#344055", fontSize: "25px" }}>
               Summerize |
             </IconButton>
 
-            <IconButton onClick={handleBullets} sx={{ color: "white", fontSize: "25px" }}>
+            <IconButton onClick={handleBullets} sx={{ color: "#344055", fontSize: "25px" }}>
               Bullets |
             </IconButton>
 
-            <IconButton onClick={handleQuizMe} sx={{ color: "white", fontSize: "25px" }}>
+            <IconButton onClick={handleQuizMe} sx={{ color: "#344055", fontSize: "25px" }}>
               Quiz Me |
             </IconButton>
 
@@ -340,28 +342,19 @@ const Chat = () => {
             />
             <label htmlFor="fileInput">
               <IconButton component="span" sx={{ color: "white", fontSize: "25px" }}>
-                +
+                <FaCirclePlus className="upload-file-button" />
               </IconButton>
             </label>
-
 
             <input
               ref={inputRef}
               type="text"
               placeholder="Message Summarify"
-              style={{
-                width: "100%",
-                backgroundColor: "transparent",
-                padding: "5px",
-                border: "none",
-                outline: "none",
-                color: "white",
-                fontSize: "20px",
-              }}
+              className="text-field"
             />
 
             <IconButton onClick={handleSubmit} sx={{ mr: "15px", color: "white" }}>
-              <IoMdSend />
+              <IoArrowRedoSharp className="enter-notes-button"/>
             </IconButton>
           </div>
 
