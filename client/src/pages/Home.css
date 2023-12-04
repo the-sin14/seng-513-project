@@ -15,6 +15,47 @@
   font-weight: 700;
 }
 
+.subtitleStyles {
+  color: var(--dark-gray);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.learnStyles {
+  color: #344055;
+  font-family: "Poppins", sans-serif;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.wordCounterStyles {
+  color: rgba(70, 67, 67, 0.8);
+  text-align: right;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.testSummarifyStyles {
+  width: 100%;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+  background-color: #d9d9d9;
+  position: relative;
+}
+
 .upload-slides-subtitle {
   color: var(--light-gray);
   font-size: 18px;
@@ -36,26 +77,25 @@
 }
 
 .text-field {
-    font-size: 16px;
+  font-size: 16px;
   flex: 1; /* This will make the text field grow to fill the space */
-  padding: 10px; /* Adjust padding as needed */
-  width: 100%; /* Make the text field fill its container */
+  padding: 10px; 
+  width: 100%; 
   background-color: #f2f1ee;
   border: none;
   outline: none;
   color: black;
   font-size: 16px;
   font-family: "Poppins", sans-serif;
-  padding: 0 10px; /* Add padding within the text field if needed */
+  padding: 0 10px; 
 }
 
 @media screen and (max-width: 640px) {
-    .text-field {
-        font-size: 14px; /* Smaller font size for small screens */
-        /* Other styles */
-    }
+  .text-field {
+    font-size: 14px; /* Smaller font size for small screens */
+    
+  }
 }
-
 
 .upload-button,
 .enter-button {
@@ -106,3 +146,45 @@
     height: 30vh;
   }
 }
+
+.image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px; /* Default margin-top for mobile view */
+}
+
+@media (min-width: 640px) {
+  /* Adjust this min-width value based on the mobile breakpoint */
+  .image {
+    margin-top: 0;
+  }
+}
+
+.inputFieldStyles{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 15px;
+    border: 1px solid #344055;
+    background-color: #F2F1EE;
+    height: 50px;
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 20px;
+    max-width: calc(100% - 120px); /* This ensures the element doesn't extend beyond the viewport */
+    width: 50%; /* Default to non-mobile view width */
+}
+
+/* Mobile view adjustments */
+@media screen and (max-width: 640px) { /* Update 640px for the mobile breakpoint */
+    .inputFieldStyles{
+        width: 90%; 
+    }
+}
+
