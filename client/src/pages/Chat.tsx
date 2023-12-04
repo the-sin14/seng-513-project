@@ -1,6 +1,6 @@
 import "./Chat.css"
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Avatar, Typography, Button, IconButton, FormControl, Select, MenuItem } from "@mui/material";
+import { Box, Avatar, Typography, Button, IconButton, FormControl, Select, MenuItem, Divider } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
 import ChatItem from "../components/chat/ChatItem";
 import { IoMdSend } from "react-icons/io";
@@ -280,6 +280,8 @@ const Chat = () => {
             </div>
           </div>
         </FormControl>
+
+        <Divider className="section-break"/>
 
         <Box
           sx={{
