@@ -1,6 +1,6 @@
 import "./Chat.css"
 import React, { useEffect, useRef, useState } from "react";
-import { FaCirclePlus } from "react-icons/fa6";
+import { FaCirclePlus, FaFileExport } from "react-icons/fa6";
 import { IoArrowRedoSharp } from "react-icons/io5";
 import { Box, Avatar, Typography, Button, IconButton, FormControl, Select, MenuItem, Divider } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
@@ -223,7 +223,7 @@ const Chat = () => {
                     marginTop: "5px"
                   },
                   '& .MuiMenuItem-root:hover': {
-                    color: "black",
+                    color: "#000000",
                   },
                   '& .MuiMenuItem-root': {
                     color: "black"
@@ -262,7 +262,7 @@ const Chat = () => {
                     marginTop: "5px"
                   },
                   '& .MuiMenuItem-root:hover': {
-                    color: "black",
+                    color: "#000000",
                   },
                   '& .MuiMenuItem-root': {
                     color: "black"
@@ -306,12 +306,16 @@ const Chat = () => {
 
             {/* This is where the upload button goes need to add the functionalities*/}
             {/* So need to change the onclick handlesubmit thing */}
-            <button
+            {/* <button
               onClick={handleExport}
               disabled={chatMessages.length === 0}
             >
               Export to PDF
-            </button>
+            </button> */}
+
+            <IconButton onClick={handleExport} disabled={chatMessages.length === 0}>
+              <FaFileExport className="export-button"/>
+            </IconButton>
 
             <IconButton onClick={handleSummarize} sx={{ color: "#344055", fontSize: "25px" }}>
               Summerize |

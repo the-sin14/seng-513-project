@@ -69,3 +69,11 @@
     font-family: "Poppins", sans-serif;
     padding: 0 10px; 
 }
+
+.export-button {
+    color: var(--primary);
+}
+
+.export-button:hover {
+    color: #61728F;
+}
