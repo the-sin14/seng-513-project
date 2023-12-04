@@ -40,11 +40,12 @@ const ChatItem = ({
       sx={{
         display: "flex",
         p: 2,
-        bgcolor: "#008080",
+        bgcolor: "#344055",
         gap: 2,
-        borderRadius: 2,
+        borderRadius: 6,
         flexDirection: "row-reverse", // Reverse the order of elements
         alignItems: "center", // Vertically align the content and Avatar
+        marginTop: "10px"
       }}
     >
       <Avatar sx={{ ml: "0", bgcolor: "white", color: "black" }}>
@@ -71,9 +72,10 @@ const ChatItem = ({
       sx={{
         display: "flex",
         p: 2,
-        bgcolor: "#004d56",
+        bgcolor: "#404040",
         gap: 2,
-        borderRadius: 2,
+        borderRadius: 6,
+        marginTop: "10px"
       }}
     >
       <Avatar sx={{ ml: "0", bgcolor: "black", color: "white" }}>

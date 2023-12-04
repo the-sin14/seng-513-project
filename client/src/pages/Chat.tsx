@@ -5,7 +5,6 @@ import { IoArrowRedoSharp } from "react-icons/io5";
 import { Box, Avatar, Typography, Button, IconButton, FormControl, Select, MenuItem, Divider } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
 import ChatItem from "../components/chat/ChatItem";
-import { IoMdSend } from "react-icons/io";
 import { sendChatRequest } from "../helpers/api-communicators";
 import { useNavigate } from 'react-router-dom'
 import { PDFDownloadLink, Document, Page, Text } from '@react-pdf/renderer';
@@ -166,7 +165,6 @@ const Chat = () => {
     }
   };
 
-
   const handleExport = async () => {
     // Generate the PDF and trigger download
     const pdfBlob = await pdf(<ChatDocument chats={chatMessages} />).toBlob();
@@ -198,7 +196,6 @@ const Chat = () => {
           flex: { md: 1, xs: 1, sm: 1 },
           flexDirection: "column",
           gap: 5,
-
         }}
       >
         <FormControl>
@@ -243,7 +240,7 @@ const Chat = () => {
             </div>
 
             <div className="user-options-2">
-              <Typography variant="h6" id="generate-flashcards-label">Generate Flashcards?</Typography>
+              <Typography variant="h6" id="generate-flashcards-label">Generate Questions?</Typography>
               <Select id="generate-quiz-questions-dropdown" sx={{
                 width: "100%",
                 borderRadius: "6px",
@@ -288,7 +285,7 @@ const Chat = () => {
         <Box
           sx={{
             width: "87%",
-            height: "52vh",
+            height: "100%",
             borderRadius: 3,
             mx: "auto",
             display: "flex",
@@ -304,10 +301,6 @@ const Chat = () => {
             <ChatItem content={chat.content} role={chat.role} key={index} />
           ))}
         </Box>
-
-          {/* <IconButton onClick={handleSubmit} sx={{ mr: "15px", color: "white" }}>
-            <IoMdSend />
-          </IconButton> */}
 
           <div className="chat-input-field">
 
