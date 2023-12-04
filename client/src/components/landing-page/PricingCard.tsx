@@ -2,74 +2,20 @@ import { Link } from 'react-router-dom';
 import { Box, Typography, Button } from '@mui/material';
 import { FaCheck } from 'react-icons/fa';
 import React from 'react';
+import "./PricingCard.css"
 
 type Props = {
     tier: string;
 };
 
 export const PricingCard = (props: Props) => {
-    // Define styles using React.CSSProperties
+    // Defined styles using React.CSSProperties
     const styles: Record<string, React.CSSProperties> = {
-        card: {
-            width: '100%',
-            maxWidth: '500px', 
-            margin: '10px',
-            borderRadius: '6px',
-            boxShadow: '0px 4px 12px rgba(0,0,0,0.25)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between', 
-            height: '100%', 
-        },
-        cardContainer: {
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            gap: '20px', 
-           },
 
-        cardHeader: {
-            backgroundColor: '#344055',
-            color: '#F2F1EE',
-            padding: '5px 20px',
-            borderRadius: '6px 6px 0 0',
-            display: 'flex',
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            width: '100%',
-            boxSizing: 'border-box',
-        },
-        cardContent: {
-            textAlign: 'center',
-            padding: '25px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            flex: '1', 
-        },
-        cardBody: {
-            flex: '1'
-        },
         buttonBox: {
             marginBottom: '20px',
         },
-        button: {
-            fontSize: '16px',
-            width: '150px',
-            backgroundColor: '#344055',
-            color: '#F2F1EE',
-            borderRadius: '8px',
-            fontWeight: '600',
-            textTransform: 'capitalize',
-            textDecoration: 'none',
-            border: 'none',
-        },
-        feature: {
-            display: 'flex',
-            alignItems: 'center',
-            margin: '10px 0',
-        },
+       
         checkIcon: {
             color: '#344055',
             marginRight: '10px',
@@ -79,12 +25,6 @@ export const PricingCard = (props: Props) => {
             color: "black"
         },
 
-        bold: {
-            fontWeight: 'bold',
-        },
-        underline: {
-            textDecoration: 'underline',
-        },
     };
     
     // Helper functions
@@ -118,8 +58,8 @@ export const PricingCard = (props: Props) => {
 
     const getNavLink = () => {
         return (
-            <Button style={styles.button}>
-                <Link to={props.tier === 'premium' ? '/login' : '/signup'} style={styles.button}>
+            <Button className='button'>
+                <Link to={props.tier === 'premium' ? '/login' : '/signup'} className='button'>
                     {getButtonText()}
                 </Link>
             </Button>
@@ -139,22 +79,22 @@ export const PricingCard = (props: Props) => {
         } else {
             // Basic and Premium tiers share the same layout
             return (
-                <div style={styles.cardBody}>
-                    <div style={styles.feature}>
+                <div className='card-body'>
+                    <div className='feature'>
                         <FaCheck style={styles.checkIcon} />
-                        <Typography style={styles.featureText}>Upload files up to <span style={styles.bold}>5,000</span> characters</Typography>
+                        <Typography style={styles.featureText}>Upload files up to <span className='bold'>5,000</span> characters</Typography>
                     </div>
-                    <div style={styles.feature}>
+                    <div className='feature'>
                         <FaCheck style={styles.checkIcon} />
-                        <Typography style={styles.featureText}>Let AI generate <span style={styles.underline}>simple, paragraph-form</span> summaries</Typography>
+                        <Typography style={styles.featureText}>Let AI generate <span className='underline'>simple, paragraph-form</span> summaries</Typography>
                     </div>
-                    <div style={styles.feature}>
+                    <div className='feature'>
                         <FaCheck style={styles.checkIcon} />
-                        <Typography style={styles.featureText}>Let AI generate <span style={styles.underline}>simple, point-form</span> summaries</Typography>
+                        <Typography style={styles.featureText}>Let AI generate <span className='underline'>simple, point-form</span> summaries</Typography>
                     </div>
-                    <div style={styles.feature}>
+                    <div className='feature'>
                         <FaCheck style={styles.checkIcon} />
-                        <Typography style={styles.featureText}>Let AI generate <span style={styles.underline}>flashcards</span> for self-learning</Typography>
+                        <Typography style={styles.featureText}>Let AI generate <span className='underline'>flashcards</span> for self-learning</Typography>
                     </div>
                 </div>
             );
@@ -163,12 +103,12 @@ export const PricingCard = (props: Props) => {
 
     return (
 
-        <Box style={styles.card} >
-        <Box style={styles.cardHeader}>
+        <Box className="card" >
+        <Box className="card-header">
             <Typography variant="h6" component="div">{getAccountTier()}</Typography>
             <Typography variant="h6" component="div">{getAccountPricing()}</Typography>
         </Box>
-        <Box style={styles.cardContent} component="div">
+        <Box className='card-content' component="div">
             {getCardBody()}
             <Box style={styles.buttonBox}>
                 {getNavLink()}
