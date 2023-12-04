@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Avatar, Typography, Button, IconButton } from "@mui/material";
+import { Box, Avatar, Typography, Button, IconButton, FormControl } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
 import ChatItem from "../components/chat/ChatItem";
 import { IoMdSend } from "react-icons/io";
@@ -170,7 +170,6 @@ const Chat = () => {
     saveAs(pdfBlob, 'chatData.pdf');
   };
 
-
   useEffect(() => {
     if (!auth?.user) {
       return navigate("/login");
@@ -199,7 +198,7 @@ const Chat = () => {
 
         }}
       >
-        <Typography
+        {/* <Typography
           sx={{
             textAlign: "center",
             fontSize: "35px",
@@ -209,7 +208,13 @@ const Chat = () => {
           }}
         >
           Welcome To Summarify
-        </Typography>
+        </Typography> */}
+
+        <FormControl>
+          <Typography variant="h6" id="summarization-type-label">Summarization Type</Typography>
+        </FormControl>
+
+
         <Box
           sx={{
             width: "87%",
@@ -229,63 +234,68 @@ const Chat = () => {
             <ChatItem content={chat.content} role={chat.role} key={index} />
           ))}
         </Box>
-        <div style={{ width: "85%", padding: "15px", borderRadius: 8, backgroundColor: "#39354A", display: "flex", margin: "auto", height: 50 }}>
-
-          {/* This is where the upload button goes need to add the functionalities*/}
-          {/* So need to change the onclick handlesubmit thing */}
-          <button
-            onClick={handleExport}
-            disabled={chatMessages.length === 0}
-          >
-            Export to PDF
-          </button>
-
-          <IconButton onClick={handleSummarize} sx={{ color: "white", fontSize: "25px" }}>
-            Summerize |
-          </IconButton>
-
-          <IconButton onClick={handleBullets} sx={{ color: "white", fontSize: "25px" }}>
-            Bullets |
-          </IconButton>
-
-          <IconButton onClick={handleQuizMe} sx={{ color: "white", fontSize: "25px" }}>
-            Quiz Me |
-          </IconButton>
-
-          <input
-            key={fileInputKey}
-            type="file"
-            onChange={handleFileUpload}
-            accept=".txt"
-            style={{ display: "none" }}
-            id="fileInput"
-          />
-          <label htmlFor="fileInput">
-            <IconButton component="span" sx={{ color: "white", fontSize: "25px" }}>
-              +
-            </IconButton>
-          </label>
-
-
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Message Summarify"
-            style={{
-              width: "100%",
-              backgroundColor: "transparent",
-              padding: "5px",
-              border: "none",
-              outline: "none",
-              color: "white",
-              fontSize: "20px",
-            }}
-          />
 
           <IconButton onClick={handleSubmit} sx={{ mr: "15px", color: "white" }}>
             <IoMdSend />
           </IconButton>
-        </div>
+
+          <div style={{ width: "85%", padding: "15px", borderRadius: 8, backgroundColor: "#39354A", display: "flex", margin: "auto", height: 50 }}>
+
+            {/* This is where the upload button goes need to add the functionalities*/}
+            {/* So need to change the onclick handlesubmit thing */}
+            <button
+              onClick={handleExport}
+              disabled={chatMessages.length === 0}
+            >
+              Export to PDF
+            </button>
+
+            <IconButton onClick={handleSummarize} sx={{ color: "white", fontSize: "25px" }}>
+              Summerize |
+            </IconButton>
+
+            <IconButton onClick={handleBullets} sx={{ color: "white", fontSize: "25px" }}>
+              Bullets |
+            </IconButton>
+
+            <IconButton onClick={handleQuizMe} sx={{ color: "white", fontSize: "25px" }}>
+              Quiz Me |
+            </IconButton>
+
+            <input
+              key={fileInputKey}
+              type="file"
+              onChange={handleFileUpload}
+              accept=".txt"
+              style={{ display: "none" }}
+              id="fileInput"
+            />
+            <label htmlFor="fileInput">
+              <IconButton component="span" sx={{ color: "white", fontSize: "25px" }}>
+                +
+              </IconButton>
+            </label>
+
+
+            <input
+              ref={inputRef}
+              type="text"
+              placeholder="Message Summarify"
+              style={{
+                width: "100%",
+                backgroundColor: "transparent",
+                padding: "5px",
+                border: "none",
+                outline: "none",
+                color: "white",
+                fontSize: "20px",
+              }}
+            />
+
+            <IconButton onClick={handleSubmit} sx={{ mr: "15px", color: "white" }}>
+              <IoMdSend />
+            </IconButton>
+          </div>
 
       </Box>
     </Box>
