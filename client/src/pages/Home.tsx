@@ -64,16 +64,6 @@ function Home() {
     textAlign: "center"
   };
 
-  const learnStyles: React.CSSProperties = {
-    color: "#344055",
-    fontFamily: "Poppins",
-    fontSize: "40px",
-    fontStyle: "normal",
-    fontWeight: "700",
-    lineHeight: "normal",
-    textTransform: "uppercase",
-  };
-
   const summarifyDescriptionStyles: React.CSSProperties = {
     marginTop: "20px",
     color: "#000",
@@ -83,49 +73,6 @@ function Home() {
     fontStyle: "normal",
     fontWeight: "400",
     lineHeight: "normal",
-  };
-
-  const testSummarifyStyles: React.CSSProperties = {
-    width: "100%",
-    minHeight: "80vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    marginTop: "100px",
-    backgroundColor: "#D9D9D9",
-    position: "relative",
-  };
-
-  const inputFieldStyles: React.CSSProperties = {
-    justifyContent: "center",
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "row",
-    borderRadius: "15px",
-    border: "1px solid #344055",
-    backgroundColor: "#F2F1EE",
-    height: "50px",
-    position: "absolute",
-    bottom: "60px",
-    left: "50%", 
-    transform: "translateX(-50%)", 
-    padding: "0 20px", 
-    maxWidth: "calc(100% - 120px)", // Prevent it from being wider than the screen minus some margin
-    width: isMobileView ? "90%" : "50%",
-  };
-
-  const wordCounterStyles: React.CSSProperties = {
-    color: "rgba(70, 67, 67, 0.80)",
-    textAlign: "right",
-    fontSize: "15px",
-    fontStyle: "normal",
-    fontWeight: "400",
-    lineHeight: "normal",
-  };
-
-  const textAreaStyles: React.CSSProperties = {
-    fontSize: isMobileView ? "14px" : "16px",
   };
 
   const maxCharacterCount = 1000;
@@ -138,7 +85,7 @@ function Home() {
       <Typography
         variant="h1"
         style={{ color: "#515458", fontSize: "35px", fontWeight: "bolder",
-      display: "block", marginBottom: "35px", textAlign: "center"}}
+        display: "block", marginBottom: "35px", textAlign: "center"}}
       >
         UPLOAD YOUR LECTURE SLIDES
       </Typography>
@@ -242,14 +189,7 @@ function Home() {
           >
             <img
               src="../girl_book.svg"
-              style={{
-                display: "block",
-                maxWidth: "100%",
-                height: "auto",
-                marginLeft: "auto",
-                marginRight: "auto",
-                marginTop: isMobileView ? "20px" : "0",
-              }}
+              className="image"
             />
           </div>
           <div style={explainSectionStyles}>
@@ -257,7 +197,7 @@ function Home() {
               Summarify
             </Typography>
             <Typography variant="h2" style={subtitleStyles}>
-              A Better Way To <span style={learnStyles}>Learn</span>
+              A Better Way To <span className="learnStyles">Learn</span>
             </Typography>
             <Typography variant="body1" style={summarifyDescriptionStyles}>
               Simply upload or drag in your lecture notes, sit back, and let our
@@ -281,18 +221,8 @@ function Home() {
 
         {/* Test Summarify Section */}
         <Box
-          style={testSummarifyStyles}
-          sx={{
-            width: "100%",
-            minHeight: "80vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            marginTop: "100px",
-            backgroundColor: "#D9D9D9",
-            position: "relative",
-          }}
+          
+          className="testSummarifyStyles"
         >
           {uploadSlidesContent}
 
@@ -302,7 +232,7 @@ function Home() {
               Text is too long! Create an account to increase character count.
             </div>
           )}
-          <div style={inputFieldStyles}>
+          <div className="inputFieldStyles">
             <input
               type="file"
               style={{ display: "none" }}
@@ -314,7 +244,6 @@ function Home() {
             </button>
             <input
               type="text"
-              style={textAreaStyles}
               placeholder="Type in notes..."
               className="text-field"
               onChange={(e) => setCount(e.target.value.length)}
@@ -328,7 +257,7 @@ function Home() {
             </button>
           </div>
           {showCounter && (
-            <div style={wordCounterStyles} className="counter">
+            <div className="counter wordCounterStyles">
               <p>
                 {count}/{maxCharacterCount}
               </p>
