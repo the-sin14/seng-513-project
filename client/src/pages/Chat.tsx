@@ -220,7 +220,8 @@ const Chat = () => {
                 sx: {
                   '& .MuiMenu-paper': {
                     border: "1px solid #344055",
-                    marginTop: "5px"
+                    marginTop: "5px",
+                    color: "#000000"
                   },
                   '& .MuiMenuItem-root:hover': {
                     color: "#000000",
@@ -254,12 +255,13 @@ const Chat = () => {
                 },
                 '&:before': {
                   borderBottom: "1px solid #F2F1EE"
-                }
+                },
               }} MenuProps={{
                 sx: {
                   '& .MuiMenu-paper': {
                     border: "1px solid #344055",
-                    marginTop: "5px"
+                    marginTop: "5px",
+                    color: "#000000"
                   },
                   '& .MuiMenuItem-root:hover': {
                     color: "#000000",
@@ -267,6 +269,7 @@ const Chat = () => {
                   '& .MuiMenuItem-root': {
                     color: "black"
                   },
+
                   '& .Mui-selected': {
                     backgroundColor: "#61728F",
                     color: "#F2F1EE"
@@ -285,7 +288,7 @@ const Chat = () => {
         <Box
           sx={{
             width: "87%",
-            height: "100%",
+            height: "58vh",
             borderRadius: 3,
             mx: "auto",
             display: "flex",
