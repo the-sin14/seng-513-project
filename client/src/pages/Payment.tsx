@@ -1,108 +1,197 @@
 // import React, { useEffect } from "react";
 import { IoIosLogIn } from "react-icons/io";
-import { Box, Typography, Button, CssBaseline } from "@mui/material";
+import { Box, Typography, Button, TextField, Container, Grid } from '@mui/material';
 import CustomizedInput from "../components/shared/CustomizedInput";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
-import { useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 
-const Payment = () => {
-  const auth = useAuth();
-  const navigate = useNavigate();
-  // Capturing the values of password and email.
-  const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const name = formData.get("name") as string;
+const Payment: React.FC = () => {
+  const [cardholderName, setCardholderName] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expirationDate, setExpirationDate] = useState('');
+  const [cvc, setCvc] = useState('');
 
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    console.log("This is the email and password: " + email, password);
+  const [streetAddress, setStreetAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [stateProvince, setStateProvince] = useState('');
+  const [country, setCountry] = useState('');
+  const [postalCode, setPostalCode] = useState('');
 
-    try {
-      toast.loading("Signing Up!", { id: "signup" });
-      await auth?.signup(name, email, password);
-      toast.success("Signing Up Successfully!", { id: "signup" });
-    } catch (error) {
-      toast.error("Signing Up failed", { id: "signup" });
-    }
+  const handlePurchase = () => {
+    // Implement your purchase logic here
+    console.log('Purchase clicked!');
+    // You can send the payment details to your backend for processing.
   };
-  useEffect(() => {
-    if (auth?.user) {
-      return navigate("/chat");
-    }
-  }, [auth]);
+
   return (
-    <>
-    <Box width={"100%"} height={"100%"} display="flex" flex={1}>
+    <Container component="main" maxWidth="md">
       <Box
-        display={"flex"}
-        flex={{ xs: 0.3, md: 1 }}
-        justifyContent={"center"}
-        alignItems={"center"}
-        padding={25}
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
       >
-        <form
-          onSubmit={handleSumbit}
-          style={{
-            margin: "auto",
-            padding: "40px",
-            boxShadow: "0px 6px 12px 0px rgba(0, 0, 0, 0.50)",
-            borderRadius: "10px",
-          }}
-        >
-          <Box
+        <Typography component="h1" variant="h5" sx={{ mt: 6, color: '#000' }}>
+          Payment
+        </Typography>
+        <p>You are about to purchase a premium subscription for $5 a month.</p>
+        <Box component="form" noValidate sx={{ mt: 3 }}>
+          <Grid container spacing={3}>
+            {/* Left Column - Payment Information */}
+            <Grid item xs={12} md={6}>
+              <Typography component="h2" variant="h6" sx={{ mt: 3, color: '#000' }}>
+                Payment Information
+              </Typography>
+              <p>Enter your payment information to purchase the subscription.</p>
+
+              {/* Cardholder Name */}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="cardholderName"
+                label="Cardholder Name"
+                placeholder="Cardholder Name"
+                InputLabelProps={{ sx: { color: '#000' } }}
+                value={cardholderName}
+                onChange={(e) => setCardholderName(e.target.value)}
+              />
+
+              {/* Card Number */}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="cardNumber"
+                label="Card Number"
+                placeholder="Card Number"
+                InputLabelProps={{ sx: { color: '#000' } }}
+                value={cardNumber}
+                onChange={(e) => setCardNumber(e.target.value)}
+              />
+
+              {/* Expiration Date */}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="expirationDate"
+                label="Expiration Date"
+                placeholder="MM/YYYY"
+                InputLabelProps={{ sx: { color: '#000' } }}
+                value={expirationDate}
+                onChange={(e) => setExpirationDate(e.target.value)}
+              />
+
+              {/* CVC */}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="cvc"
+                label="CVC"
+                placeholder="CVC"
+                InputLabelProps={{ sx: { color: '#000' } }}
+                value={cvc}
+                onChange={(e) => setCvc(e.target.value)}
+              />
+            </Grid>
+
+            {/* Right Column - Billing Address */}
+            <Grid item xs={12} md={6}>
+              <Typography component="h2" variant="h6" sx={{ mt: 3, color: '#000' }}>
+                Billing Address
+              </Typography>
+              <p>Enter your billing address to purchase the subscription.</p>
+
+              {/* Street Address */}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="streetAddress"
+                label="Street Address"
+                placeholder="Street Address"
+                InputLabelProps={{ sx: { color: '#000' } }}
+                value={streetAddress}
+                onChange={(e) => setStreetAddress(e.target.value)}
+              />
+
+              {/* City */}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="city"
+                label="City"
+                placeholder="City"
+                InputLabelProps={{ sx: { color: '#000' } }}
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+
+              {/* State/Province */}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="stateProvince"
+                label="State/Province"
+                placeholder="State/Province"
+                InputLabelProps={{ sx: { color: '#000' } }}
+                value={stateProvince}
+                onChange={(e) => setStateProvince(e.target.value)}
+              />
+
+              {/* Country */}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="country"
+                label="Country"
+                placeholder="Country"
+                InputLabelProps={{ sx: { color: '#000' } }}
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+              />
+
+              {/* Postal Code */}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="postalCode"
+                label="Postal Code"
+                placeholder="Postal Code"
+                InputLabelProps={{ sx: { color: '#000' } }}
+                value={postalCode}
+                onChange={(e) => setPostalCode(e.target.value)}
+              />
+            </Grid>
+          </Grid>
+
+          <Button
+            type="button"
+            fullWidth
+            variant="contained"
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
+              mt: 3,
+              mb: 2,
+              bgcolor: '#344055',
             }}
+            onClick={handlePurchase}
           >
-            <Typography
-              variant="h4"
-              textAlign="center"
-              padding={5}
-              fontWeight={600}
-              sx={{color: "#000", fontFamily: "Poppins", fontSize: "35px"}}
-            >
-              Payment
-            </Typography>
-
-            {/* Email and Password label */}
-            <CustomizedInput type="text" name="name" label="Name" />
-            <CustomizedInput type="email" name="email" label="Email" />
-            <CustomizedInput type="password" name="password" label="Password" />
-
-            {/* Design for the button */}
-            <Button
-              type="submit"
-              sx={{
-                px: 2,
-                py: 2,
-                mt: 2,
-                fontSize: "20px",
-                width: "400px",
-                borderRadius: 3,
-                bgcolor: "#344055",
-                color: "#F2F1EE",
-                ":hover": {
-                  bgcolor: "#485875"
-                },
-                textTransform: "capitalize",
-                fontWeight: "600",
-                boxShadow: "0px 8px 12px 0px rgba(0, 0, 0, 0.30)"
-              }}
-            >
-              Le Payment
-            </Button>
-            <p>Already have an account? <a href="/login">Sign In</a></p>
-          </Box>
-        </form>
+            Purchase
+          </Button>
+        </Box>
       </Box>
-    </Box>
-    </>
+    </Container>
   );
 };
 
