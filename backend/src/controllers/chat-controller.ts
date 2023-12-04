@@ -1,11 +1,6 @@
 import User from "../models/User.js";
-<<<<<<< HEAD
-//import { configureOpenAI } from "../config/openai-config.js";
-//import { OpenAIApi, ChatCompletionRequestMessage } from "openai"
-=======
 import { configureOpenAI } from "../config/openai-config.js";
 import { Request, Response, NextFunction } from 'express';
->>>>>>> e745020c80ee0deb743f32c1c59499110754166a
 
 export const generateChatCompletion = async (req: Request, res: Response, next: NextFunction): Promise<Response<any, Record<string, any>> | undefined> => {
     const { message } = req.body;
