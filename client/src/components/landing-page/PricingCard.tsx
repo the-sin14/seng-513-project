@@ -119,7 +119,7 @@ export const PricingCard = (props: Props) => {
     const getNavLink = () => {
         return (
             <Button style={styles.button}>
-                <Link to={props.tier === 'premium' ? '/login' : '/signup'} style={styles.button}>
+                <Link to={props.tier === 'premium' ? '/payment' : '/signup'} style={styles.button}>
                     {getButtonText()}
                 </Link>
             </Button>
