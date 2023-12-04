@@ -1,5 +1,6 @@
+import "./Chat.css"
 import React, { useEffect, useRef, useState } from "react";
-import { Box, Avatar, Typography, Button, IconButton, FormControl } from "@mui/material";
+import { Box, Avatar, Typography, Button, IconButton, FormControl, Select, MenuItem } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
 import ChatItem from "../components/chat/ChatItem";
 import { IoMdSend } from "react-icons/io";
@@ -198,22 +199,87 @@ const Chat = () => {
 
         }}
       >
-        {/* <Typography
-          sx={{
-            textAlign: "center",
-            fontSize: "35px",
-            color: "black",
-            mx: "auto",
-
-          }}
-        >
-          Welcome To Summarify
-        </Typography> */}
-
         <FormControl>
-          <Typography variant="h6" id="summarization-type-label">Summarization Type</Typography>
-        </FormControl>
+          <div className="user-options">
+            <div className="user-option-1">
+              <Typography variant="h6" id="summarization-type-label">Summarization Type</Typography>
+              <Select id="summarization-type-drop-down" sx={{
+                width: "100%",
+                borderRadius: "6px",
+                border: "1px solid #344055",
+                '.MuiSvgIcon-root': {
+                  backgroundColor: "#344055",
+                  color: "#F2F1EE",
+                  fontSize: "58px",
+                  borderRadius: "6px",
+                  marginRight: "-7px"
+                },
+                '&:before': {
+                  borderBottom: "1px solid #F2F1EE"
+                }
+              }} MenuProps={{
+                sx: {
+                  '& .MuiMenu-paper': {
+                    border: "1px solid #344055",
+                    marginTop: "5px"
+                  },
+                  '& .MuiMenuItem-root:hover': {
+                    color: "black",
+                  },
+                  '& .MuiMenuItem-root': {
+                    color: "black"
+                  },
+                  '& .Mui-selected': {
+                    backgroundColor: "#61728F",
+                    color: "#F2F1EE"
+                  }
+                }
+              }}>
+                <MenuItem value={"Paragraph"}>Paragraph</MenuItem>
+                <MenuItem value={"Point"}>Point</MenuItem>
+              </Select>
+            </div>
 
+            <div className="user-options-2">
+              <Typography variant="h6" id="generate-flashcards-label">Generate Flashcards?</Typography>
+              <Select id="generate-quiz-questions-dropdown" sx={{
+                width: "100%",
+                borderRadius: "6px",
+                border: "1px solid #344055",
+                '.MuiSvgIcon-root': {
+                  backgroundColor: "#344055",
+                  color: "#F2F1EE",
+                  fontSize: "58px",
+                  borderRadius: "6px",
+                  marginRight: "-7px"
+                },
+                '&:before': {
+                  borderBottom: "1px solid #F2F1EE"
+                }
+              }} MenuProps={{
+                sx: {
+                  '& .MuiMenu-paper': {
+                    border: "1px solid #344055",
+                    marginTop: "5px"
+                  },
+                  '& .MuiMenuItem-root:hover': {
+                    color: "black",
+                  },
+                  '& .MuiMenuItem-root': {
+                    color: "black"
+                  },
+                  '& .Mui-selected': {
+                    backgroundColor: "#61728F",
+                    color: "#F2F1EE"
+                  }
+                }
+              }}>
+                <MenuItem value={"Yes"}>Yes</MenuItem>
+                <MenuItem value={"No"}>No</MenuItem>
+              </Select>
+            </div>
+          </div>
+        </FormControl>
 
         <Box
           sx={{
@@ -235,9 +301,9 @@ const Chat = () => {
           ))}
         </Box>
 
-          <IconButton onClick={handleSubmit} sx={{ mr: "15px", color: "white" }}>
+          {/* <IconButton onClick={handleSubmit} sx={{ mr: "15px", color: "white" }}>
             <IoMdSend />
-          </IconButton>
+          </IconButton> */}
 
           <div style={{ width: "85%", padding: "15px", borderRadius: 8, backgroundColor: "#39354A", display: "flex", margin: "auto", height: 50 }}>
 
