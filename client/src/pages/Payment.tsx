@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { IoIosLogIn } from "react-icons/io";
-import { Box, Typography, Button, TextField, Container, Grid } from '@mui/material';
+import { Box, Typography, Button, TextField, Container, Grid, MenuItem, InputLabel } from '@mui/material';
 import CustomizedInput from "../components/shared/CustomizedInput";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
@@ -12,6 +12,207 @@ import { FaUser } from 'react-icons/fa';
 import { FaCreditCard } from "react-icons/fa";
 import { FaLocationDot } from 'react-icons/fa6';
 import { FaCity } from "react-icons/fa";
+
+
+
+const countries = [
+    "Afghanistan",
+    "Albania",
+    "Algeria",
+    "Andorra",
+    "Angola",
+    "Antigua and Barbuda",
+    "Argentina",
+    "Armenia",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Bahamas",
+    "Bahrain",
+    "Bangladesh",
+    "Barbados",
+    "Belarus",
+    "Belgium",
+    "Belize",
+    "Benin",
+    "Bhutan",
+    "Bolivia",
+    "Bosnia and Herzegovina",
+    "Botswana",
+    "Brazil",
+    "Brunei",
+    "Bulgaria",
+    "Burkina Faso",
+    "Burundi",
+    "Cabo Verde",
+    "Cambodia",
+    "Cameroon",
+    "Canada",
+    "Central African Republic",
+    "Chad",
+    "Chile",
+    "China",
+    "Colombia",
+    "Comoros",
+    "Congo (Congo-Brazzaville)",
+    "Costa Rica",
+    "Croatia",
+    "Cuba",
+    "Cyprus",
+    "Czechia (Czech Republic)",
+    "Denmark",
+    "Djibouti",
+    "Dominica",
+    "Dominican Republic",
+    "East Timor (Timor-Leste)",
+    "Ecuador",
+    "Egypt",
+    "El Salvador",
+    "Equatorial Guinea",
+    "Eritrea",
+    "Estonia",
+    "Ethiopia",
+    "Fiji",
+    "Finland",
+    "France",
+    "Gabon",
+    "Gambia",
+    "Georgia",
+    "Germany",
+    "Ghana",
+    "Greece",
+    "Grenada",
+    "Guatemala",
+    "Guinea",
+    "Guinea-Bissau",
+    "Guyana",
+    "Haiti",
+    "Holy See",
+    "Honduras",
+    "Hungary",
+    "Iceland",
+    "India",
+    "Indonesia",
+    "Iran",
+    "Iraq",
+    "Ireland",
+    "Israel",
+    "Italy",
+    "Jamaica",
+    "Japan",
+    "Jordan",
+    "Kazakhstan",
+    "Kenya",
+    "Kiribati",
+    "Korea, North",
+    "Korea, South",
+    "Kosovo",
+    "Kuwait",
+    "Kyrgyzstan",
+    "Laos",
+    "Latvia",
+    "Lebanon",
+    "Lesotho",
+    "Liberia",
+    "Libya",
+    "Liechtenstein",
+    "Lithuania",
+    "Luxembourg",
+    "Madagascar",
+    "Malawi",
+    "Malaysia",
+    "Maldives",
+    "Mali",
+    "Malta",
+    "Marshall Islands",
+    "Mauritania",
+    "Mauritius",
+    "Mexico",
+    "Micronesia",
+    "Moldova",
+    "Monaco",
+    "Mongolia",
+    "Montenegro",
+    "Morocco",
+    "Mozambique",
+    "Myanmar (formerly Burma)",
+    "Namibia",
+    "Nauru",
+    "Nepal",
+    "Netherlands",
+    "New Zealand",
+    "Nicaragua",
+    "Niger",
+    "Nigeria",
+    "North Macedonia (formerly Macedonia)",
+    "Norway",
+    "Oman",
+    "Pakistan",
+    "Palau",
+    "Palestine State",
+    "Panama",
+    "Papua New Guinea",
+    "Paraguay",
+    "Peru",
+    "Philippines",
+    "Poland",
+    "Portugal",
+    "Qatar",
+    "Romania",
+    "Russia",
+    "Rwanda",
+    "Saint Kitts and Nevis",
+    "Saint Lucia",
+    "Saint Vincent and the Grenadines",
+    "Samoa",
+    "San Marino",
+    "Sao Tome and Principe",
+    "Saudi Arabia",
+    "Senegal",
+    "Serbia",
+    "Seychelles",
+    "Sierra Leone",
+    "Singapore",
+    "Slovakia",
+    "Slovenia",
+    "Solomon Islands",
+    "Somalia",
+    "South Africa",
+    "South Sudan",
+    "Spain",
+    "Sri Lanka",
+    "Sudan",
+    "Suriname",
+    "Sweden",
+    "Switzerland",
+    "Syria",
+    "Taiwan",
+    "Tajikistan",
+    "Tanzania",
+    "Thailand",
+    "Timor-Leste",
+    "Togo",
+    "Tonga",
+    "Trinidad and Tobago",
+    "Tunisia",
+    "Turkey",
+    "Turkmenistan",
+    "Tuvalu",
+    "Uganda",
+    "Ukraine",
+    "United Arab Emirates",
+    "United Kingdom",
+    "United States",
+    "Uruguay",
+    "Uzbekistan",
+    "Vanuatu",
+    "Venezuela",
+    "Vietnam",
+    "Yemen",
+    "Zambia",
+    "Zimbabwe",
+  ];
+
 
 const Payment: React.FC = () => {
   const auth = useAuth();
@@ -39,21 +240,21 @@ const Payment: React.FC = () => {
 
   return (
     <Container component="main" maxWidth="md">
-    <Box
-      sx={{
-        marginTop: 8,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <Typography component="h1" variant="h5" sx={{ mt: 6, color: '#000' }}>
-        Payment
-      </Typography>
-      <p>You are about to purchase a premium subscription for $5 a month.</p>
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography component="h1" variant="h5" sx={{ mt: 6, color: '#000' }}>
+          Payment
+        </Typography>
+        <p>You are about to purchase a premium subscription for $5 a month.</p>
 
-      <Box component="form" noValidate sx={{ mt: 3 }}>
-        <Grid container spacing={3}>
+        <Box component="form" noValidate sx={{ mt: 3 }}>
+          <Grid container spacing={3}>
           {/* Left Column - Payment Information */}
           <Grid item xs={12} md={6}>
             <Typography component="h2" variant="h6" sx={{ mt: 3, color: '#000' }}>
@@ -217,18 +418,43 @@ const Payment: React.FC = () => {
                 }}
               />
 
-              {/* Country */}
-              <TextField
+            {/* Country */}
+            <Grid item xs={12} md={6}>
+            <TextField
                 margin="normal"
                 required
                 fullWidth
+                select
                 id="country"
                 label="Country"
-                placeholder="Country"
-                InputLabelProps={{ sx: { color: '#adadad' } }}
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
-              />
+                InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                    <FaCity />
+                    </InputAdornment>
+                ),
+                }}
+                SelectProps={{
+                MenuProps: {
+                    style: { maxHeight: 400, maxWidth: 100 },
+                },
+                }}
+                sx={{ width: '200%' }}
+                color="primary"
+            >
+                {countries.map((option) => (
+                <MenuItem key={option} value={option} style={{ color: '#000' }}>
+                    {option}
+                </MenuItem>
+                ))}
+            </TextField>
+            </Grid>
+
+
+
+
 
               {/* Postal Code */}
               <TextField
@@ -241,6 +467,13 @@ const Payment: React.FC = () => {
                 InputLabelProps={{ sx: { color: '#adadad' } }}
                 value={postalCode}
                 onChange={(e) => setPostalCode(e.target.value)}
+                InputProps={{
+                    startAdornment: (
+                    <InputAdornment position="start">
+                        <FaCity/>
+                    </InputAdornment>
+                    ),
+                }}
               />
             </Grid>
           </Grid>

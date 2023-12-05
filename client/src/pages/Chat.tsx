@@ -124,70 +124,6 @@ const Chat = () => {
       inputRef.current.value = "";  // Clear the input field
 
       const chatData = await sendChatRequest(content);
-
-      // <!--       chatData.role = "assistant";
-      //       console.log("chatData:", chatData); // Log the chatData object
-      //       setchatMessages([...chatData.chats])
-      //       console.log("chatData.chats:", chatData.chats); // Log the chatData.chats object
-
-      //   }
-      //   const handleSummarize = async () => {
-      //     let content = inputRef.current?.value as string;
-      //     if (inputRef && inputRef.current) {
-      //       inputRef.current.value = "";
-      //     }
-
-      //     const newMessage: Message = { role: "user", content };
-      //     setchatMessages((prev) => [...prev, newMessage]);
-
-      //     content = "Please summarize the following: " + content;
-
-      //     const chatData = await sendChatRequest(content);
-      //     chatData.role = "assistant";
-
-      //     console.log("chatData:", chatData);
-      //     setchatMessages([...chatData.chats]);
-      //     console.log("chatData.chats:", chatData.chats);
-      //   };
-
-      //   const handleBullets = async () => {
-      //     let content = inputRef.current?.value as string;
-      //     if (inputRef && inputRef.current) {
-      //       inputRef.current.value = "";
-      //     }
-
-      //     const newMessage: Message = { role: "user", content };
-      //     setchatMessages((prev) => [...prev, newMessage]);
-
-      //     content = "Please put the following in a bullet form summary: " + content;
-
-      //     const chatData = await sendChatRequest(content);
-      //     chatData.role = "assistant";
-
-      //     console.log("chatData:", chatData);
-      //     setchatMessages([...chatData.chats]);
-      //     console.log("chatData.chats:", chatData.chats);
-      //   };
-
-      //   const handleQuizMe = async () => {
-      //     let content = inputRef.current?.value as string;
-      //     if (inputRef && inputRef.current) {
-      //       inputRef.current.value = "";
-      //     }
-
-      //     const newMessage: Message = { role: "user", content };
-      //     setchatMessages((prev) => [...prev, newMessage]);
-
-      //     content = "Based on the following, ask me some questions about the information. Provide the answers to the questions under the questions. Please answer with the format 'question: ' and the followed by 'answer: ': " + content;
-
-      //     const chatData = await sendChatRequest(content);
-      //     chatData.role = "assistant";
-
-      //     console.log("chatData:", chatData);
-      //     setchatMessages([...chatData.chats]);
-      //     console.log("chatData.chats:", chatData.chats);
-      //   }; -->
-
       const modifiedChats = [...chatData.chats];
 
       const lastIndex = modifiedChats.length - 1;
@@ -233,6 +169,7 @@ const Chat = () => {
     const pdfBlob = await pdf(<ChatDocument chats={chatMessages} />).toBlob();
     saveAs(pdfBlob, 'chatData.pdf');
   };
+
 
   useEffect(() => {
     if (!auth?.user) {
@@ -292,68 +229,63 @@ const Chat = () => {
             <ChatItem content={chat.content} role={chat.role} key={index} />
           ))}
         </Box>
+        <div style={{ width: "85%", padding: "15px", borderRadius: 8, backgroundColor: "#39354A", display: "flex", margin: "auto", height: 50 }}>
+
+          {/* This is where the upload button goes need to add the functionalities*/}
+          {/* So need to change the onclick handlesubmit thing */}
+          <button
+            onClick={handleExport}
+            disabled={chatMessages.length === 0}
+          >
+            Export to PDF
+          </button>
+
+          <IconButton onClick={handleSummarize} sx={{ color: "white", fontSize: "25px" }}>
+            Summerize |
+          </IconButton>
+
+          <IconButton onClick={handleBullets} sx={{ color: "white", fontSize: "25px" }}>
+            Bullets |
+          </IconButton>
+
+          <IconButton onClick={handleQuizMe} sx={{ color: "white", fontSize: "25px" }}>
+            Quiz Me |
+          </IconButton>
+
+          <input
+            key={fileInputKey}
+            type="file"
+            onChange={handleFileUpload}
+            accept=".txt"
+            style={{ display: "none" }}
+            id="fileInput"
+          />
+          <label htmlFor="fileInput">
+            <IconButton component="span" sx={{ color: "white", fontSize: "25px" }}>
+              +
+            </IconButton>
+          </label>
+
+
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="Message Summarify"
+            style={{
+              width: "100%",
+              backgroundColor: "transparent",
+              padding: "5px",
+              border: "none",
+              outline: "none",
+              color: "white",
+              fontSize: "20px",
+            }}
+          />
 
           <IconButton onClick={handleSubmit} sx={{ mr: "15px", color: "white" }}>
             <IoMdSend />
           </IconButton>
-
-          <div style={{ width: "85%", padding: "15px", borderRadius: 8, backgroundColor: "#39354A", display: "flex", margin: "auto", height: 50 }}>
-
-            {/* This is where the upload button goes need to add the functionalities*/}
-            {/* So need to change the onclick handlesubmit thing */}
-            <button
-              onClick={handleExport}
-              disabled={chatMessages.length === 0}
-            >
-              Export to PDF
-            </button>
-
-            <IconButton onClick={handleSummarize} sx={{ color: "white", fontSize: "25px" }}>
-              Summerize |
-            </IconButton>
-
-            <IconButton onClick={handleBullets} sx={{ color: "white", fontSize: "25px" }}>
-              Bullets |
-            </IconButton>
-
-            <IconButton onClick={handleQuizMe} sx={{ color: "white", fontSize: "25px" }}>
-              Quiz Me |
-            </IconButton>
-
-            <input
-              key={fileInputKey}
-              type="file"
-              onChange={handleFileUpload}
-              accept=".txt"
-              style={{ display: "none" }}
-              id="fileInput"
-            />
-            <label htmlFor="fileInput">
-              <IconButton component="span" sx={{ color: "white", fontSize: "25px" }}>
-                +
-              </IconButton>
-            </label>
-
-
-            <input
-              ref={inputRef}
-              type="text"
-              placeholder="Message Summarify"
-              style={{
-                width: "100%",
-                backgroundColor: "transparent",
-                padding: "5px",
-                border: "none",
-                outline: "none",
-                color: "white",
-                fontSize: "20px",
-              }}
-            />
-
-            <IconButton onClick={handleSubmit} sx={{ mr: "15px", color: "white" }}>
-              <IoMdSend />
-            </IconButton>
-          </div>
+        </div>
 
       </Box>
     </Box>
