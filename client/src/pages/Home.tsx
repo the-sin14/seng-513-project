@@ -28,6 +28,7 @@ function Home() {
     marginRight: isMobileView ? "0" : "150px",
     marginTop: isMobileView ? "50px" : "200px",
     marginBottom: isMobileView ? "50px" : "100px",
+    
   };
 
   const titleStyles: React.CSSProperties = {
@@ -81,7 +82,7 @@ function Home() {
   const [showCounter, setShowCounter] = React.useState(true);
   const inputFile = React.useRef(null);
   const [uploadSlidesContent, setUploadSlidesContent] = React.useState(
-    <div className="upload-slides-text">
+    <div >
       <Typography
         variant="h1"
         style={{ color: "#515458", fontSize: "35px", fontWeight: "bolder",
@@ -183,8 +184,7 @@ function Home() {
           {/* Image container, ensure it resizes and centers on mobile view */}
           <div
             style={{
-              width: isMobileView ? "100%" : "auto",
-              padding: isMobileView ? "0 20px" : "0",
+              width: isMobileView ? "90%" : "auto"
             }}
           >
             <img
