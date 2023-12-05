@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import InputAdornment from '@mui/material/InputAdornment';
 import { FaUser } from 'react-icons/fa';
-import { CiCreditCard1 } from 'react-icons/ci';
+import { FaCreditCard } from "react-icons/fa";
 import { FaLocationDot } from 'react-icons/fa6';
 import { FaCity } from "react-icons/fa";
 
@@ -33,7 +33,6 @@ const Payment: React.FC = () => {
 
   return (
     <Container component="main" maxWidth="md">
-<<<<<<< HEAD
     <Box
       sx={{
         marginTop: 8,
@@ -76,41 +75,6 @@ const Payment: React.FC = () => {
               }}
             />
 
-=======
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Typography component="h1" variant="h5" sx={{ mt: 6, color: '#344055' }}>
-          Payment
-        </Typography>
-        <p>You are about to purchase a premium subscription for $5 a month.</p>
-        <Box component="form" noValidate sx={{ mt: 3 }}>
-          <Grid container spacing={3}>
-            {/* Left Column - Payment Information */}
-            <Grid item xs={12} md={6}>
-              <Typography component="h2" variant="h6" sx={{ mt: 3, color: '#344055' }}>
-                Payment Information
-              </Typography>
-              <p>Enter your payment information to purchase the subscription.</p>
-
-              {/* Cardholder Name */}
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="cardholderName"
-                label="Cardholder Name"
-                placeholder="Cardholder Name"
-                InputLabelProps={{ sx: { color: '#344055' } }}
-                value={cardholderName}
-                onChange={(e) => setCardholderName(e.target.value)}
-              />
->>>>>>> 6867dd07f7c99e2334a4ad6a08c6cc527c943e28
 
               {/* Card Number */}
               <TextField
@@ -126,13 +90,12 @@ const Payment: React.FC = () => {
                 InputProps={{
                     startAdornment: (
                     <InputAdornment position="start">
-                        <CiCreditCard1 />
+                        <FaCreditCard />
                     </InputAdornment>
                     ),
                 }}
                 />
 
-<<<<<<< HEAD
                 {/* Expiration Date and CVC on the same row */}
                 <Grid container spacing={2}>
                 <Grid item xs={6}>
@@ -147,6 +110,13 @@ const Payment: React.FC = () => {
                     InputLabelProps={{ sx: { color: '#000' } }}
                     value={expirationDate}
                     onChange={(e) => setExpirationDate(e.target.value)}
+                    InputProps={{
+                        startAdornment: (
+                        <InputAdornment position="start">
+                            <FaCreditCard />
+                        </InputAdornment>
+                        ),
+                    }}
                   />
                 </Grid>
                 <Grid item xs={6}>
@@ -161,36 +131,16 @@ const Payment: React.FC = () => {
                     InputLabelProps={{ sx: { color: '#000' } }}
                     value={cvc}
                     onChange={(e) => setCvc(e.target.value)}
+                    InputProps={{
+                        startAdornment: (
+                        <InputAdornment position="start">
+                            <FaCreditCard />
+                        </InputAdornment>
+                        ),
+                    }}
                   />
                 </Grid>
               </Grid>
-=======
-              {/* Expiration Date */}
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="expirationDate"
-                label="Expiration Date"
-                placeholder="MM/YYYY"
-                InputLabelProps={{ sx: { color: '#344055' } }}
-                value={expirationDate}
-                onChange={(e) => setExpirationDate(e.target.value)}
-              />
-
-              {/* CVC */}
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="cvc"
-                label="CVC"
-                placeholder="CVC"
-                InputLabelProps={{ sx: { color: '#344055' } }}
-                value={cvc}
-                onChange={(e) => setCvc(e.target.value)}
-              />
->>>>>>> 6867dd07f7c99e2334a4ad6a08c6cc527c943e28
             </Grid>
 
             {/* Right Column - Billing Address */}
@@ -201,7 +151,6 @@ const Payment: React.FC = () => {
               <p>Enter your billing address to purchase the subscription.</p>
 
               {/* Street Address */}
-<<<<<<< HEAD
             <TextField
             margin="normal"
             required
@@ -221,19 +170,6 @@ const Payment: React.FC = () => {
             }}
             />
 
-=======
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="streetAddress"
-                label="Street Address"
-                placeholder="Street Address"
-                InputLabelProps={{ sx: { color: '#344055' } }}
-                value={streetAddress}
-                onChange={(e) => setStreetAddress(e.target.value)}
-              />
->>>>>>> 6867dd07f7c99e2334a4ad6a08c6cc527c943e28
 
               {/* City */}
               <TextField
