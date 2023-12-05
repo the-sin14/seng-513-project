@@ -31,10 +31,44 @@ const Chat = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
   const [chatMessages, setchatMessages] = useState<Message[]>([]);
+  const [initialView, setInitialView] = useState(true);
 
+  const [uploadSlidesContent, setUploadSlidesContent] = React.useState(
+    <div className="upload-slides-text">
+      <Typography
+        variant="h1"
+        style={{ color: "#515458", fontSize: "35px", fontWeight: "bolder",
+        display: "block", marginBottom: "35px", textAlign: "center"}}
+      >
+        UPLOAD YOUR LECTURE SLIDES
+      </Typography>
+      <Typography
+        variant="h5"
+        style={{ color: "#888484", fontSize: "20px", textAlign: "center" }}
+      >
+        Supported files types: PDF
+      </Typography>
+    </div>
+  );
+
+  const boxStyles: React.CSSProperties = {
+    width: "87%",
+    height: initialView ? "63vh" : "100%",
+    borderRadius: 3,
+    display: "flex",
+    alignItems: initialView ? "center" : "center",
+    justifyContent: initialView ? "center" : "center",
+    flexDirection: "column",
+    overflow: "scroll",
+    overflowX: "hidden",
+    overflowY: "auto",
+    scrollBehavior: "smooth"
+  }
 
   const [fileInputKey, setFileInputKey] = useState(0);
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUploadSlidesContent('');
+    setInitialView(false);
     const file = event.target.files?.[0];
 
     if (!file) {
@@ -60,6 +94,8 @@ const Chat = () => {
   };
 
   const handleSubmit = async () => {
+    setUploadSlidesContent('');
+    setInitialView(false);
     const content = inputRef.current?.value.trim(); // Trim to remove any leading/trailing whitespaces
 
     // Clear the input field
@@ -90,6 +126,8 @@ const Chat = () => {
   };
 
   const handleSummarize = async () => {
+    setUploadSlidesContent('');
+    setInitialView(false);
     let content = inputRef.current?.value.trim();
 
     if (!content) {
@@ -111,8 +149,9 @@ const Chat = () => {
     }
   };
 
-
   const handleBullets = async () => {
+    setUploadSlidesContent('');
+    setInitialView(false);
     let content = inputRef.current?.value.trim();
 
     if (!content) {
@@ -141,6 +180,8 @@ const Chat = () => {
   };
 
   const handleQuizMe = async () => {
+    setUploadSlidesContent('');
+    setInitialView(false);
     let content = inputRef.current?.value.trim();
 
     if (!content) {
@@ -166,6 +207,8 @@ const Chat = () => {
   };
 
   const handleExport = async () => {
+    setUploadSlidesContent('');
+    setInitialView(false);
     // Generate the PDF and trigger download
     const pdfBlob = await pdf(<ChatDocument chats={chatMessages} />).toBlob();
     saveAs(pdfBlob, 'chatData.pdf');
@@ -198,7 +241,7 @@ const Chat = () => {
           gap: 5,
         }}
       >
-        <FormControl>
+        {/* <FormControl>
           <div className="user-options">
             <div className="user-option-1">
               <Typography variant="h6" id="summarization-type-label">Summarization Type</Typography>
@@ -283,22 +326,24 @@ const Chat = () => {
           </div>
         </FormControl>
 
-        <Divider className="section-break"/>
+        <Divider className="section-break"/> */}
 
-        <Box
-          sx={{
+        <Box sx={{
             width: "87%",
-            height: "58vh",
+            height: "63vh",
             borderRadius: 3,
             mx: "auto",
             display: "flex",
+            alignItems: initialView ? "center" : "auto",
+            justifyContent: initialView ? "center" : "flex-start",
             flexDirection: "column",
             overflow: "scroll",
             overflowX: "hidden",
             overflowY: "auto",
             scrollBehavior: "smooth",
-          }}
-        >
+          }}>
+  
+          {uploadSlidesContent}
 
           {chatMessages.map((chat, index) => (
             <ChatItem content={chat.content} role={chat.role} key={index} />
@@ -320,17 +365,20 @@ const Chat = () => {
               <FaFileExport className="export-button"/>
             </IconButton>
 
-            <IconButton onClick={handleSummarize} sx={{ color: "#344055", fontSize: "25px" }}>
-              Summerize |
+            <IconButton onClick={handleSummarize}>
+              <Typography variant="h6" sx={{ color: "#344055", fontSize: "23px" }}>Summarize</Typography>
             </IconButton>
+            <Typography variant="h6" sx={{ color: "#344055"}}>|</Typography>
 
             <IconButton onClick={handleBullets} sx={{ color: "#344055", fontSize: "25px" }}>
-              Bullets |
+            <Typography variant="h6" sx={{ color: "#344055", fontSize: "23px" }}>Bullets</Typography>
             </IconButton>
-
+            <Typography variant="h6" sx={{ color: "#344055"}}>|</Typography>
+            
             <IconButton onClick={handleQuizMe} sx={{ color: "#344055", fontSize: "25px" }}>
-              Quiz Me |
+            <Typography variant="h6" sx={{ color: "#344055", fontSize: "23px" }}>Questions</Typography>
             </IconButton>
+            <Typography variant="h6" sx={{ color: "#344055"}}>|</Typography>
 
             <input
               key={fileInputKey}
