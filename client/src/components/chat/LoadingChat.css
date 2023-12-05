@@ -1,0 +1,35 @@
+.box1 {
+    display: flex;
+    padding: 16px;
+    background-color: #404040;
+    gap: 16px;
+    width: 93%;
+    border-radius: 24px;
+    align-items: center;
+    margin-top: 10px;
+    padding: 20px;
+    position: relative;
+    left: 20px;
+}
+
+.chat-message1:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid #404040;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid #404040;
+    left: -15px;
+    bottom: 10px;
+}
+
+.dots-1 {
+    width: 60px;
+    aspect-ratio: 4;
+    background: radial-gradient(circle closest-side,#d3d3d3 90%,#0000) 0/calc(100%/3) 100% space;
+    clip-path: inset(0 100% 0 0);
+    animation: d1 1s steps(4) infinite;
+}
+@keyframes d1 {to{clip-path: inset(0 -34% 0 0)}}
