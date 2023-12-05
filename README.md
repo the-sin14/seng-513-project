@@ -7,7 +7,6 @@
   - [Cloning the Repository](#cloning-the-repository)
   - [With Docker](#with-docker)
     - [Starting the Application with Docker Compose](#starting-the-application-with-docker-compose)
-
   - [Without Docker](#without-docker)
     - [Setting up the Client](#setting-up-the-client)
     - [Setting up the Backend](#setting-up-the-backend)
