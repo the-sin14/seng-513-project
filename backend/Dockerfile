@@ -1,3 +1,4 @@
+# Server (backend) Side Docker File
 # Use the specific version of Node.js
 FROM node:20.10.0
 
@@ -8,8 +9,16 @@ WORKDIR /app
 COPY package*.json ./
 COPY .env ./
 
+# Install the 'concurrently' package
+# RUN npm install concurrently --save-dev
+
 # Install dependencies
 RUN npm install
+
+# Add these commands to install additional npm packages
+RUN npm i file-saver --force
+RUN npm install @react-pdf/renderer --save --force
+
 
 # Copy the source code to the app directory
 # This seems redundant but it is necessary to copy the source code after installing dependencies. Also good for caching.
@@ -17,7 +26,7 @@ RUN npm install
 COPY . .
 
 # Inform Docker that the container is listening on port 5000
-EXPOSE 5000
+EXPOSE 5000 27017 5173
 
 # Start the application "npm run dev"
 CMD ["npm", "run", "dev"]
