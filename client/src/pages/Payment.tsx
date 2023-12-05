@@ -20,7 +20,7 @@ const Payment: React.FC = () => {
     if (!auth?.user) {
       return navigate("/login");
     }
-  });
+  })
 
   const [cardholderName, setCardholderName] = useState('');
   const [cardNumber, setCardNumber] = useState('');
@@ -34,7 +34,6 @@ const Payment: React.FC = () => {
   const [postalCode, setPostalCode] = useState('');
 
   const handlePurchase = () => {
-    console.log('Purchase clicked!');
     return navigate("/chat");
   };
 
