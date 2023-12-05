@@ -1,4 +1,4 @@
-// import React, { useEffect } from "react";
+import React, { useEffect } from "react";
 import { IoIosLogIn } from "react-icons/io";
 import { Box, Typography, Button, TextField, Container, Grid } from '@mui/material';
 import CustomizedInput from "../components/shared/CustomizedInput";
@@ -14,26 +14,32 @@ import { FaLocationDot } from 'react-icons/fa6';
 import { FaCity } from "react-icons/fa";
 
 const Payment: React.FC = () => {
-    const [cardholderName, setCardholderName] = useState('');
-    const [cardNumber, setCardNumber] = useState('');
-    const [expirationDate, setExpirationDate] = useState('');
-    const [cvc, setCvc] = useState('');
-  
-    const [streetAddress, setStreetAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [stateProvince, setStateProvince] = useState('');
-    const [country, setCountry] = useState('');
-    const [postalCode, setPostalCode] = useState('');
-  
-    const handlePurchase = () => {
-      // Implement your purchase logic here
-      console.log('Purchase clicked!');
-      // You can send the payment details to your backend for processing.
-    };
+  const auth = useAuth();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!auth?.user) {
+      return navigate("/login");
+    }
+  });
+
+  const [cardholderName, setCardholderName] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expirationDate, setExpirationDate] = useState('');
+  const [cvc, setCvc] = useState('');
+
+  const [streetAddress, setStreetAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [stateProvince, setStateProvince] = useState('');
+  const [country, setCountry] = useState('');
+  const [postalCode, setPostalCode] = useState('');
+
+  const handlePurchase = () => {
+    console.log('Purchase clicked!');
+    return navigate("/chat");
+  };
 
   return (
     <Container component="main" maxWidth="md">
-<<<<<<< HEAD
     <Box
       sx={{
         marginTop: 8,
@@ -76,41 +82,6 @@ const Payment: React.FC = () => {
               }}
             />
 
-=======
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Typography component="h1" variant="h5" sx={{ mt: 6, color: '#344055' }}>
-          Payment
-        </Typography>
-        <p>You are about to purchase a premium subscription for $5 a month.</p>
-        <Box component="form" noValidate sx={{ mt: 3 }}>
-          <Grid container spacing={3}>
-            {/* Left Column - Payment Information */}
-            <Grid item xs={12} md={6}>
-              <Typography component="h2" variant="h6" sx={{ mt: 3, color: '#344055' }}>
-                Payment Information
-              </Typography>
-              <p>Enter your payment information to purchase the subscription.</p>
-
-              {/* Cardholder Name */}
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="cardholderName"
-                label="Cardholder Name"
-                placeholder="Cardholder Name"
-                InputLabelProps={{ sx: { color: '#344055' } }}
-                value={cardholderName}
-                onChange={(e) => setCardholderName(e.target.value)}
-              />
->>>>>>> 6867dd07f7c99e2334a4ad6a08c6cc527c943e28
 
               {/* Card Number */}
               <TextField
@@ -132,7 +103,6 @@ const Payment: React.FC = () => {
                 }}
                 />
 
-<<<<<<< HEAD
                 {/* Expiration Date and CVC on the same row */}
                 <Grid container spacing={2}>
                 <Grid item xs={6}>
@@ -144,7 +114,7 @@ const Payment: React.FC = () => {
                     id="expirationDate"
                     label="Expiration Date"
                     placeholder="MM/YYYY"
-                    InputLabelProps={{ sx: { color: '#000' } }}
+                    InputLabelProps={{ sx: { color: '#adadad' } }}
                     value={expirationDate}
                     onChange={(e) => setExpirationDate(e.target.value)}
                   />
@@ -158,39 +128,12 @@ const Payment: React.FC = () => {
                     id="cvc"
                     label="CVC"
                     placeholder="CVC"
-                    InputLabelProps={{ sx: { color: '#000' } }}
+                    InputLabelProps={{ sx: { color: '#adadad' } }}
                     value={cvc}
                     onChange={(e) => setCvc(e.target.value)}
                   />
                 </Grid>
               </Grid>
-=======
-              {/* Expiration Date */}
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="expirationDate"
-                label="Expiration Date"
-                placeholder="MM/YYYY"
-                InputLabelProps={{ sx: { color: '#344055' } }}
-                value={expirationDate}
-                onChange={(e) => setExpirationDate(e.target.value)}
-              />
-
-              {/* CVC */}
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="cvc"
-                label="CVC"
-                placeholder="CVC"
-                InputLabelProps={{ sx: { color: '#344055' } }}
-                value={cvc}
-                onChange={(e) => setCvc(e.target.value)}
-              />
->>>>>>> 6867dd07f7c99e2334a4ad6a08c6cc527c943e28
             </Grid>
 
             {/* Right Column - Billing Address */}
@@ -201,7 +144,6 @@ const Payment: React.FC = () => {
               <p>Enter your billing address to purchase the subscription.</p>
 
               {/* Street Address */}
-<<<<<<< HEAD
             <TextField
             margin="normal"
             required
@@ -221,19 +163,6 @@ const Payment: React.FC = () => {
             }}
             />
 
-=======
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="streetAddress"
-                label="Street Address"
-                placeholder="Street Address"
-                InputLabelProps={{ sx: { color: '#344055' } }}
-                value={streetAddress}
-                onChange={(e) => setStreetAddress(e.target.value)}
-              />
->>>>>>> 6867dd07f7c99e2334a4ad6a08c6cc527c943e28
 
               {/* City */}
               <TextField
@@ -283,7 +212,7 @@ const Payment: React.FC = () => {
                 id="country"
                 label="Country"
                 placeholder="Country"
-                InputLabelProps={{ sx: { color: '#344055' } }}
+                InputLabelProps={{ sx: { color: '#adadad' } }}
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
               />
@@ -296,7 +225,7 @@ const Payment: React.FC = () => {
                 id="postalCode"
                 label="Postal Code"
                 placeholder="Postal Code"
-                InputLabelProps={{ sx: { color: '#344055' } }}
+                InputLabelProps={{ sx: { color: '#adadad' } }}
                 value={postalCode}
                 onChange={(e) => setPostalCode(e.target.value)}
               />
