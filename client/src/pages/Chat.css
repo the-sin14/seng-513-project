@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --primary: #344055;
+    --secondary: #485875;
+    --off-white: #F2F1EE;
+    --dark-gray: #515458;
+    --light-gray: #888484;
+    --tertiary: #D9D9D9
+}
+
+#summarization-type-label,
+#generate-flashcards-label {
+    color: #344055;
+    font-weight: 600;
+}
+
+.user-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-options-1, 
+.user-options-2 {
+    margin: 0px 40px;
+}
+
+.section-break {
+    background: rgba(70, 67, 67, 0.80);
+}
+
+.chat-input-field {
+    border: 1px solid #344055;
+    background-color: #F2F1EE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+    padding: 15px;
+    border-radius: 15px;
+    margin: auto;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+.upload-file-button,
+.enter-notes-button {
+    font-size: 30px;
+    color: #344055;
+}
+
+.upload-file-button:hover,
+.enter-notes-button:hover {
+    color: #61728F;
+}
+
+.text-field {
+    font-size: 16px;
+    flex: 1; /* This will make the text field grow to fill the space */
+    padding: 10px; 
+    width: 100%; 
+    background-color: #f2f1ee;
+    border: none;
+    outline: none;
+    color: black;
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    padding: 0 10px; 
+}
+
+.export-button {
+    color: var(--primary);
+}
+
+.export-button:hover {
+    color: #61728F;
+}
