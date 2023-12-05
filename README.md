@@ -6,12 +6,37 @@
   - [Prerequisites](#prerequisites)
   - [Cloning the Repository](#cloning-the-repository)
   - [Starting the Application with Docker Compose](#starting-the-application-with-docker-compose)
+    - [Using Docker](#with-docker)
+    - [Without Docker](#without-docker)
   - [Setting up the Client](#setting-up-the-client)
   - [Setting up the Backend](#setting-up-the-backend)
   - [Running the Application](#running-the-application)
     - [Client](#client)
     - [Backend](#backend)
   - [Interacting with the Application](#interacting-with-the-application)
+
+## Contributors
+- Shourav Rakshit Ivan (UCID: 30131085)
+- Cindy Rose Sy (UCID: 30118468)
+- Francisco Huayhualla (UCID: 30091238)
+- Paul Hui (UCID: 30122682)
+- Kevin Phan (UCID: 30053689)
+
+## Application Setup Guide
+
+This guide will walk you through the steps needed to set up and run the application. The application consists of two main parts: the client and the backend.
+
+### Prerequisites
+
+Before you begin, ensure you have the following installed:
+- Git
+- Node.js
+
+### Cloning the Repository
+
+1. Open a terminal and clone the repository using Git:
+
+
 
 ## Contributors
 - Shourav Rakshit Ivan (UCID: 30131085)
@@ -44,7 +69,7 @@ git clone git@github.com:the-sin14/seng-513-project.git
 ```
 cd [Your_Repository_Name]
 ```
-
+## With Docker
 ## Starting the Application with Docker Compose
 
 To run the application, we use Docker Compose to manage the client and backend services together. Follow these steps to start the application using Docker Compose:
@@ -74,7 +99,7 @@ http://localhost:5173
 docker-compose down
 ```
 
-
+## Without Docker
 ## If you do not have docker installed follow the below process.
 ## you might have issues if you are not on windows OS
 
