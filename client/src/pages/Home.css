@@ -9,13 +9,6 @@
   --tertiary: #d9d9d9;
 }
 
-.upload-slides-title {
-  color: var(--dark-gray);
-  font-size: 35px;
-  font-weight: 700;
-  max-width: 200px;
-}
-
 .subtitleStyles {
   color: var(--dark-gray);
   font-size: 40px;
