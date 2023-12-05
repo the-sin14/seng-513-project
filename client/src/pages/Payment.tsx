@@ -33,6 +33,7 @@ const Payment: React.FC = () => {
 
   return (
     <Container component="main" maxWidth="md">
+<<<<<<< HEAD
     <Box
       sx={{
         marginTop: 8,
@@ -75,6 +76,41 @@ const Payment: React.FC = () => {
               }}
             />
 
+=======
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography component="h1" variant="h5" sx={{ mt: 6, color: '#344055' }}>
+          Payment
+        </Typography>
+        <p>You are about to purchase a premium subscription for $5 a month.</p>
+        <Box component="form" noValidate sx={{ mt: 3 }}>
+          <Grid container spacing={3}>
+            {/* Left Column - Payment Information */}
+            <Grid item xs={12} md={6}>
+              <Typography component="h2" variant="h6" sx={{ mt: 3, color: '#344055' }}>
+                Payment Information
+              </Typography>
+              <p>Enter your payment information to purchase the subscription.</p>
+
+              {/* Cardholder Name */}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="cardholderName"
+                label="Cardholder Name"
+                placeholder="Cardholder Name"
+                InputLabelProps={{ sx: { color: '#344055' } }}
+                value={cardholderName}
+                onChange={(e) => setCardholderName(e.target.value)}
+              />
+>>>>>>> 6867dd07f7c99e2334a4ad6a08c6cc527c943e28
 
               {/* Card Number */}
               <TextField
@@ -84,7 +120,7 @@ const Payment: React.FC = () => {
                 id="cardNumber"
                 label="Card Number"
                 placeholder="Card Number"
-                InputLabelProps={{ sx: { color: '#000' } }}
+                InputLabelProps={{ sx: { color: '#344055' } }}
                 value={cardNumber}
                 onChange={(e) => setCardNumber(e.target.value)}
                 InputProps={{
@@ -96,6 +132,7 @@ const Payment: React.FC = () => {
                 }}
                 />
 
+<<<<<<< HEAD
                 {/* Expiration Date and CVC on the same row */}
                 <Grid container spacing={2}>
                 <Grid item xs={6}>
@@ -127,16 +164,44 @@ const Payment: React.FC = () => {
                   />
                 </Grid>
               </Grid>
+=======
+              {/* Expiration Date */}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="expirationDate"
+                label="Expiration Date"
+                placeholder="MM/YYYY"
+                InputLabelProps={{ sx: { color: '#344055' } }}
+                value={expirationDate}
+                onChange={(e) => setExpirationDate(e.target.value)}
+              />
+
+              {/* CVC */}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="cvc"
+                label="CVC"
+                placeholder="CVC"
+                InputLabelProps={{ sx: { color: '#344055' } }}
+                value={cvc}
+                onChange={(e) => setCvc(e.target.value)}
+              />
+>>>>>>> 6867dd07f7c99e2334a4ad6a08c6cc527c943e28
             </Grid>
 
             {/* Right Column - Billing Address */}
             <Grid item xs={12} md={6}>
-              <Typography component="h2" variant="h6" sx={{ mt: 3, color: '#000' }}>
+              <Typography component="h2" variant="h6" sx={{ mt: 3, color: '#344055' }}>
                 Billing Address
               </Typography>
               <p>Enter your billing address to purchase the subscription.</p>
 
               {/* Street Address */}
+<<<<<<< HEAD
             <TextField
             margin="normal"
             required
@@ -156,6 +221,19 @@ const Payment: React.FC = () => {
             }}
             />
 
+=======
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="streetAddress"
+                label="Street Address"
+                placeholder="Street Address"
+                InputLabelProps={{ sx: { color: '#344055' } }}
+                value={streetAddress}
+                onChange={(e) => setStreetAddress(e.target.value)}
+              />
+>>>>>>> 6867dd07f7c99e2334a4ad6a08c6cc527c943e28
 
               {/* City */}
               <TextField
@@ -165,7 +243,7 @@ const Payment: React.FC = () => {
                 id="city"
                 label="City"
                 placeholder="City"
-                InputLabelProps={{ sx: { color: '#000' } }}
+                InputLabelProps={{ sx: { color: '#344055' } }}
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 InputProps={{
@@ -185,7 +263,7 @@ const Payment: React.FC = () => {
                 id="stateProvince"
                 label="State/Province"
                 placeholder="State/Province"
-                InputLabelProps={{ sx: { color: '#000' } }}
+                InputLabelProps={{ sx: { color: '#344055' } }}
                 value={stateProvince}
                 onChange={(e) => setStateProvince(e.target.value)}
                 InputProps={{
@@ -205,7 +283,7 @@ const Payment: React.FC = () => {
                 id="country"
                 label="Country"
                 placeholder="Country"
-                InputLabelProps={{ sx: { color: '#000' } }}
+                InputLabelProps={{ sx: { color: '#344055' } }}
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
               />
@@ -218,7 +296,7 @@ const Payment: React.FC = () => {
                 id="postalCode"
                 label="Postal Code"
                 placeholder="Postal Code"
-                InputLabelProps={{ sx: { color: '#000' } }}
+                InputLabelProps={{ sx: { color: '#344055' } }}
                 value={postalCode}
                 onChange={(e) => setPostalCode(e.target.value)}
               />
