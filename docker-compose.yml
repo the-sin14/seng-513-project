@@ -9,12 +9,6 @@ services:  # Defines the different services (containers) that make up your appli
       dockerfile: Dockerfile  # The Dockerfile to use for building the image.
     ports:
       - "5173:5173"  # Maps port 5173 on the host to port 5173 in the container.
-    volumes:
-      - ./client:/app  # Mounts the local 'client' directory to '/app' in the container.
-    environment:
-      - NODE_ENV=production  # Sets an environment variable inside the container.
-    depends_on:
-      - backend  # Indicates that the client service depends on the backend service.
 
   backend:  # The second service, named 'backend'.
     container_name: backend-c  # Sets a custom name for the Docker container.
@@ -23,7 +17,3 @@ services:  # Defines the different services (containers) that make up your appli
       dockerfile: Dockerfile  # The Dockerfile to use for the backend service.
     ports:
       - "5000:5000"  # Maps port 5000 on the host to port 5000 in the container.
-    volumes:
-      - ./backend:/app  # Mounts the local 'backend' directory to '/app' in the container.
-    environment:
-      - NODE_ENV=production  # Sets the NODE_ENV environment variable to 'production'.
