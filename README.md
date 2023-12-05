@@ -1,6 +1,7 @@
 # SENG 513 Project
 
 ## Table of Contents
+- [Introduction](#Introduction)
 - [Contributors](#contributors)
 - [Application Setup Guide](#application-setup-guide)
   - [Prerequisites](#prerequisites)
@@ -15,28 +16,19 @@
       - [Backend](#backend)
   - [Interacting with the Application](#interacting-with-the-application)
 
-## Contributors
-- Shourav Rakshit Ivan (UCID: 30131085)
-- Cindy Rose Sy (UCID: 30118468)
-- Francisco Huayhualla (UCID: 30091238)
-- Paul Hui (UCID: 30122682)
-- Kevin Phan (UCID: 30053689)
+## Introduction
+Introducing "Summarify" - Revolutionizing the Way You Study
 
-## Application Setup Guide
+In response to the challenges faced by students in managing complex academic material, we are proud to introduce "Summarify," a groundbreaking web-based application. Summarify not only simplifies the studying process but transforms it into an efficient and inclusive learning experience.
 
-This guide will walk you through the steps needed to set up and run the application. The application consists of two main parts: the client and the backend.
+With Summarify, students can effortlessly upload lecture content and, in return, receive concise summaries, key insights, and interactive review questions with answers. Our platform is designed to cater to diverse learning preferences and paces, promoting inclusive learning for all.
 
-### Prerequisites
+Our primary objective is to enhance academic achievements while reducing the time spent on studying, ultimately fostering a more equitable educational experience. Say goodbye to traditional study methods; with Summarify, we are committed to ensuring that every student has the opportunity to master and retain essential knowledge required for their coursework. Welcome to a new era of effective and accessible learning with Summarify.
 
-Before you begin, ensure you have the following installed:
-- Git
-- Node.js
-
-### Cloning the Repository
-
-1. Open a terminal and clone the repository using Git:
-
-
+Checkout our demo:
+```
+https://www.youtube.com/
+```
 
 ## Contributors
 - Shourav Rakshit Ivan (UCID: 30131085)
@@ -55,6 +47,7 @@ Before you begin, ensure you have the following installed:
 - Git
 - Node.js
 - Docker
+    - If you do not have docker, this application only works on Windows Operating Systems
 
 ## Cloning the Repository
 
@@ -75,33 +68,31 @@ cd [Your_Repository_Name]
 To run the application, we use Docker Compose to manage the client and backend services together. Follow these steps to start the application using Docker Compose:
 
 1. Make sure you are in the root directory of the cloned repository in your terminal.
+    - This can be evidenced by having the docker-compose.yml file in the same directory
 
-2. Create a `.env` file in the root directory of the project if it doesn't already exist. You can use the provided `.env.example` file as a template and customize it as needed.
-
-3. Start the application using Docker Compose by running the following command:
+2. Start the application using Docker Compose by running the following command:
 
 ```bash
 docker-compose up -d
 ```
 
-4. Use this command to monitor logs
+3. Use this command to monitor logs
 ```
 docker-compose logs -f
 ```
 
-5. Open a browser and navigate to 
+4. Open a browser and navigate to 
 ```
 http://localhost:5173
 ```
 
-6. Take down the application 
+5. Take down the application 
 ```
 docker-compose down
 ```
 
 ## Without Docker
-## If you do not have docker installed follow the below process.
-## you might have issues if you are not on windows OS
+This does not work on MacOS and was not tested in Linux OS. Docker is recommended.
 
 ## Setting up the Client
 
@@ -111,10 +102,6 @@ docker-compose down
 cd client
 ```
 3. Install the necessary dependencies:
-```
-npm install
-```
-There is a chance this doesn't work out, if that is the case, use:
 ```
 npm install --force
 ```
@@ -130,7 +117,13 @@ cd backend
 ```
 npm install
 ```
-
+4. Install 2 more dependencies:
+```
+RUN npm i file-saver --force
+```
+```
+RUN npm install @react-pdf/renderer --save --force
+```
 
 ## Running the Application
 
@@ -152,4 +145,8 @@ npm run dev
 
 ## Interacting with the Application
 
-Once both the client and backend are running, you can interact with the system using the client interface at `http://localhost:5173`.
+Once both the client and backend are running, you can interact with the system using the client interface at 
+```
+http://localhost:5173
+```
+
