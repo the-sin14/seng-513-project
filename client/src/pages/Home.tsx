@@ -93,7 +93,7 @@ function Home() {
         variant="h5"
         style={{ color: "#888484", fontSize: "20px", textAlign: "center" }}
       >
-        Supported files types: PDF
+        Supported files types: TXT
       </Typography>
     </div>
   );
