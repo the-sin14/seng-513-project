@@ -51,20 +51,6 @@ const Chat = () => {
     </div>
   );
 
-  const boxStyles: React.CSSProperties = {
-    width: "87%",
-    height: initialView ? "63vh" : "100%",
-    borderRadius: 3,
-    display: "flex",
-    alignItems: initialView ? "center" : "center",
-    justifyContent: initialView ? "center" : "center",
-    flexDirection: "column",
-    overflow: "scroll",
-    overflowX: "hidden",
-    overflowY: "auto",
-    scrollBehavior: "smooth"
-  }
-
   const [fileInputKey, setFileInputKey] = useState(0);
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setUploadSlidesContent('');
