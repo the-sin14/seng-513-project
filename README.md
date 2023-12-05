@@ -5,14 +5,15 @@
 - [Application Setup Guide](#application-setup-guide)
   - [Prerequisites](#prerequisites)
   - [Cloning the Repository](#cloning-the-repository)
-  - [Starting the Application with Docker Compose](#starting-the-application-with-docker-compose)
-    - [Using Docker](#with-docker)
-    - [Without Docker](#without-docker)
-  - [Setting up the Client](#setting-up-the-client)
-  - [Setting up the Backend](#setting-up-the-backend)
-  - [Running the Application](#running-the-application)
-    - [Client](#client)
-    - [Backend](#backend)
+  - [With Docker](#with-docker)
+    - [Starting the Application with Docker Compose](#starting-the-application-with-docker-compose)
+
+  - [Without Docker](#without-docker)
+    - [Setting up the Client](#setting-up-the-client)
+    - [Setting up the Backend](#setting-up-the-backend)
+    - [Running the Application](#running-the-application)
+      - [Client](#client)
+      - [Backend](#backend)
   - [Interacting with the Application](#interacting-with-the-application)
 
 ## Contributors
