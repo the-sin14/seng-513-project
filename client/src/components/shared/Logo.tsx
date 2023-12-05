@@ -1,6 +1,5 @@
 import Typography from "@mui/material/Typography";
 import "@fontsource/poppins"
-import React from "react";
 import { Link } from "react-router-dom";
 import './Logo.css'; 
 
@@ -21,7 +20,7 @@ const Logo = () => {
           className="logo" 
           src="/summarify_logo.svg"
           alt="Logo"
-          className="logo"
+          
         />
       </Link>
       <Typography
