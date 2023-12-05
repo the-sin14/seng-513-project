@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import { PDFDownloadLink, Document, Page, Text } from '@react-pdf/renderer';
 import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
+import { LoadingChat } from "../components/chat/LoadingChat";
 
 type Message = {
   role: "user" | "assistant";
@@ -32,7 +33,7 @@ const Chat = () => {
   const auth = useAuth();
   const [chatMessages, setchatMessages] = useState<Message[]>([]);
   const [initialView, setInitialView] = useState(true);
-
+  const [beforeResponse, setLoadingResponse] = useState(<LoadingChat></LoadingChat>)
   const [uploadSlidesContent, setUploadSlidesContent] = React.useState(
     <div className="upload-slides-text">
       <Typography
@@ -54,7 +55,7 @@ const Chat = () => {
   const [fileInputKey, setFileInputKey] = useState(0);
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setUploadSlidesContent('');
-    setInitialView(false);
+
     const file = event.target.files?.[0];
 
     if (!file) {
@@ -74,6 +75,7 @@ const Chat = () => {
       setchatMessages([...chatData.chats]);
 
       setFileInputKey((prevKey) => prevKey + 1);
+      setInitialView(false);
     };
 
     reader.readAsText(file);
@@ -81,7 +83,6 @@ const Chat = () => {
 
   const handleSubmit = async () => {
     setUploadSlidesContent('');
-    setInitialView(false);
     const content = inputRef.current?.value.trim(); // Trim to remove any leading/trailing whitespaces
 
     // Clear the input field
@@ -108,12 +109,12 @@ const Chat = () => {
       console.log("chatData:", chatData); // Log the chatData object
       setchatMessages([...chatData.chats]);
       console.log("chatData.chats:", chatData.chats); // Log the chatData.chats object
+      setInitialView(false);
     }
   };
 
   const handleSummarize = async () => {
     setUploadSlidesContent('');
-    setInitialView(false);
     let content = inputRef.current?.value.trim();
 
     if (!content) {
@@ -132,12 +133,12 @@ const Chat = () => {
       console.log("chatData:", chatData);
       setchatMessages([...chatData.chats]);
       console.log("chatData.chats:", chatData.chats);
+      setInitialView(false);
     }
   };
 
   const handleBullets = async () => {
     setUploadSlidesContent('');
-    setInitialView(false);
     let content = inputRef.current?.value.trim();
 
     if (!content) {
@@ -162,12 +163,12 @@ const Chat = () => {
 
       console.log("Bullet messages:", bulletMessages);
       contents = lastItem.content;
+      setInitialView(false);
     }
   };
 
   const handleQuizMe = async () => {
     setUploadSlidesContent('');
-    setInitialView(false);
     let content = inputRef.current?.value.trim();
 
     if (!content) {
@@ -189,15 +190,17 @@ const Chat = () => {
       console.log("chatData:", chatData);
       setchatMessages([...chatData.chats]);
       console.log("chatData.chats:", chatData.chats);
+      setInitialView(false);
     }
   };
 
   const handleExport = async () => {
     setUploadSlidesContent('');
-    setInitialView(false);
+
     // Generate the PDF and trigger download
     const pdfBlob = await pdf(<ChatDocument chats={chatMessages} />).toBlob();
     saveAs(pdfBlob, 'chatData.pdf');
+    setInitialView(false);
   };
 
   useEffect(() => {
@@ -205,6 +208,7 @@ const Chat = () => {
       return navigate("/login");
     }
   })
+
   return (
 
     <Box
@@ -316,7 +320,7 @@ const Chat = () => {
 
         <Box sx={{
             width: "87%",
-            height: initialView ? "63vh" : "100%",
+            height: "63vh",
             borderRadius: 3,
             mx: "auto",
             display: "flex",
