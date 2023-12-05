@@ -203,7 +203,6 @@ const Chat = () => {
     setInitialView(false);
   };
 
-
   useEffect(() => {
     if (!auth?.user) {
       return navigate("/login");
@@ -340,18 +339,9 @@ const Chat = () => {
             <ChatItem content={chat.content} role={chat.role} key={index} />
           ))}
         </Box>
-        <div style={{ width: "85%", padding: "15px", borderRadius: 8, backgroundColor: "#39354A", display: "flex", margin: "auto", height: 50 }}>
 
           <div className="chat-input-field">
 
-          {/* This is where the upload button goes need to add the functionalities*/}
-          {/* So need to change the onclick handlesubmit thing */}
-          <button
-            onClick={handleExport}
-            disabled={chatMessages.length === 0}
-          >
-            Export to PDF
-          </button>
             {/* This is where the upload button goes need to add the functionalities*/}
             {/* So need to change the onclick handlesubmit thing */}
             {/* <button
@@ -361,20 +351,10 @@ const Chat = () => {
               Export to PDF
             </button> */}
 
-          <IconButton onClick={handleSummarize} sx={{ color: "white", fontSize: "25px" }}>
-            Summerize |
-          </IconButton>
             <IconButton onClick={handleExport} disabled={chatMessages.length === 0}>
               <FaFileExport className="export-button"/>
             </IconButton>
 
-          <IconButton onClick={handleBullets} sx={{ color: "white", fontSize: "25px" }}>
-            Bullets |
-          </IconButton>
-
-          <IconButton onClick={handleQuizMe} sx={{ color: "white", fontSize: "25px" }}>
-            Quiz Me |
-          </IconButton>
             <IconButton onClick={handleSummarize}>
               <Typography variant="h6" sx={{ color: "#344055", fontSize: "23px" }}>Summarize</Typography>
             </IconButton>
@@ -389,20 +369,6 @@ const Chat = () => {
             <Typography variant="h6" sx={{ color: "#344055", fontSize: "23px" }}>Questions</Typography>
             </IconButton>
             <Typography variant="h6" sx={{ color: "#344055"}}>|</Typography>
-
-          <input
-            key={fileInputKey}
-            type="file"
-            onChange={handleFileUpload}
-            accept=".txt"
-            style={{ display: "none" }}
-            id="fileInput"
-          />
-          <label htmlFor="fileInput">
-            <IconButton component="span" sx={{ color: "white", fontSize: "25px" }}>
-              +
-            </IconButton>
-          </label>
 
             <input
               key={fileInputKey}
