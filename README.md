@@ -27,7 +27,7 @@ Our primary objective is to enhance academic achievements while reducing the tim
 
 Checkout our demo:
 ```
-https://www.youtube.com/
+https://youtu.be/49cSPxv53go
 ```
 
 ## Contributors
