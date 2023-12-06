@@ -314,6 +314,7 @@ const Payment: React.FC = () => {
 
     // If all checks pass, redirect to the chat page
     if(validation){
+      toast.success("You are now a Premium User!");
       navigate("/chat");
     }
   };
