@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { IoIosLogIn } from "react-icons/io";
-import { Box, Typography, Button, TextField, Container, Grid, MenuItem, InputLabel } from '@mui/material';
+import { Box, Typography, Button, TextField, Container, Grid, MenuItem, InputLabel, useMediaQuery } from '@mui/material';
 import CustomizedInput from "../components/shared/CustomizedInput";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
@@ -223,6 +223,9 @@ const Payment: React.FC = () => {
     }
   })
 
+  // Helps make certain prompts responsive
+  const isSmallScreen = useMediaQuery('(max-width:900px)');
+
   const [cardholderName, setCardholderName] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
@@ -437,10 +440,10 @@ const Payment: React.FC = () => {
                 }}
                 SelectProps={{
                 MenuProps: {
-                    style: { maxHeight: 400, maxWidth: 100 },
+                    style: { maxHeight: 300, maxWidth: 100 },
                 },
                 }}
-                sx={{ width: '200%' }}
+                sx={{ width: isSmallScreen ? '100%' : '200%' }}
                 color="primary"
             >
                 {countries.map((option) => (
