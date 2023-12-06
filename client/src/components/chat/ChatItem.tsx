@@ -1,3 +1,4 @@
+import "./ChatItem.css"
 import React from "react";
 import { Box, Avatar, Typography } from "@mui/material";
 import { useAuth } from "../../context/AuthContext";
@@ -10,7 +11,6 @@ function extractCodeFromString(message: string) {
   }
 }
 
-
 const ChatItem = ({
   content,
   role,
@@ -20,7 +20,7 @@ const ChatItem = ({
 }) => {
   const messageBlocks = extractCodeFromString(content);
   const auth = useAuth();
-  return role == "assistant" ? (
+  return role == "user" ? (
     // <Box
     //   sx={{
     //     display: "flex",
@@ -36,17 +36,7 @@ const ChatItem = ({
     //   </Avatar>
 
     // </Box>
-    <Box
-      sx={{
-        display: "flex",
-        p: 2,
-        bgcolor: "#008080",
-        gap: 2,
-        borderRadius: 2,
-        flexDirection: "row-reverse", // Reverse the order of elements
-        alignItems: "center", // Vertically align the content and Avatar
-      }}
-    >
+    <Box className="box chat-message">
       <Avatar sx={{ ml: "0", bgcolor: "white", color: "black" }}>
         {/* Avatar content */}
       </Avatar>
@@ -67,15 +57,7 @@ const ChatItem = ({
     </Box>
 
   ) : (
-    <Box
-      sx={{
-        display: "flex",
-        p: 2,
-        bgcolor: "#004d56",
-        gap: 2,
-        borderRadius: 2,
-      }}
-    >
+    <Box className="box1 chat-message1">
       <Avatar sx={{ ml: "0", bgcolor: "black", color: "white" }}>
 
       </Avatar>

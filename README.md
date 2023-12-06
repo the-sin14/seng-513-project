@@ -1,5 +1,35 @@
 # SENG 513 Project
 
+## Table of Contents
+- [Introduction](#Introduction)
+- [Contributors](#contributors)
+- [Application Setup Guide](#application-setup-guide)
+  - [Prerequisites](#prerequisites)
+  - [Cloning the Repository](#cloning-the-repository)
+  - [With Docker](#with-docker)
+    - [Starting the Application with Docker Compose](#starting-the-application-with-docker-compose)
+  - [Without Docker](#without-docker)
+    - [Setting up the Client](#setting-up-the-client)
+    - [Setting up the Backend](#setting-up-the-backend)
+    - [Running the Application](#running-the-application)
+      - [Client](#client)
+      - [Backend](#backend)
+  - [Interacting with the Application](#interacting-with-the-application)
+
+## Introduction
+Introducing "Summarify" - Revolutionizing the Way You Study
+
+In response to the challenges faced by students in managing complex academic material, we are proud to introduce "Summarify," a groundbreaking web-based application. Summarify not only simplifies the studying process but transforms it into an efficient and inclusive learning experience.
+
+With Summarify, students can effortlessly upload lecture content and, in return, receive concise summaries, key insights, and interactive review questions with answers. Our platform is designed to cater to diverse learning preferences and paces, promoting inclusive learning for all.
+
+Our primary objective is to enhance academic achievements while reducing the time spent on studying, ultimately fostering a more equitable educational experience. Say goodbye to traditional study methods; with Summarify, we are committed to ensuring that every student has the opportunity to master and retain essential knowledge required for their coursework. Welcome to a new era of effective and accessible learning with Summarify.
+
+Checkout our demo:
+```
+https://www.youtube.com/
+```
+
 ## Contributors
 - Shourav Rakshit Ivan (UCID: 30131085)
 - Cindy Rose Sy (UCID: 30118468)
@@ -16,6 +46,8 @@ This guide will walk you through the steps needed to set up and run the applicat
 Before you begin, ensure you have the following installed:
 - Git
 - Node.js
+- Docker
+    - If you do not have docker, this application only works on Windows Operating Systems
 
 ## Cloning the Repository
 
@@ -30,7 +62,37 @@ git clone git@github.com:the-sin14/seng-513-project.git
 ```
 cd [Your_Repository_Name]
 ```
+## With Docker
+## Starting the Application with Docker Compose
 
+To run the application, we use Docker Compose to manage the client and backend services together. Follow these steps to start the application using Docker Compose:
+
+1. Make sure you are in the root directory of the cloned repository in your terminal.
+    - This can be evidenced by having the docker-compose.yml file in the same directory
+
+2. Start the application using Docker Compose by running the following command:
+
+```bash
+docker-compose up -d
+```
+
+3. Use this command to monitor logs
+```
+docker-compose logs -f
+```
+
+4. Open a browser and navigate to 
+```
+http://localhost:5173
+```
+
+5. Take down the application 
+```
+docker-compose down
+```
+
+## Without Docker
+This does not work on MacOS and was not tested in Linux OS. Docker is recommended.
 
 ## Setting up the Client
 
@@ -40,10 +102,6 @@ cd [Your_Repository_Name]
 cd client
 ```
 3. Install the necessary dependencies:
-```
-npm install
-```
-There is a chance this doesn't work out, if that is the case, use:
 ```
 npm install --force
 ```
@@ -59,7 +117,13 @@ cd backend
 ```
 npm install
 ```
-
+4. Install 2 more dependencies:
+```
+RUN npm i file-saver --force
+```
+```
+RUN npm install @react-pdf/renderer --save --force
+```
 
 ## Running the Application
 
@@ -81,4 +145,8 @@ npm run dev
 
 ## Interacting with the Application
 
-Once both the client and backend are running, you can interact with the system using the client interface at `http://localhost:5173`.
+Once both the client and backend are running, you can interact with the system using the client interface at 
+```
+http://localhost:5173
+```
+

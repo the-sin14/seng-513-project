@@ -1,0 +1,4 @@
+# Dockerignore backend file
+node_modules
+README.md
+package-lock.json
