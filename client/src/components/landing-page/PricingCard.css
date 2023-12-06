@@ -1,181 +1,78 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
 :root {
-  --primary: #344055;
-  --secondary: #485875;
-  --off-white: #f2f1ee;
-  --dark-gray: #515458;
-  --light-gray: #888484;
-  --tertiary: #d9d9d9;
+    --primary: #344055;
+    --secondary: #485875;
+    --off-white: #F2F1EE;
 }
 
-.subtitleStyles {
-  color: var(--dark-gray);
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.learnStyles {
-  color: #344055;
-  font-family: "Poppins", sans-serif;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  text-transform: uppercase;
-}
-
-.wordCounterStyles {
-  color: rgba(70, 67, 67, 0.8);
-  text-align: right;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.testSummarifyStyles {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 100px;
-  background-color: #d9d9d9;
-  position: relative;
-  padding-bottom: 300px;
-}
-
-.upload-file-icon {
-  font-size: 25px;
-  color: var(--primary);
-  margin-right: 10px;
-  margin-left: 10px;
-}
-
-.enter-notes-icon {
-  font-size: 25px;
-  color: var(--primary);
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-
-@media screen and (max-width: 640px) {
-  .text-field {
-    font-size: 14px; /* Smaller font size for small screens */
+.card {
+    width: 100%;
+    max-width: 500px;
     
-  }
+    border-radius: 6px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
-.upload-button,
-.enter-button {
-  border: none;
-  background: none;
-  cursor: pointer;
-  margin: 0;
-  padding: 0;
+.card-header {
+    background-color: #344055;
+    color: var(--off-white);
+    padding: 5px 20px;
+    border-radius: 6px 6px 0 0; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box; 
 }
 
-.lorem-ipsum {
-  margin: 150px 100px;
-  font-weight: 400;
-  
+.card-content {
+    text-align: center;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1; 
 }
 
-.blurred-bg {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  filter: blur(7px);
-  user-select: none;
-  
+.button {
+    font-size: 16px;
+    width: 150px;
+    background-color: var(--primary);
+    color: var(--off-white);
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-decoration: none;
+    border: none;
+    padding: 4px 0px;
 }
 
-.create-acc-suggestion {
-  border-radius: 10px;
-  background: var(--primary);
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 1000px;
-  margin: 150px auto;
-}
-
-@media screen and (max-width: 640px) { /* Update 640px for the mobile breakpoint */
-  .create-acc-suggestion{
-    width: 350px;
-    padding: 50px 0px;
-  }
-}
-
-
-
-.want-to-read-more {
-  color: var(--off-white);
-  font-weight: 500;
-  text-align: center;
-}
-
-.want-to-read-more-p {
-  text-align: center;
-  color: var(--off-white);
-  font-weight: 300;
-  font-size: 12px;
-  margin-top: 10px;
-}
-
-@media screen and (max-width: 640px) {
-  .create-acc-suggestion {
-    height: 30vh;
-  }
-}
-
-.image {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px; /* Default margin-top for mobile view */
-}
-
-@media (min-width: 640px) {
-  /* Adjust this min-width value based on the mobile breakpoint */
-  .image {
-    margin-top: 0;
-  }
-}
-
-.inputFieldStyles{
-    justify-content: center;
+.feature {
     display: flex;
     align-items: center;
-    flex-direction: row;
-    border-radius: 15px;
-    border: 1px solid #344055;
-    background-color: #F2F1EE;
-    height: 50px;
-    position: absolute;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 0 20px;
-    max-width: calc(100% - 120px); /* This ensures the element doesn't extend beyond the viewport */
-    width: 50%; /* Default to non-mobile view width */
+    margin: 10px 0;
 }
 
-/* Mobile view adjustments */
-@media screen and (max-width: 640px) { /* Update 640px for the mobile breakpoint */
-    .inputFieldStyles{
-        width: 90%; 
-    }
+.bold {
+    font-weight: bold;
 }
 
+.underline {
+    text-decoration: underline;
+}
+
+.card-body {
+    flex: 1; /* This will allow the element to grow and fill the available space in a flex container */
+}
+
+.button:hover {
+    background-color: var(--secondary);
+    transition: .5s;
+}
+
+.link {
+    color: var(--off-white);
+}
