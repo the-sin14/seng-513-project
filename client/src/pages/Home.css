@@ -40,7 +40,7 @@
 
 .testSummarifyStyles {
   width: 100%;
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,6 +48,7 @@
   margin-top: 100px;
   background-color: #d9d9d9;
   position: relative;
+  padding-bottom: 300px;
 }
 
 .upload-file-icon {
@@ -95,8 +96,9 @@
 }
 
 .lorem-ipsum {
-  margin: 20px 100px;
+  margin: 150px 100px;
   font-weight: 400;
+  
 }
 
 .blurred-bg {
@@ -105,28 +107,42 @@
   background-attachment: fixed;
   filter: blur(7px);
   user-select: none;
+  
 }
 
 .create-acc-suggestion {
-  margin-top: 30px;
   border-radius: 10px;
   background: var(--primary);
-  height: 23vh;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 1000px;
+  margin: 150px auto;
 }
+
+@media screen and (max-width: 640px) { /* Update 640px for the mobile breakpoint */
+  .create-acc-suggestion{
+    width: 350px;
+    padding: 50px 0px;
+  }
+}
+
+
 
 .want-to-read-more {
   color: var(--off-white);
   font-weight: 500;
+  text-align: center;
 }
 
 .want-to-read-more-p {
   text-align: center;
   color: var(--off-white);
   font-weight: 300;
+  font-size: 12px;
+  margin-top: 10px;
 }
 
 @media screen and (max-width: 640px) {
