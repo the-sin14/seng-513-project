@@ -259,6 +259,7 @@ function Home() {
             </button>
             <input
               type="text"
+              style={{fontSize: "16px"}}
               placeholder="Type in notes..."
               className="text-field"
               value={inputText} 
