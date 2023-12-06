@@ -4,23 +4,19 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import './Footer.css'
 
 const theme = createTheme();
+
 
 const Footer = () => {
   return (
       <Box
         component="footer"
-        sx={{
-          py: 2,
-          px: 2,
-          mt: 'auto',
-          backgroundColor: '#344055',
-          color: '#F2F1EE',
-          textAlign: 'center',
-        }}
+        className='footer'
+       
       >
-        <Container maxWidth="sm">
+        <Container maxWidth={false}>
           <Typography variant="body2">
             Questions? Concerns? Email us at <u>email@email.com</u>
           </Typography>
@@ -31,5 +27,6 @@ const Footer = () => {
       </Box>
   );
 };
+
 
 export default Footer;
