@@ -61,7 +61,7 @@ function Home() {
     fontWeight: "400",
     lineHeight: "normal",
     textTransform: "uppercase",
-    textAlign: "center"
+    textAlign: "center",
   };
 
   const summarifyDescriptionStyles: React.CSSProperties = {
@@ -80,12 +80,19 @@ function Home() {
   const [image, setImage] = React.useState("");
   const [showCounter, setShowCounter] = React.useState(true);
   const inputFile = React.useRef(null);
+  const [inputText, setInputText] = useState(""); // Add this state variable to store textfield input
   const [uploadSlidesContent, setUploadSlidesContent] = React.useState(
-    <div className="upload-slides-text">
+    <div>
       <Typography
         variant="h1"
-        style={{ color: "#515458", fontSize: "35px", fontWeight: "bolder",
-        display: "block", marginBottom: "35px", textAlign: "center"}}
+        style={{
+          color: "#515458",
+          fontSize: "35px",
+          fontWeight: "bolder",
+          display: "block",
+          marginBottom: "35px",
+          textAlign: "center",
+        }}
       >
         UPLOAD YOUR LECTURE SLIDES
       </Typography>
@@ -98,14 +105,33 @@ function Home() {
     </div>
   );
 
-  function submitInput() {
+  const handleEscKeyPress = (event) => {
+    if (event.key === 'Escape') {
+      // Reset the uploadSlidesContent to its original state
+      setUploadSlidesContent(uploadSlidesContent);
+      // Other state resets if needed
+      setShowCounter(true);
+      setInputText('');
+    }
+  };
+
+  useEffect(() => {
+    // Add event listener when component mounts
+    document.addEventListener('keydown', handleEscKeyPress);
+
+    // Remove event listener on cleanup
+    return () => {
+      document.removeEventListener('keydown', handleEscKeyPress);
+    };
+  }, []);
+
+
+  function submitInput(text = inputText.substring(0, 120)) {
     setShowCounter(false);
+    setInputText('');
     setUploadSlidesContent(
       <div className="lorem-ipsum">
-        <p>
-          The following is a concise summary derived from the comprehensive
-          notes you provided:
-        </p>
+        <p>{text}</p> 
         <div className="blurred-bg">
           <p>
             Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Sed
@@ -117,18 +143,15 @@ function Home() {
             non curabitur gravida arcu ac.
           </p>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos aperiam
-            quia, ipsum beatae velit provident sed explicabo. Recusandae maiores
-            modi voluptates facere cum, odit molestias? Iste molestias excepturi
-            necessitatibus corporis nesciunt expedita minus iusto, quia iure in
-            obcaecati nulla, velit voluptatum laborum aut quidem aperiam eaque
-            nostrum? Quod quaerat modi aperiam sit amet! Repudiandae mollitia
-            vel illo dolores voluptatem, quaerat officia ab asperiores magnam
-            eligendi, totam et necessitatibus praesentium modi reiciendis eum
-            harum quas repellendus aliquam. Unde pariatur fugit eveniet tempore
-            repellendus aperiam non omnis eius esse quasi officia aliquam culpa,
-            enim odit sapiente iste alias, soluta, praesentium numquam corrupti?
+            Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Sed
+            adipiscing diam donec adipiscing tristique. Eu volutpat odio
+            facilisis mauris sit amet massa. Nec feugiat in fermentum posuere.
+            Vitae suscipit tellus mauris a diam maecenas sed enim ut. Vulputate
+            eu scelerisque felis imperdiet. Mattis molestie a iaculis at erat.
+            Proin fermentum leo vel orci porta non pulvinar neque. Lacus laoreet
+            non curabitur gravida arcu ac.
           </p>
+         
         </div>
         <div className="create-acc-suggestion">
           <h2 className="want-to-read-more">
@@ -150,16 +173,15 @@ function Home() {
   }
 
   const uploadFile = (e) => {
-    const { files } = e.target;
-    if (files && files.length) {
-      const filename = files[0].name;
-
-      const parts = filename.split(".");
-      const fileType = parts[parts.length - 1];
-      console.log("fileType", fileType); //ex: zip, rar, jpg, svg etc.
-
-      setImage(files[0]);
-      submitInput();
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (readEvent) => {
+        const text = readEvent.target.result.substring(0, 120); // Limit the text to 100 chars
+        setInputText(text);
+        submitInput(text); // Pass the limited text to submitInput
+      };
+      reader.readAsText(file);
     }
   };
 
@@ -183,14 +205,10 @@ function Home() {
           {/* Image container, ensure it resizes and centers on mobile view */}
           <div
             style={{
-              width: isMobileView ? "100%" : "auto",
-              padding: isMobileView ? "0 20px" : "0",
+              width: isMobileView ? "90%" : "auto",
             }}
           >
-            <img
-              src="../girl_book.svg"
-              className="image"
-            />
+            <img src="../girl_book.svg" className="image" />
           </div>
           <div style={explainSectionStyles}>
             <Typography variant="h1" style={titleStyles}>
@@ -220,10 +238,7 @@ function Home() {
         </div>
 
         {/* Test Summarify Section */}
-        <Box
-          
-          className="testSummarifyStyles"
-        >
+        <Box className="testSummarifyStyles">
           {uploadSlidesContent}
 
           {/* Text field */}
@@ -246,11 +261,20 @@ function Home() {
               type="text"
               placeholder="Type in notes..."
               className="text-field"
-              onChange={(e) => setCount(e.target.value.length)}
+              value={inputText} 
+              onChange={(e) => {
+                setCount(e.target.value.length);
+                setInputText(e.target.value);
+              }}
+              onKeyDown={(e) =>{
+                if (e.key == "Enter") {
+                  submitInput();
+                }
+              }}
             />
             <button
               className="enter-button"
-              onClick={submitInput}
+              onClick={() => submitInput()}
               disabled={count >= maxCharacterCount || count === 0}
             >
               <IoArrowRedoSharp className="enter-notes-icon" />
