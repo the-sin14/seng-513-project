@@ -237,8 +237,85 @@ const Payment: React.FC = () => {
   const [country, setCountry] = useState('');
   const [postalCode, setPostalCode] = useState('');
 
+  // State variables for validation status
+  const [cardholderNameError, setCardholderNameError] = useState(false);
+  const [cardNumberError, setCardNumberError] = useState(false);
+  const [expirationDateError, setExpirationDateError] = useState(false);
+  const [cvcError, setCvcError] = useState(false);
+
+  const [streetAddressError, setStreetAddressError] = useState(false);
+  const [cityError, setCityError] = useState(false);
+  const [stateProvinceError, setStateProvinceError] = useState(false);
+  const [countryError, setCountryError] = useState(false);
+  const [postalCodeError, setPostalCodeError] = useState(false);
+
   const handlePurchase = () => {
-    return navigate("/chat");
+    // Reset previous error states
+    let validation = true;
+
+    setCardholderNameError(false);
+    setCardNumberError(false);
+    setExpirationDateError(false);
+    setCvcError(false);
+
+    setStreetAddressError(false);
+    setCityError(false);
+    setStateProvinceError(false);
+    setCountryError(false);
+    setPostalCodeError(false);
+
+    // Validation checks
+    if (!cardholderName || !cardNumber || !expirationDate || !cvc || !streetAddress || !city || !stateProvince || !country || !postalCode) {
+      // Set error states
+      setCardholderNameError(!cardholderName);
+      setCardNumberError(!cardNumber);
+      setExpirationDateError(!expirationDate);
+      setCvcError(!cvc);
+      setStreetAddressError(!streetAddress);
+      setCityError(!city);
+      setStateProvinceError(!stateProvince);
+      setCountryError(!country);
+      setPostalCodeError(!postalCode);
+
+      toast.error('Please fill in all the required fields.');
+      validation = false;
+    }
+
+    // Card number length check and numeric check
+    if (!/^\d{16}$/.test(cardNumber)) {
+      setCardNumberError(true);
+      toast.error('Invalid card number. It should be 16 numeric digits.');
+      validation = false;
+    }
+
+    // CVC length check and numeric check
+    if (!/^\d{3}$/.test(cvc)) {
+      setCvcError(true);
+      toast.error('Invalid CVC. It should be 3 numeric digits.');
+      validation = false;
+    }
+
+    // Expiration date format check
+    const [month, year] = expirationDate.split('/');
+    const currentDate = new Date();
+    const expirationDateObject = new Date(`20${year}`, month - 1); // Subtracting 1 from month because months are zero-indexed in JavaScript
+
+    if (
+      isNaN(parseInt(month, 10)) ||
+      isNaN(parseInt(year, 10)) ||
+      expirationDate.length !== 5 ||
+      month < 1 || month > 12 ||  // Valid month range
+      expirationDateObject < currentDate
+    ) {
+      setExpirationDateError(true);
+      toast.error('Invalid expiration date. Please enter a valid date (MM/YY).');
+      validation = false;
+    }
+
+    // If all checks pass, redirect to the chat page
+    if(validation){
+      navigate("/chat");
+    }
   };
 
   return (
@@ -273,7 +350,7 @@ const Payment: React.FC = () => {
               id="cardholderName"
               label="Cardholder Name"
               placeholder="Cardholder Name"
-              InputLabelProps={{ sx: { color: '#344055' } }}
+              InputLabelProps={{ sx: { color: cardholderNameError ? 'red' : '#344055' } }}
               value={cardholderName}
               onChange={(e) => setCardholderName(e.target.value)}
               InputProps={{
@@ -292,7 +369,7 @@ const Payment: React.FC = () => {
                 id="cardNumber"
                 label="Card Number"
                 placeholder="Card Number"
-                InputLabelProps={{ sx: { color: '#344055' } }}
+                InputLabelProps={{ sx: { color: cardNumberError ? 'red' : '#344055' } }}
                 value={cardNumber}
                 onChange={(e) => setCardNumber(e.target.value)}
                 InputProps={{
@@ -315,7 +392,7 @@ const Payment: React.FC = () => {
                     id="expirationDate"
                     label="Expiration Date"
                     placeholder="MM/YY"
-                    InputLabelProps={{ sx: { color: '#344055' } }}
+                    InputLabelProps={{ sx: { color: expirationDateError ? 'red' : '#344055' } }}
                     value={expirationDate}
                     onChange={(e) => setExpirationDate(e.target.value)}
                     InputProps={{
@@ -336,7 +413,7 @@ const Payment: React.FC = () => {
                     id="cvc"
                     label="CVC"
                     placeholder="CVC"
-                    InputLabelProps={{ sx: { color: '#344055' } }}
+                    InputLabelProps={{ sx: { color: cvcError ? 'red' : '#344055' } }}
                     value={cvc}
                     onChange={(e) => setCvc(e.target.value)}
                     InputProps={{
@@ -366,7 +443,7 @@ const Payment: React.FC = () => {
             id="streetAddress"
             label="Street Address"
             placeholder="Street Address"
-            InputLabelProps={{ sx: { color: '#344055' } }}
+            InputLabelProps={{ sx: { color: streetAddressError ? 'red' : '#344055' } }}
             value={streetAddress}
             onChange={(e) => setStreetAddress(e.target.value)}
             InputProps={{
@@ -387,7 +464,7 @@ const Payment: React.FC = () => {
                 id="city"
                 label="City"
                 placeholder="City"
-                InputLabelProps={{ sx: { color: '#344055' } }}
+                InputLabelProps={{ sx: { color: cityError ? 'red' : '#344055' } }}
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 InputProps={{
@@ -407,7 +484,7 @@ const Payment: React.FC = () => {
                 id="stateProvince"
                 label="State/Province"
                 placeholder="State/Province"
-                InputLabelProps={{ sx: { color: '#344055' } }}
+                InputLabelProps={{ sx: { color: stateProvinceError ? 'red' : '#344055' } }}
                 value={stateProvince}
                 onChange={(e) => setStateProvince(e.target.value)}
                 InputProps={{
@@ -428,7 +505,7 @@ const Payment: React.FC = () => {
                 select
                 id="country"
                 label="Country"
-                InputLabelProps={{ sx: { color: '#344055' } }}
+                InputLabelProps={{ sx: { color: countryError ? 'red' : '#344055' } }}
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
                 InputProps={{
@@ -461,7 +538,7 @@ const Payment: React.FC = () => {
                 id="postalCode"
                 label="Postal Code"
                 placeholder="Postal Code"
-                InputLabelProps={{ sx: { color: '#344055' } }}
+                InputLabelProps={{ sx: { color: postalCodeError ? 'red' : '#344055' } }}
                 value={postalCode}
                 onChange={(e) => setPostalCode(e.target.value)}
                 InputProps={{
