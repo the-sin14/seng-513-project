@@ -1,16 +1,13 @@
-import "./Chat.css"
 import React, { useEffect, useRef, useState } from "react";
-import { FaCirclePlus, FaFileExport } from "react-icons/fa6";
-import { IoArrowRedoSharp } from "react-icons/io5";
-import { Box, Avatar, Typography, Button, IconButton, FormControl, Select, MenuItem, Divider } from "@mui/material";
+import { Box, Avatar, Typography, Button, IconButton } from "@mui/material";
 import { useAuth } from "../context/AuthContext";
 import ChatItem from "../components/chat/ChatItem";
+import { IoMdSend } from "react-icons/io";
 import { sendChatRequest } from "../helpers/api-communicators";
 import { useNavigate } from 'react-router-dom'
 import { PDFDownloadLink, Document, Page, Text } from '@react-pdf/renderer';
 import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
-import { LoadingChat } from "../components/chat/LoadingChat";
 
 type Message = {
   role: "user" | "assistant";
@@ -32,30 +29,10 @@ const Chat = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
   const [chatMessages, setchatMessages] = useState<Message[]>([]);
-  const [initialView, setInitialView] = useState(true);
-  const [beforeResponse, setLoadingResponse] = useState(<LoadingChat></LoadingChat>)
-  const [uploadSlidesContent, setUploadSlidesContent] = React.useState(
-    <div className="upload-slides-text">
-      <Typography
-        variant="h1"
-        style={{ color: "#515458", fontSize: "35px", fontWeight: "bolder",
-        display: "block", marginBottom: "35px", textAlign: "center"}}
-      >
-        UPLOAD YOUR LECTURE SLIDES
-      </Typography>
-      <Typography
-        variant="h5"
-        style={{ color: "#888484", fontSize: "20px", textAlign: "center" }}
-      >
-        Supported files types: TXT
-      </Typography>
-    </div>
-  );
+
 
   const [fileInputKey, setFileInputKey] = useState(0);
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUploadSlidesContent('');
-
     const file = event.target.files?.[0];
 
     if (!file) {
@@ -75,14 +52,12 @@ const Chat = () => {
       setchatMessages([...chatData.chats]);
 
       setFileInputKey((prevKey) => prevKey + 1);
-      setInitialView(false);
     };
 
     reader.readAsText(file);
   };
 
   const handleSubmit = async () => {
-    setUploadSlidesContent('');
     const content = inputRef.current?.value.trim(); // Trim to remove any leading/trailing whitespaces
 
     // Clear the input field
@@ -109,12 +84,10 @@ const Chat = () => {
       console.log("chatData:", chatData); // Log the chatData object
       setchatMessages([...chatData.chats]);
       console.log("chatData.chats:", chatData.chats); // Log the chatData.chats object
-      setInitialView(false);
     }
   };
 
   const handleSummarize = async () => {
-    setUploadSlidesContent('');
     let content = inputRef.current?.value.trim();
 
     if (!content) {
@@ -133,12 +106,11 @@ const Chat = () => {
       console.log("chatData:", chatData);
       setchatMessages([...chatData.chats]);
       console.log("chatData.chats:", chatData.chats);
-      setInitialView(false);
     }
   };
 
+
   const handleBullets = async () => {
-    setUploadSlidesContent('');
     let content = inputRef.current?.value.trim();
 
     if (!content) {
@@ -152,6 +124,70 @@ const Chat = () => {
       inputRef.current.value = "";  // Clear the input field
 
       const chatData = await sendChatRequest(content);
+
+      // <!--       chatData.role = "assistant";
+      //       console.log("chatData:", chatData); // Log the chatData object
+      //       setchatMessages([...chatData.chats])
+      //       console.log("chatData.chats:", chatData.chats); // Log the chatData.chats object
+
+      //   }
+      //   const handleSummarize = async () => {
+      //     let content = inputRef.current?.value as string;
+      //     if (inputRef && inputRef.current) {
+      //       inputRef.current.value = "";
+      //     }
+
+      //     const newMessage: Message = { role: "user", content };
+      //     setchatMessages((prev) => [...prev, newMessage]);
+
+      //     content = "Please summarize the following: " + content;
+
+      //     const chatData = await sendChatRequest(content);
+      //     chatData.role = "assistant";
+
+      //     console.log("chatData:", chatData);
+      //     setchatMessages([...chatData.chats]);
+      //     console.log("chatData.chats:", chatData.chats);
+      //   };
+
+      //   const handleBullets = async () => {
+      //     let content = inputRef.current?.value as string;
+      //     if (inputRef && inputRef.current) {
+      //       inputRef.current.value = "";
+      //     }
+
+      //     const newMessage: Message = { role: "user", content };
+      //     setchatMessages((prev) => [...prev, newMessage]);
+
+      //     content = "Please put the following in a bullet form summary: " + content;
+
+      //     const chatData = await sendChatRequest(content);
+      //     chatData.role = "assistant";
+
+      //     console.log("chatData:", chatData);
+      //     setchatMessages([...chatData.chats]);
+      //     console.log("chatData.chats:", chatData.chats);
+      //   };
+
+      //   const handleQuizMe = async () => {
+      //     let content = inputRef.current?.value as string;
+      //     if (inputRef && inputRef.current) {
+      //       inputRef.current.value = "";
+      //     }
+
+      //     const newMessage: Message = { role: "user", content };
+      //     setchatMessages((prev) => [...prev, newMessage]);
+
+      //     content = "Based on the following, ask me some questions about the information. Provide the answers to the questions under the questions. Please answer with the format 'question: ' and the followed by 'answer: ': " + content;
+
+      //     const chatData = await sendChatRequest(content);
+      //     chatData.role = "assistant";
+
+      //     console.log("chatData:", chatData);
+      //     setchatMessages([...chatData.chats]);
+      //     console.log("chatData.chats:", chatData.chats);
+      //   }; -->
+
       const modifiedChats = [...chatData.chats];
 
       const lastIndex = modifiedChats.length - 1;
@@ -163,12 +199,10 @@ const Chat = () => {
 
       console.log("Bullet messages:", bulletMessages);
       contents = lastItem.content;
-      setInitialView(false);
     }
   };
 
   const handleQuizMe = async () => {
-    setUploadSlidesContent('');
     let content = inputRef.current?.value.trim();
 
     if (!content) {
@@ -190,17 +224,14 @@ const Chat = () => {
       console.log("chatData:", chatData);
       setchatMessages([...chatData.chats]);
       console.log("chatData.chats:", chatData.chats);
-      setInitialView(false);
     }
   };
 
-  const handleExport = async () => {
-    setUploadSlidesContent('');
 
+  const handleExport = async () => {
     // Generate the PDF and trigger download
     const pdfBlob = await pdf(<ChatDocument chats={chatMessages} />).toBlob();
     saveAs(pdfBlob, 'chatData.pdf');
-    setInitialView(false);
   };
 
   useEffect(() => {
@@ -208,7 +239,6 @@ const Chat = () => {
       return navigate("/login");
     }
   })
-
   return (
 
     <Box
@@ -229,146 +259,66 @@ const Chat = () => {
           flex: { md: 1, xs: 1, sm: 1 },
           flexDirection: "column",
           gap: 5,
+
         }}
       >
-        {/* <FormControl>
-          <div className="user-options">
-            <div className="user-option-1">
-              <Typography variant="h6" id="summarization-type-label">Summarization Type</Typography>
-              <Select id="summarization-type-drop-down" sx={{
-                width: "100%",
-                borderRadius: "6px",
-                border: "1px solid #344055",
-                '.MuiSvgIcon-root': {
-                  backgroundColor: "#344055",
-                  color: "#F2F1EE",
-                  fontSize: "58px",
-                  borderRadius: "6px",
-                  marginRight: "-7px"
-                },
-                '&:before': {
-                  borderBottom: "1px solid #F2F1EE"
-                }
-              }} MenuProps={{
-                sx: {
-                  '& .MuiMenu-paper': {
-                    border: "1px solid #344055",
-                    marginTop: "5px",
-                    color: "#000000"
-                  },
-                  '& .MuiMenuItem-root:hover': {
-                    color: "#000000",
-                  },
-                  '& .MuiMenuItem-root': {
-                    color: "black"
-                  },
-                  '& .Mui-selected': {
-                    backgroundColor: "#61728F",
-                    color: "#F2F1EE"
-                  }
-                }
-              }}>
-                <MenuItem value={"Paragraph"}>Paragraph</MenuItem>
-                <MenuItem value={"Point"}>Point</MenuItem>
-              </Select>
-            </div>
+        <Typography
+          sx={{
+            textAlign: "center",
+            fontSize: "35px",
+            color: "black",
+            mx: "auto",
 
-            <div className="user-options-2">
-              <Typography variant="h6" id="generate-flashcards-label">Generate Questions?</Typography>
-              <Select id="generate-quiz-questions-dropdown" sx={{
-                width: "100%",
-                borderRadius: "6px",
-                border: "1px solid #344055",
-                '.MuiSvgIcon-root': {
-                  backgroundColor: "#344055",
-                  color: "#F2F1EE",
-                  fontSize: "58px",
-                  borderRadius: "6px",
-                  marginRight: "-7px"
-                },
-                '&:before': {
-                  borderBottom: "1px solid #F2F1EE"
-                },
-              }} MenuProps={{
-                sx: {
-                  '& .MuiMenu-paper': {
-                    border: "1px solid #344055",
-                    marginTop: "5px",
-                    color: "#000000"
-                  },
-                  '& .MuiMenuItem-root:hover': {
-                    color: "#000000",
-                  },
-                  '& .MuiMenuItem-root': {
-                    color: "black"
-                  },
-
-                  '& .Mui-selected': {
-                    backgroundColor: "#61728F",
-                    color: "#F2F1EE"
-                  }
-                }
-              }}>
-                <MenuItem value={"Yes"}>Yes</MenuItem>
-                <MenuItem value={"No"}>No</MenuItem>
-              </Select>
-            </div>
-          </div>
-        </FormControl>
-
-        <Divider className="section-break"/> */}
-
-        <Box sx={{
+          }}
+        >
+          Welcome To Summarify
+        </Typography>
+        <Box
+          sx={{
             width: "87%",
-            height: "63vh",
+            height: "52vh",
             borderRadius: 3,
             mx: "auto",
             display: "flex",
-            alignItems: initialView ? "center" : "auto",
-            justifyContent: initialView ? "center" : "flex-start",
             flexDirection: "column",
             overflow: "scroll",
             overflowX: "hidden",
             overflowY: "auto",
             scrollBehavior: "smooth",
-          }}>
-  
-          {uploadSlidesContent}
+          }}
+        >
 
           {chatMessages.map((chat, index) => (
             <ChatItem content={chat.content} role={chat.role} key={index} />
           ))}
         </Box>
 
-          <div className="chat-input-field">
+          <IconButton onClick={handleSubmit} sx={{ mr: "15px", color: "white" }}>
+            <IoMdSend />
+          </IconButton>
+
+          <div style={{ width: "85%", padding: "15px", borderRadius: 8, backgroundColor: "#39354A", display: "flex", margin: "auto", height: 50 }}>
 
             {/* This is where the upload button goes need to add the functionalities*/}
             {/* So need to change the onclick handlesubmit thing */}
-            {/* <button
+            <button
               onClick={handleExport}
               disabled={chatMessages.length === 0}
             >
               Export to PDF
-            </button> */}
+            </button>
 
-            <IconButton onClick={handleExport} disabled={chatMessages.length === 0}>
-              <FaFileExport className="export-button"/>
+            <IconButton onClick={handleSummarize} sx={{ color: "white", fontSize: "25px" }}>
+              Summerize |
             </IconButton>
 
-            <IconButton onClick={handleSummarize}>
-              <Typography variant="h6" sx={{ color: "#344055", fontSize: "23px" }}>Summarize</Typography>
+            <IconButton onClick={handleBullets} sx={{ color: "white", fontSize: "25px" }}>
+              Bullets |
             </IconButton>
-            <Typography variant="h6" sx={{ color: "#344055"}}>|</Typography>
 
-            <IconButton onClick={handleBullets} sx={{ color: "#344055", fontSize: "25px" }}>
-            <Typography variant="h6" sx={{ color: "#344055", fontSize: "23px" }}>Bullets</Typography>
+            <IconButton onClick={handleQuizMe} sx={{ color: "white", fontSize: "25px" }}>
+              Quiz Me |
             </IconButton>
-            <Typography variant="h6" sx={{ color: "#344055"}}>|</Typography>
-            
-            <IconButton onClick={handleQuizMe} sx={{ color: "#344055", fontSize: "25px" }}>
-            <Typography variant="h6" sx={{ color: "#344055", fontSize: "23px" }}>Questions</Typography>
-            </IconButton>
-            <Typography variant="h6" sx={{ color: "#344055"}}>|</Typography>
 
             <input
               key={fileInputKey}
@@ -380,19 +330,28 @@ const Chat = () => {
             />
             <label htmlFor="fileInput">
               <IconButton component="span" sx={{ color: "white", fontSize: "25px" }}>
-                <FaCirclePlus className="upload-file-button" />
+                +
               </IconButton>
             </label>
+
 
             <input
               ref={inputRef}
               type="text"
               placeholder="Message Summarify"
-              className="text-field"
+              style={{
+                width: "100%",
+                backgroundColor: "transparent",
+                padding: "5px",
+                border: "none",
+                outline: "none",
+                color: "white",
+                fontSize: "20px",
+              }}
             />
 
             <IconButton onClick={handleSubmit} sx={{ mr: "15px", color: "white" }}>
-              <IoArrowRedoSharp className="enter-notes-button"/>
+              <IoMdSend />
             </IconButton>
           </div>
 
