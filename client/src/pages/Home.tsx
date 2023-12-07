@@ -260,6 +260,7 @@ function Home() {
             <input
               type="text"
               placeholder="Type in notes..."
+              style={{fontSize: "13px"}}
               className="text-field"
               value={inputText} 
               onChange={(e) => {
