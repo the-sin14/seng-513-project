@@ -3,6 +3,14 @@ import jwt from "jsonwebtoken";
 import { COOKIE_NAME } from "./constants.js";
 
 // creating the token
+/**
+ * Generates a JWT token with user ID and email as payload.
+ * @param id - User ID
+ * @param email - User's email
+ * @param expiresIn - Expiration time for the token
+ * @returns JWT token
+ */
+
 export const createToken = (id: string, email: string, expiresIn: string) => {
   const payload = { id, email };
   const token = jwt.sign(payload, process.env.JWT_SECRET, {
@@ -12,6 +20,14 @@ export const createToken = (id: string, email: string, expiresIn: string) => {
 };
 
 // verifying the token
+/**
+ * Middleware to verify JWT tokens in incoming requests.
+ * @param req - Express Request object
+ * @param res - Express Response object
+ * @param next - Next function in the middleware chain
+ * @returns Promise that resolves if the token is valid, rejects on error
+ */
+
 export const verifyToken = async (
   req: Request,
   res: Response,
