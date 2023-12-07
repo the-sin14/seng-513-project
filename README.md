@@ -31,11 +31,11 @@ https://youtu.be/49cSPxv53go
 ```
 
 ## Contributors
-- Shourav Rakshit Ivan (UCID: 30131085)
-- Cindy Rose Sy (UCID: 30118468)
-- Francisco Huayhualla (UCID: 30091238)
-- Paul Hui (UCID: 30122682)
-- Kevin Phan (UCID: 30053689)
+- Shourav Rakshit Ivan (UCID: 30131085, Github: ShouravRakshit)
+- Cindy Rose Sy (UCID: 30118468, Github: the-sin14)
+- Francisco Huayhualla (UCID: 30091238, Github: fhuayhualla)
+- Paul Hui (UCID: 30122682, Github: paulhuii)
+- Kevin Phan (UCID: 30053689, Github: KyoKii02)
 
 ## Application Setup Guide
 
